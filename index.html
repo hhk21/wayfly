@@ -115,6 +115,7 @@
         <a href="#oferty">Oferty</a>
         <a href="#faq">FAQ</a>
         <a href="#regulamin">Regulamin</a>
+        <a href="#opinie">Opinie</a>
     </nav>
 
     <!-- Oferty -->
@@ -138,6 +139,23 @@
             <button>Kup plan podróży</button>
         </div>
     </section>
+
+    <section id="opinie">
+    <h2>Opinie naszych klientów</h2>
+    <form id="reviewForm" class="review-form">
+        <input type="email" id="email" placeholder="Twój email" required />
+        <input type="number" id="rating" min="1" max="5" placeholder="Ocena (1-5)" required />
+        <input type="text" id="tripTo" placeholder="Dokąd leciałeś?" required />
+        <input type="date" id="tripStart" required />
+        <input type="date" id="tripEnd" required />
+        <textarea id="comment" placeholder="Twoja opinia" required></textarea>
+        <button type="submit">Wyślij opinię</button>
+    </form>
+    <div id="thankYouMessage" style="display:none;">
+        <h3>Dziękujemy za opinię! 🎉</h3>
+        <p>Twoja opinia została wysłana pomyślnie.</p>
+    </div>
+</section>
 
     <!-- FAQ -->
     <section id="faq">
@@ -214,10 +232,10 @@
   appId: "1:961643779503:web:41594b733dbe8769f14b5a"
   };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+ const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  document.getElementById("reviewForm").addEventListener("submit", async (e) => {
+document.getElementById("reviewForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const email = document.getElementById("email").value;
@@ -227,45 +245,43 @@
     const tripEnd = document.getElementById("tripEnd").value;
     const tripTo = document.getElementById("tripTo").value;
     const today = new Date();
-
     const endDate = new Date(tripEnd);
     const weekAfter = new Date(endDate);
     weekAfter.setDate(weekAfter.getDate() + 7);
 
-
     if (today > weekAfter) {
-      alert("Minął już tydzień od zakończenia podróży — nie możesz dodać opinii.");
-      return;
+        alert("Minął już tydzień od zakończenia podróży — nie możesz dodać opinii.");
+        return;
     }
 
-    await addDoc(collection(db, "reviews"), {
-      userEmail: email,
-      rating: rating,
-      comment: comment,
-      tripStart: tripStart,
-      tripEnd: tripEnd,
-      createdAt: new Date()
-    });
+    try {
+        await addDoc(collection(db, "reviews"), {
+            userEmail: email,
+            rating: rating,
+            comment: comment,
+            tripStart: tripStart,
+            tripEnd: tripEnd,
+            tripTo: tripTo,
+            createdAt: new Date()
+        });
 
-    alert("Dziękujemy za opinię!");
-  });
+        // ukrycie formularza i pokazanie komunikatu
+        document.getElementById("reviewForm").style.display = "none";
+        document.getElementById("thankYouMessage").style.display = "block";
+
+    } catch (error) {
+        console.error("Błąd dodawania opinii:", error);
+        alert("Coś poszło nie tak. Spróbuj ponownie.");
+    }
+});
 </script>
-
-<form id="reviewForm">
-  <input type="email" id="email" placeholder="Twój email" required />
-  <input type="number" id="rating" min="1" max="5" placeholder="Ocena" required />
-  <input type="text" id="tripTo" placeholder="Dokąd leciałeś?" required />
-  <input type="date" id="tripStart" placeholder="Data rozpoczęcia podróży" required />
-  <input type="date" id="tripEnd" placeholder="Data zakończenia podróży" required />
-  <textarea id="comment" placeholder="Twoja opinia" required></textarea>
-  <button type="submit">Wyślij opinię</button>
-</form>
 
 
 
     
 </body>
 </html>
+
 
 
 
