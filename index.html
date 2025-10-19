@@ -40,8 +40,6 @@ header h1 {
 }
 
 /* --- Nav --- */
-   <header>
-</header>
 nav {
   position: fixed;
   top: 0;
@@ -165,6 +163,10 @@ footer { background-color: #005fa3; color: white; text-align: center; padding: 1
 </style>
 </head>
 <body>
+  
+<header>
+  
+</header>
 
 <nav>
   <a href="#oferty">Oferty</a>
@@ -250,6 +252,7 @@ document.getElementById("reviewForm").addEventListener("submit", function(e) {
     createdAt: new Date()
   }).then(function() {
     document.getElementById("thankYouMessage").textContent = "Dziękujemy za opinię!";
+
 
 
 
