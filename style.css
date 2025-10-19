@@ -161,9 +161,9 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
     font-weight: bold;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    z-index: 2; /* dodać */
 }
 
-/* tekst opisowy na środku zdjęcia */
 .text-overlay {
     position: absolute;
     bottom: 50px;
@@ -172,6 +172,11 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
     color: white;
     text-align: center;
     text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+    z-index: 2;
+}
+
+.image-container img {
+    z-index: 1;
 }
 
 .text-overlay h3 {
@@ -198,6 +203,7 @@ nav {
 section {
     padding-top: 60px; 
 }
+
 
 
 
