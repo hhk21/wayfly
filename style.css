@@ -113,7 +113,7 @@ section {
 /* --- Tekst i przycisk na kafelku --- */
 .text-overlay {
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
@@ -223,6 +223,7 @@ footer {
   .text-overlay h3 { font-size: 1em; }
   .text-overlay p { font-size: 0.8em; }
 }
+
 
 
 
