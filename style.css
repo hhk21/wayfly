@@ -77,6 +77,23 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
     color: #2E7D32;
     font-family: sans-serif;
 }
+.oferta-link {
+    text-decoration: none; /* usuwa podkreślenie linku */
+    color: inherit;        /* dziedziczy kolor tekstu */
+    display: block;        /* pozwala, żeby cały blok był klikany */
+}
+
+.oferta-link .oferta {
+    cursor: pointer;       /* zmienia kursor przy najechaniu */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.oferta-link .oferta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+
 
 
 
