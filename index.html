@@ -3,142 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oferty Podróży</title>
+    <title>Wayfly – Twój indywidualny plan podróży</title>
     <style>
-        /* Reset podstawowy */
-        * {
-            box-sizing: border-box;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
         }
 
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+        /* Baner */
+        header {
+            background-color: #0078d7;
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
         }
 
         /* Pasek nawigacyjny */
-        header {
-            background-color: #3498db;
-            color: white;
-            padding: 20px;
-        }
-
-        header nav {
+        nav {
+            background-color: #005fa3;
             display: flex;
-            justify-content: flex-end;
-            gap: 20px;
+            justify-content: center;
+            padding: 10px 0;
         }
 
-        header nav a {
+        nav a {
             color: white;
             text-decoration: none;
+            margin: 0 15px;
             font-weight: bold;
         }
 
-        header nav a:hover {
+        nav a:hover {
             text-decoration: underline;
         }
 
         /* Siatka ofert */
-        main {
-            flex: 1;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-
-        .grid {
+        .oferty {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
+            padding: 30px;
         }
 
-        .offer {
+        .oferta {
             background-color: white;
-            padding: 15px;
             border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            text-align: center;
         }
 
-        .offer img {
+        .oferta img {
             width: 100%;
             border-radius: 10px;
-            margin-bottom: 10px;
+            height: 150px;
+            object-fit: cover;
         }
 
-        .offer h3 {
-            margin-bottom: 10px;
-        }
-
-        .offer p {
-            flex: 1;
-            margin-bottom: 10px;
-        }
-
-        .offer button {
-            background-color: #2ecc71;
+        .oferta button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #0078d7;
             color: white;
             border: none;
-            padding: 10px;
             border-radius: 5px;
             cursor: pointer;
-            font-weight: bold;
         }
 
-        .offer button:hover {
-            background-color: #27ae60;
+        .oferta button:hover {
+            background-color: #005fa3;
         }
 
-        /* Stopka */
+        section {
+            background-color: white;
+            padding: 30px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #0078d7;
+        }
+
         footer {
+            background-color: #005fa3;
+            color: white;
             text-align: center;
             padding: 15px;
-            background-color: #3498db;
-            color: white;
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
 
+    <!-- Baner -->
     <header>
-        <nav>
-            <a href="#faq">FAQ</a>
-            <a href="#regulamin">Regulamin</a>
-        </nav>
+        <h1>Wayfly</h1>
+        <p>Twój indywidualny plan podróży – dopasowany do Ciebie</p>
     </header>
 
-    <main>
-        <div class="grid">
-            <div class="offer">
-                <img src="https://via.placeholder.com/300x150" alt="Podróż 1">
-                <h3>Wycieczka do Paryża</h3>
-                <p>4 dni w stolicy Francji, wliczone loty i noclegi.</p>
-                <button>Kup plan</button>
-            </div>
-            <div class="offer">
-                <img src="https://via.placeholder.com/300x150" alt="Podróż 2">
-                <h3>Wakacje w Grecji</h3>
-                <p>7 dni na wyspach greckich, all-inclusive.</p>
-                <button>Kup plan</button>
-            </div>
-            <div class="offer">
-                <img src="https://via.placeholder.com/300x150" alt="Podróż 3">
-                <h3>Wycieczka do Tokio</h3>
-                <p>5 dni w Japonii, zwiedzanie Tokio i Kioto.</p>
-                <button>Kup plan</button>
-            </div>
-            <!-- Dodawaj kolejne oferty w tym samym formacie -->
+    <!-- Pasek nawigacyjny -->
+    <nav>
+        <a href="#oferty">Oferty</a>
+        <a href="#faq">FAQ</a>
+        <a href="#regulamin">Regulamin</a>
+    </nav>
+
+    <!-- Oferty -->
+    <section id="oferty" class="oferty">
+        <div class="oferta">
+            <img src="https://source.unsplash.com/featured/?paris,travel" alt="Paryż">
+            <h3>Romantyczny weekend w Paryżu</h3>
+            <p>Odkryj uroki Paryża z dopasowanym planem podróży.</p>
+            <button>Kup plan podróży</button>
         </div>
-    </main>
+        <div class="oferta">
+            <img src="https://source.unsplash.com/featured/?mountains,travel" alt="Tatry">
+            <h3>Górska przygoda w Tatrach</h3>
+            <p>Plany tras, schronisk i najlepszych widoków.</p>
+            <button>Kup plan podróży</button>
+        </div>
+        <div class="oferta">
+            <img src="https://source.unsplash.com/featured/?rome,travel" alt="Rzym">
+            <h3>Kulturowa wyprawa do Rzymu</h3>
+            <p>Zwiedzaj stolicę Włoch z przygotowanym przewodnikiem Wayfly.</p>
+            <button>Kup plan podróży</button>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <h2>FAQ – Najczęściej zadawane pytania</h2>
+        <h3>Jak otrzymać własny plan podróży?</h3>
+        <p>Skontaktuj się z nami, podając miejsce podróży, terminy oraz preferencje – przygotujemy indywidualny plan w formie elektronicznej.</p>
+
+        <h3>Czy Wayfly dokonuje rezerwacji lotów lub noclegów?</h3>
+        <p>Nie. Wayfly nie jest biurem podróży – tworzymy jedynie plan podróży i przewodnik, bez rezerwacji w imieniu klienta.</p>
+
+        <h3>Jak długo trwa przygotowanie planu?</h3>
+        <p>Średni czas przygotowania planu wynosi od 2 do 5 dni roboczych, w zależności od złożoności trasy i preferencji klienta.</p>
+
+        <h3>W jakiej formie otrzymam plan?</h3>
+        <p>Plan podróży przesyłany jest w formie elektronicznej (PDF lub dokument tekstowy) na wskazany adres e-mail.</p>
+    </section>
+
+    <!-- Regulamin -->
+    <section id="regulamin">
+        <h2>Regulamin usług Wayfly</h2>
+        <p><strong>1. Definicje</strong><br>
+        „Wayfly” – marka świadcząca usługi planowania podróży.<br>
+        „Klient” – osoba korzystająca z usług WayFly.<br>
+        „Plan podróży” – dokument zawierający propozycję tras, atrakcji, informacji o noclegach, lotach i wskazówek praktycznych przygotowany przez Wayfly.</p>
+
+        <p><strong>2. Zakres usług</strong><br>
+        Wayfly tworzy indywidualne plany podróży i przewodniki dostosowane do preferencji Klienta.<br>
+        Usługa obejmuje propozycje atrakcji i miejsc do odwiedzenia, sugestie dotyczące noclegów i transportu (bez dokonywania rezerwacji), przybliżone informacje o warunkach pogodowych i lokalnych zwyczajach.<br>
+        Wayfly nie sprzedaje wycieczek ani nie dokonuje rezerwacji w imieniu Klienta.</p>
+
+        <p><strong>3. Warunki korzystania z usługi</strong><br>
+        Klient dostarcza informacje niezbędne do przygotowania planu: terminy, miejsce podróży, preferencje i oczekiwania.<br>
+        Klient jest odpowiedzialny za finalne decyzje dotyczące rezerwacji lotów, noclegów i atrakcji.<br>
+        Plan podróży jest dostarczany w formie elektronicznej (PDF, dokument tekstowy lub inny ustalony format).</p>
+
+        <p><strong>4. Płatności</strong><br>
+        Cena usługi ustalana jest indywidualnie lub według cennika dostępnego na stronie/koncie social media.<br>
+        Płatność musi zostać dokonana przed rozpoczęciem przygotowania planu, chyba że ustalono inaczej.<br>
+        WayFly nie zwraca kosztów za niewykorzystane lub niepodjęte przez Klienta rezerwacje, ponieważ nie dokonuje ich osobiście.</p>
+
+        <p><strong>5. Ograniczenie odpowiedzialności</strong><br>
+        Wayfly nie ponosi odpowiedzialności za zmiany w lotach, noclegach czy atrakcjach, decyzje Klienta dotyczące podróży, rezerwacji czy realizacji planu oraz szkody wynikające z korzystania z planu podróży.<br>
+        Plan podróży ma charakter doradczy i informacyjny.</p>
+
+        <p><strong>6. Prawa autorskie</strong><br>
+        Plany podróży przygotowane przez Wayfly są własnością intelektualną Wayfly. Klient może korzystać z planu wyłącznie do własnych celów podróżniczych.<br>
+        Kopiowanie, rozpowszechnianie lub sprzedaż planu bez zgody Wayfly jest zabronione.</p>
+
+        <p><strong>7. Dane osobowe</strong><br>
+        Wayfly przetwarza dane Klienta zgodnie z obowiązującymi przepisami o ochronie danych osobowych (RODO). Dane klientów są wykorzystywane wyłącznie do realizacji usługi.</p>
+
+        <p><strong>8. Kontakt i reklamacje</strong><br>
+        Wszelkie pytania i reklamacje należy zgłaszać pod adresem e-mail (lub innym kanałem kontaktu).<br>
+        Reklamacje będą rozpatrywane w ciągu 14 dni od zgłoszenia.</p>
+
+        <p><strong>9. Postanowienia końcowe</strong><br>
+        Korzystanie z usług Wayfly oznacza akceptację regulaminu.<br>
+        Wayfly zastrzega sobie prawo do zmiany regulaminu, o czym Klienci będą informowani na stronie lub w mediach społecznościowych.</p>
+    </section>
 
     <footer>
-        © 2025 Twoje Biuro Podróży
+        &copy; 2025 Wayfly – indywidualne plany podróży | Wszystkie prawa zastrzeżone
     </footer>
 
 </body>
 </html>
+
+
