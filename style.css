@@ -60,7 +60,6 @@ nav a {
 nav a:hover {
   text-decoration: underline;
 }
-
 /* --- Odstęp pod menu --- */
 section {
   padding: 100px 20px 20px; 
@@ -205,6 +204,7 @@ section {
   color: #2E7D32;
   font-weight: bold;
 }
+
 
 
 
