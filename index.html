@@ -1,238 +1,83 @@
 <!DOCTYPE html>
 <html lang="pl">
-<head> 
-  <base href="/">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wayfly – Plany podróży</title>
   <link rel="icon" href="wayflyicon.png" type="image/png">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-:root {
-  --accent: #0b74de;
-  --bg: #f7f9fb;
-  --card: #ffffff;
-  --muted: #666;
-}
-
-* { box-sizing: border-box; }
-body {
-
-  margin: 0;
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  background: var(--bg);
-  color: #111;
-  line-height: 1.4;
-  padding-top: 50px;
-}
-
-/* --- Header --- */
- 
-header {
-  background-image: url('https://i.imgur.com/9HUEj4b.jpeg');
-  background-size: cover;
-  background-position: center;
-  height: 400px; 
-  color: white;
-  text-align: center;
-  position: relative;
-}
-header h1 {
-  margin: 0;
-  padding-top: 150px;
-  font-size: 2.5em;
-}
-
-
-/* --- Oferty --- */
-.oferty {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-.oferta {
-  position: relative;
-  width: 100%;
-  max-width: 300px;
-  aspect-ratio: 1/1;
-  overflow: hidden;
-  border-radius: 10px;
-  background-color: var(--card);
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-  cursor: pointer;
-}
-.oferta img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.3s;
-  z-index: 1;
-}
-.oferta:hover img { transform: scale(1.05); }
-
-/* --- Overlay cena --- */
-.overlay {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: rgba(0,0,0,0.6);
-  color: white;
-  text-align: center;
-  padding: 10px;
-  z-index: 2;
-}
-
-/* --- Tekst na kafelku --- */
-.text-overlay {
-  position: absolute;
-  top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  text-align: center;
-  z-index: 3;
-}
-.text-overlay h3 { margin: 0 0 8px 0; font-size: 1.2em; }
-.text-overlay p { margin: 0 0 8px 0; font-size: 0.9em; }
-.text-overlay button {
-  background: var(--accent);
-  border: none;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.text-overlay button:hover { background: #005fa3; }
-
-/* --- Formularz opinii --- */
-.review-section {
-  max-width: 600px;
-  margin: 40px auto;
-  background: #fff;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-}
-.review-section h2 { text-align: center; color: var(--accent); margin-bottom: 20px; }
-.review-form { display: flex; flex-direction: column; gap: 15px; }
-.review-form input, .review-form textarea {
-  padding: 12px;
-  font-size: 14px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  width: 100%;
-}
-.review-form button {
-  background: var(--accent);
-  color: white;
-  border: none;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.review-form button:hover { background: #005fa3; }
-#thankYouMessage {
-  text-align: center;
-  margin-top: 15px;
-  color: #2E7D32;
-  font-weight: bold;
-}
-footer { background-color: #005fa3; color: white; text-align: center; padding: 15px; font-size: 0.9em; }
-</style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
-<header>
-  
-</header>
 
-<nav>
-  <a href="#oferty">Oferty</a>
-  <a href="#faq">FAQ</a>
-  <a href="regulamin/regulamin.html">Regulamin</a>
-  <a href="#opinie">Opinie</a>
-</nav>
+  <!-- Menu -->
+  <nav>
+    <a href="index.html">Oferty</a>
+    <a href="#faq">FAQ</a>
+    <a href="regulamin/regulamin.html">Regulamin</a>
+    <a href="#opinie">Opinie</a>
+  </nav>
 
-<section id="oferty" class="oferty">
-  <a href="paryz.html" class="oferta">
-    <img src="https://source.unsplash.com/featured/?paris,travel" alt="Paryż">
-    <h3 style="padding:10px 0 0 10px;">Romantyczny weekend w Paryżu</h3>
-    <p style="padding:0 0 10px 10px;">Odkryj uroki Paryża z dopasowanym planem podróży.</p>
-  </a>
+  <!-- Baner -->
+  <header>
+    <h1>Wayfly – Indywidualne i gotowe plany podróży</h1>
+  </header>
 
-  <a href="tatry.html" class="oferta">
-    <img src="https://source.unsplash.com/featured/?mountains,travel" alt="Tatry">
-    <h3 style="padding:10px 0 0 10px;">Górska przygoda w Tatrach</h3>
-    <p style="padding:0 0 10px 10px;">Plany tras, schronisk i najlepszych widoków.</p>
-  </a>
+  <main>
+    <!-- Oferty -->
+    <section id="oferty" class="oferty">
+      <a href="paryz.html" class="oferta">
+        <img src="https://source.unsplash.com/featured/?paris,travel" alt="Paryż">
+        <div class="text-overlay">
+          <h3>Romantyczny weekend w Paryżu</h3>
+          <p>Odkryj uroki Paryża z dopasowanym planem podróży.</p>
+        </div>
+      </a>
+      <a href="tatry.html" class="oferta">
+        <img src="https://source.unsplash.com/featured/?mountains,travel" alt="Tatry">
+        <div class="text-overlay">
+          <h3>Górska przygoda w Tatrach</h3>
+          <p>Plany tras, schronisk i najlepszych widoków.</p>
+        </div>
+      </a>
+      <a href="rzym/rzym.html" class="oferta">
+        <img src="https://i.imgur.com/jkGLiLu.jpeg" alt="Rzym">
+        <div class="overlay">Cena wyjazdu: 1000 zł | Cena planu: 30 zł</div>
+        <div class="text-overlay">
+          <h3>Kulturowa wyprawa do Rzymu</h3>
+          <p>Zwiedzaj stolicę Włoch z przewodnikiem Wayfly</p>
+        </div>
+      </a>
+    </section>
 
-  <a href="rzym/rzym.html" class="oferta">
-    <img src="https://i.imgur.com/jkGLiLu.jpeg" alt="Rzym">
-    <div class="overlay">Cena wyjazdu: 1000 zł | Cena planu: 30 zł</div>
-    <div class="text-overlay">
-      <h3>Kulturowa wyprawa do Rzymu</h3>
-      <p>Zwiedzaj stolicę Włoch z przewodnikiem Wayfly</p>
-    </div>
-  </a>
-</section>
+    <!-- Opinie -->
+    <section id="opinie" class="review-section">
+      <h2>Dodaj swoją opinię</h2>
+      <form id="reviewForm" class="review-form">
+        <input type="email" id="email" placeholder="Twój email" required>
+        <input type="number" id="rating" min="1" max="5" placeholder="Ocena (1-5)" required>
+        <input type="text" id="tripTo" placeholder="Dokąd leciałeś?" required>
+        <input type="date" id="tripStart" placeholder="Data rozpoczęcia podróży" required>
+        <input type="date" id="tripEnd" placeholder="Data zakończenia podróży" required>
+        <textarea id="comment" placeholder="Twoja opinia" rows="4" required></textarea>
+        <button type="submit">Wyślij opinię</button>
+      </form>
+      <div id="thankYouMessage"></div>
+    </section>
 
-<section class="review-section" id="opinie">
-  <h2>Dodaj swoją opinię</h2>
-  <form id="reviewForm" class="review-form">
-    <input type="email" id="email" placeholder="Twój email" required>
-    <input type="number" id="rating" min="1" max="5" placeholder="Ocena (1-5)" required>
-    <input type="text" id="tripTo" placeholder="Dokąd leciałeś?" required>
-    <input type="date" id="tripStart" placeholder="Data rozpoczęcia podróży" required>
-    <input type="date" id="tripEnd" placeholder="Data zakończenia podróży" required>
-    <textarea id="comment" placeholder="Twoja opinia" rows="4" required></textarea>
-    <button type="submit">Wyślij opinię</button>
-  </form>
-  <div id="thankYouMessage"></div>
-</section>
+    <!-- FAQ -->
+    <section id="faq">
+      <h2>FAQ – Najczęściej zadawane pytania</h2>
+      <h3>Jak otrzymać własny plan podróży?</h3>
+      <p>Skontaktuj się z nami...</p>
+    </section>
+  </main>
 
-<section id="faq">
-  <h2>FAQ – Najczęściej zadawane pytania</h2>
-  <h3>Jak otrzymać własny plan podróży?</h3>
-  <p>Skontaktuj się z nami...</p>
-</section>
+  <footer>
+    2025 Wayfly – indywidualne i gotowe plany podróży
+  </footer>
 
-
-<footer>
-  2025 Wayfly – indywidualne plany podróży 
-</footer>
-
-<script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js"></script>
-<script>
-const firebaseConfig = {
-  apiKey: "AIzaSyAVcX9Kn-YxFUEij_DqPoJoitfSAdVqPBY",
-  authDomain: "wayfly-opinie.firebaseapp.com",
-  projectId: "wayfly-opinie",
-  storageBucket: "wayfly-opinie.firebasestorage.app",
-  messagingSenderId: "961643779503",
-  appId: "1:961643779503:web:41594b733dbe8769f14b5a"
-};
-firebase.initializeApp(firebaseConfig);
-var db = firebase.firestore();
-document.getElementById("reviewForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  db.collection("reviews").add({
-    userEmail: document.getElementById("email").value,
-    rating: parseInt(document.getElementById("rating").value),
-    comment: document.getElementById("comment").value,
-    tripStart: document.getElementById("tripStart").value,
-    tripEnd: document.getElementById("tripEnd").value,
-    tripTo: document.getElementById("tripTo").value,
-    createdAt: new Date()
-  }).then(function() {
-    document.getElementById("thankYouMessage").textContent = "Dziękujemy za opinię!";
-
-
-
-
-
+</body>
+</html>
 
 
 
