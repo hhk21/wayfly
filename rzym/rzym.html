@@ -7,7 +7,36 @@
     <title>Rzym – Szczegóły oferty | Wayfly</title>
     <link rel="stylesheet" href="style.css"> <!-- Twój główny CSS -->
     <style>
-        /* Dodatkowy CSS specyficzny dla podstrony oferty */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fb;
+            padding-top: 70px; /* wysokość menu */
+        }
+
+        /* Menu */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #005fa3;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 15px 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Baner */
         .banner {
             width: 100%;
             height: 400px;
@@ -16,29 +45,8 @@
             background-position: center;
             border-bottom: 5px solid #0078d7;
         }
-        <body>
-    <!-- Menu -->
-    <nav>
-        <a href="index.html#oferty">Oferty</a>
-        <a href="index.html#faq">FAQ</a>
-        <a href="index.html#regulamin">Regulamin</a>
-        <a href="index.html#opinie">Opinie</a>
-    </nav>
 
-    <!-- Baner -->
-    <div class="banner"></div>
-
-    <!-- Szczegóły oferty -->
-    <section class="details">
-        ...
-    </section>
-
-    <!-- Powrót do ofert -->
-    <div class="back-link">
-        <a href="index.html">← Wróć do ofert</a>
-    </div>
-</body>
-
+        /* Szczegóły oferty */
         .details {
             max-width: 800px;
             margin: 30px auto;
@@ -46,14 +54,12 @@
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center; /* <- wycentrowanie tekstu */
         }
-
         .details h2 {
             color: #0078d7;
             margin-bottom: 20px;
         }
-
         .details p {
             margin-bottom: 10px;
         }
@@ -64,7 +70,6 @@
             gap: 15px;
             margin-top: 20px;
         }
-
         .spec {
             background-color: #f0f8ff;
             padding: 15px;
@@ -73,12 +78,12 @@
             font-weight: bold;
         }
 
+        /* Powrót do ofert */
         .back-link {
             display: block;
             margin: 30px auto 50px;
             text-align: center;
         }
-
         .back-link a {
             text-decoration: none;
             color: white;
@@ -87,13 +92,20 @@
             border-radius: 5px;
             transition: background-color 0.2s;
         }
-
         .back-link a:hover {
             background-color: #005fa3;
         }
     </style>
 </head>
 <body>
+
+    <!-- Menu -->
+    <nav>
+        <a href="/index.html#oferty">Oferty</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/regulamin.html">Regulamin</a>
+        <a href="/index.html#opinie">Opinie</a>
+    </nav>
 
     <!-- Baner -->
     <div class="banner"></div>
@@ -104,70 +116,19 @@
         <p>Zwiedzaj stolicę Włoch z przygotowanym przewodnikiem Wayfly. Plan obejmuje najważniejsze atrakcje, trasy spacerowe, rekomendacje restauracji i kawiarni oraz informacje praktyczne.</p>
 
         <div class="specs">
-            <div class="spec">
-                Wylot z:<br>
-                Krakowa
-               </div>
-             <div class="spec">
-                Przylot do:<br>
-                Krakowa
-               </div>
-            <div class="spec">
-                Data wyjazdu:<br>
-                12.06.2025
-            </div>
-            <div class="spec">
-                Data powrotu:<br>
-                18.06.2025
-            </div>
-            <div class="spec">
-                Koszt wyjazdu:<br>
-                600 zł/os.
-            </div>
-            <div class="spec">
-                Cena planu podróży:<br>
-                30 zł
-            </div>
+            <div class="spec">Wylot z:<br>Krakowa</div>
+            <div class="spec">Przylot do:<br>Krakowa</div>
+            <div class="spec">Data wyjazdu:<br>12.06.2025</div>
+            <div class="spec">Data powrotu:<br>18.06.2025</div>
+            <div class="spec">Koszt wyjazdu:<br>600 zł/os.</div>
+            <div class="spec">Cena planu podróży:<br>30 zł</div>
         </div>
     </section>
 
     <!-- Powrót do ofert -->
     <div class="back-link">
-        <a href="index.html">← Wróć do ofert</a>
+        <a href="/index.html">← Wróć do ofert</a>
     </div>
 
 </body>
-    nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #005fa3;
-    display: flex;
-    justify-content: center;
-    padding: 10px 0;
-    z-index: 1000;
-    <nav>
-  <a href="index.html">Oferty</a>
-  <a href="/faq.html">FAQ</a>
-  <a href="/regulamin.html">Regulamin</a>
-  <a href="/index.html#opinie">Opinie</a>
-</nav>
-    
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
-}
-
-nav a:hover {
-    text-decoration: underline;
-}
-
-body {
-    padding-top: 50px; /* wysokość menu, żeby nie zasłaniało treści */
-}
 </html>
