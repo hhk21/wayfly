@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Plany podróży – TwojeImię</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>Plany podróży — TwojeImię</h1>
+      <nav class="main-nav">
+        <button id="btn-offers" class="nav-btn">Oferty</button>
+        <button id="btn-faq" class="nav-btn">FAQ</button>
+        <button id="btn-terms" class="nav-btn">Regulamin</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="hero">
+      <h2>Tworzę spersonalizowane plany podróży</h2>
+      <p>Wypełnij formularz, dodaj ofertę do siatki — możesz modyfikować je lokalnie w przeglądarce.</p>
+    </section>
+
+    <section id="add-offer" class="card">
+      <h3>Dodaj nową ofertę</h3>
+      <form id="offer-form">
+        <div class="row">
+          <label>Tytuł<input type="text" name="title" required /></label>
+          <label>Krótki opis<input type="text" name="short" required /></label>
+        </div>
+        <div class="row">
+          <label>Link do obrazka (opcjonalnie)<input type="url" name="image" /></label>
+          <label>Cena (np. 1200 PLN)<input type="text" name="price" /></label>
+        </div>
+        <div class="row">
+          <label>Pełny opis<textarea name="desc" rows="3"></textarea></label>
+        </div>
+        <div class="actions">
+          <button type="submit">Dodaj ofertę</button>
+          <button type="button" id="clear-offers">Wyczyść wszystkie</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="offers-grid" class="card">
+      <h3>Oferty</h3>
+      <div id="grid" class="grid"></div>
+      <p id="empty-msg" class="muted">Brak ofert — dodaj pierwszą powyżej.</p>
+    </section>
+  </main>
+
+  <!-- Modal FAQ -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> TwojeImię — Plany podróży</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
 
