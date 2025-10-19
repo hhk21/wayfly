@@ -206,22 +206,21 @@ footer {
   font-size: 0.9em;
 }
 
-/* --- Responsywność --- */
+/* --- Menu na telefony --- */
 @media (max-width: 768px) {
-  header {
-    height: 250px;
-  }
   nav {
-    padding: 25px 0;
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: column; /* ustawienie linków w kolumnie */
+    padding: 10px 0;
   }
-  .oferta {
-    max-width: 90%;
-    aspect-ratio: auto;
+
+  nav a {
+    margin: 10px 0; /* większe odstępy między linkami, łatwiej kliknąć */
+    font-size: 0.9em; /* mniejsza czcionka na telefon */
   }
-  .text-overlay h3 { font-size: 1em; }
-  .text-overlay p { font-size: 0.8em; }
+
+  body {
+    padding-top: 140px; /* dostosowane do wysokości menu w kolumnie */
+  }
 }
 
 
