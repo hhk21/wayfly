@@ -105,7 +105,14 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
     overflow: hidden;
     border-radius: 10px;
     cursor: pointer;
-    aspect-ratio: 4/3;
+    width: 100%;      
+    height: 100%;      
+    display: block;
+}
+
+.image-container {
+    width: 100%;
+    height: 100%;
 }
 
 .image-container img {
@@ -113,11 +120,11 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
     height: 100%;
     object-fit: cover; 
     display: block;
-    transition: transform 0.3s;
+
 }
 
 .oferta.full-image:hover img {
-    transform: scale(1.05); /* efekt powiększenia przy hover */
+    transform: scale(1.05); 
 }
 
 /* overlay z cenami */
@@ -154,6 +161,7 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
 .text-overlay p {
     margin: 0;
 }
+
 
 
 
