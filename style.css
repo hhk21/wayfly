@@ -102,28 +102,6 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
     font-size: 1.1em;
     font-weight: 600;
 }
-.oferta-link {
-    text-decoration: none; 
-    color: inherit;        
-    display: block;        
-}
-
-.oferta-link .oferta {
-    cursor: pointer;       
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.oferta-link .oferta:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-}
-
-
-.oferta-link {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-}
 
 .card-offer,
 .oferta.full-image {
@@ -148,7 +126,36 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
     transform: scale(1.05);
 }
 
-/* overlay z cenami */
+/* --- Siatka ofert --- */
+.oferty {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* --- Kafelek --- */
+.oferta {
+    position: relative;
+    width: 300px;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+/* --- Obrazek w kafelku --- */
+.oferta img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    z-index: 1;
+}
+
+/* --- Overlay z ceną --- */
 .overlay {
     position: absolute;
     bottom: 0;
@@ -156,14 +163,13 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
     width: 100%;
     background: rgba(0,0,0,0.6);
     color: white;
-    padding: 15px;
+    padding: 10px;
     text-align: center;
     font-weight: bold;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    z-index: 2;         
+    z-index: 2;
 }
 
+/* --- Tekst i przycisk na kafelku --- */
 .text-overlay {
     position: absolute;
     bottom: 50px;
@@ -174,29 +180,50 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
     text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
     z-index: 2;
 }
-
-.image-container img {
-    z-index: 1;
-}
-
 .text-overlay h3 {
-    margin: 0 0 10px 0;
-    font-size: 1.5em;
+    margin: 0 0 8px 0;
+    font-size: 1.2em;
 }
-
 .text-overlay p {
-    margin: 0;
+    margin: 0 0 8px 0;
+    font-size: 0.9em;
 }
-/*pasek zjezdza*/
+.text-overlay button {
+    background: #0b74de;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.text-overlay button:hover {
+    background: #005fa3;
+}
+/* --- Pasek przyklejony --- */
 nav {
-    position: fixed; 
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;  
+    background-color: #005fa3;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    z-index: 1000;
 }
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* --- Dodatkowe odstępy dla treści pod nav --- */
 section {
-    padding-top: 50px; 
+    padding: 80px 20px 20px; 
 }
 
 
