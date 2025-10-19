@@ -189,20 +189,16 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
 }
 /*pasek zjezdza*/
 nav {
-    background-color: #005fa3;
-    display: flex;
-    justify-content: center;
-    padding: 10px 0;
     position: fixed; 
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 1000;  
+}
+section {
+    padding-top: 50px; 
 }
 
-section {
-     padding-top: 50px;
-}
 
 
 
