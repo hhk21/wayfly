@@ -1,83 +1,109 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+  <base href="/">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wayfly – Plany podróży</title>
+  <title>Wayfly – Strona główna</title>
   <link rel="icon" href="wayflyicon.png" type="image/png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Menu -->
-  <nav>
-    <a href="index.html">Oferty</a>
-    <a href="#faq">FAQ</a>
-    <a href="regulamin/regulamin.html">Regulamin</a>
-    <a href="#opinie">Opinie</a>
-  </nav>
+<!-- Menu -->
+<nav>
+  <a href="index.html">Oferty</a>
+  <a href="faq.html">FAQ</a>
+  <a href="regulamin.html">Regulamin</a>
+  <a href="#opinie">Opinie</a>
+</nav>
 
-  <!-- Baner -->
-  <header>
-    <h1>Wayfly – Indywidualne i gotowe plany podróży</h1>
-  </header>
+<!-- Baner (bez napisu, dokładnie jak wcześniej) -->
+<header></header>
 
-  <main>
-    <!-- Oferty -->
-    <section id="oferty" class="oferty">
-      <a href="paryz.html" class="oferta">
-        <img src="https://source.unsplash.com/featured/?paris,travel" alt="Paryż">
-        <div class="text-overlay">
-          <h3>Romantyczny weekend w Paryżu</h3>
-          <p>Odkryj uroki Paryża z dopasowanym planem podróży.</p>
-        </div>
-      </a>
-      <a href="tatry.html" class="oferta">
-        <img src="https://source.unsplash.com/featured/?mountains,travel" alt="Tatry">
-        <div class="text-overlay">
-          <h3>Górska przygoda w Tatrach</h3>
-          <p>Plany tras, schronisk i najlepszych widoków.</p>
-        </div>
-      </a>
-      <a href="rzym/rzym.html" class="oferta">
-        <img src="https://i.imgur.com/jkGLiLu.jpeg" alt="Rzym">
-        <div class="overlay">Cena wyjazdu: 1000 zł | Cena planu: 30 zł</div>
-        <div class="text-overlay">
-          <h3>Kulturowa wyprawa do Rzymu</h3>
-          <p>Zwiedzaj stolicę Włoch z przewodnikiem Wayfly</p>
-        </div>
-      </a>
-    </section>
+<!-- Sekcja ofert -->
+<section id="oferty" class="oferty">
+  <a href="paryz.html" class="oferta">
+    <img src="https://source.unsplash.com/featured/?paris,travel" alt="Paryż">
+    <h3 style="padding:10px 0 0 10px;">Romantyczny weekend w Paryżu</h3>
+    <p style="padding:0 0 10px 10px;">Odkryj uroki Paryża z dopasowanym planem podróży.</p>
+  </a>
 
-    <!-- Opinie -->
-    <section id="opinie" class="review-section">
-      <h2>Dodaj swoją opinię</h2>
-      <form id="reviewForm" class="review-form">
-        <input type="email" id="email" placeholder="Twój email" required>
-        <input type="number" id="rating" min="1" max="5" placeholder="Ocena (1-5)" required>
-        <input type="text" id="tripTo" placeholder="Dokąd leciałeś?" required>
-        <input type="date" id="tripStart" placeholder="Data rozpoczęcia podróży" required>
-        <input type="date" id="tripEnd" placeholder="Data zakończenia podróży" required>
-        <textarea id="comment" placeholder="Twoja opinia" rows="4" required></textarea>
-        <button type="submit">Wyślij opinię</button>
-      </form>
-      <div id="thankYouMessage"></div>
-    </section>
+  <a href="tatry.html" class="oferta">
+    <img src="https://source.unsplash.com/featured/?mountains,travel" alt="Tatry">
+    <h3 style="padding:10px 0 0 10px;">Górska przygoda w Tatrach</h3>
+    <p style="padding:0 0 10px 10px;">Plany tras, schronisk i najlepszych widoków.</p>
+  </a>
 
-    <!-- FAQ -->
-    <section id="faq">
-      <h2>FAQ – Najczęściej zadawane pytania</h2>
-      <h3>Jak otrzymać własny plan podróży?</h3>
-      <p>Skontaktuj się z nami...</p>
-    </section>
-  </main>
+  <a href="rzym/rzym.html" class="oferta">
+    <img src="https://i.imgur.com/jkGLiLu.jpeg" alt="Rzym">
+    <div class="overlay">Cena wyjazdu: 1000 zł | Cena planu: 30 zł</div>
+    <div class="text-overlay">
+      <h3>Kulturowa wyprawa do Rzymu</h3>
+      <p>Zwiedzaj stolicę Włoch z przewodnikiem Wayfly</p>
+    </div>
+  </a>
+</section>
 
-  <footer>
-    2025 Wayfly – indywidualne i gotowe plany podróży
-  </footer>
+<!-- Sekcja opinii -->
+<section class="review-section" id="opinie">
+  <h2>Dodaj swoją opinię</h2>
+  <form id="reviewForm" class="review-form">
+    <input type="email" id="email" placeholder="Twój email" required>
+    <input type="number" id="rating" min="1" max="5" placeholder="Ocena (1-5)" required>
+    <input type="text" id="tripTo" placeholder="Dokąd leciałeś?" required>
+    <input type="date" id="tripStart" placeholder="Data rozpoczęcia podróży" required>
+    <input type="date" id="tripEnd" placeholder="Data zakończenia podróży" required>
+    <textarea id="comment" placeholder="Twoja opinia" rows="4" required></textarea>
+    <button type="submit">Wyślij opinię</button>
+  </form>
+  <div id="thankYouMessage"></div>
+</section>
+
+<!-- Sekcja FAQ -->
+<section id="faq">
+  <h2>FAQ – Najczęściej zadawane pytania</h2>
+  <h3>Jak otrzymać własny plan podróży?</h3>
+  <p>Skontaktuj się z nami...</p>
+</section>
+
+<footer>
+  2025 Wayfly – indywidualne plany podróży 
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyAVcX9Kn-YxFUEij_DqPoJoitfSAdVqPBY",
+  authDomain: "wayfly-opinie.firebaseapp.com",
+  projectId: "wayfly-opinie",
+  storageBucket: "wayfly-opinie.firebasestorage.app",
+  messagingSenderId: "961643779503",
+  appId: "1:961643779503:web:41594b733dbe8769f14b5a"
+};
+firebase.initializeApp(firebaseConfig);
+var db = firebase.firestore();
+document.getElementById("reviewForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  db.collection("reviews").add({
+    userEmail: document.getElementById("email").value,
+    rating: parseInt(document.getElementById("rating").value),
+    comment: document.getElementById("comment").value,
+    tripStart: document.getElementById("tripStart").value,
+    tripEnd: document.getElementById("tripEnd").value,
+    tripTo: document.getElementById("tripTo").value,
+    createdAt: new Date()
+  }).then(function() {
+    document.getElementById("thankYouMessage").textContent = "Dziękujemy za opinię!";
+    document.getElementById("reviewForm").reset();
+  });
+});
+</script>
 
 </body>
 </html>
+
 
 
 
