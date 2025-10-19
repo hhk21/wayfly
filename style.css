@@ -43,99 +43,54 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
 .modal-close{position:absolute;right:8px;top:8px;background:transparent;border:0;font-size:1.6rem;cursor:pointer}
 @media (max-width:600px){.row{flex-direction:column}}
 
-/* Sekcja opinii */
-.reviews-section {
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 0 16px;
+<!-- Style CSS -->
+<style>
+.review-section {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
 }
-
-.reviews-section h2 {
-    text-align: center;
-    color: var(--accent);
-    margin-bottom: 30px;
-    font-size: 2em;
-    letter-spacing: 0.5px;
+.review-section h2 {
+  text-align: center;
+  color: #0b74de;
+  margin-bottom: 20px;
 }
-
-.review-card {
-    background: var(--card);
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    padding: 20px;
-    margin-bottom: 20px;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.review-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
-
-.review-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.review-email {
-    font-weight: 600;
-    color: var(--accent);
-}
-
-.review-rating {
-    color: #ffb400; /* złoty kolor gwiazdek */
-    font-weight: bold;
-}
-
-.review-comment {
-    font-size: 1rem;
-    color: var(--muted);
-    line-height: 1.5;
-    margin-bottom: 10px;
-}
-
-.review-dates {
-    font-size: 0.85rem;
-    color: #999;
-    text-align: right;
-}
-
-/* Formularz opinii */
 .review-form {
-    max-width: 500px;
-    margin: 40px auto;
-    padding: 20px;
-    background: var(--card);
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
-
 .review-form input,
 .review-form textarea {
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    font-size: 14px;
+  padding: 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  width: 100%;
 }
-
 .review-form button {
-    padding: 12px;
-    background-color: var(--accent);
-    color: white;
-    font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s;
+  background: #0b74de;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
 }
-
 .review-form button:hover {
-    background-color: #005fa3;
+  background: #005fa3;
 }
+#thankYouMessage {
+  text-align: center;
+  margin-top: 15px;
+  color: #2E7D32;
+  font-weight: bold;
+}
+</style>
 
 /* Komunikat po wysłaniu opinii */
 #thankYouMessage {
@@ -231,6 +186,7 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
 .text-overlay p {
     margin: 0;
 }
+
 
 
 
