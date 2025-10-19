@@ -94,6 +94,66 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
 }
 
 
+.oferta-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.oferta.full-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* zdjęcie zajmuje cały blok */
+    display: block;
+    transition: transform 0.3s;
+}
+
+.oferta.full-image:hover img {
+    transform: scale(1.05); /* efekt powiększenia przy hover */
+}
+
+/* overlay z cenami */
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* tekst opisowy na środku zdjęcia */
+.text-overlay {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    text-align: center;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+}
+
+.text-overlay h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.5em;
+}
+
+.text-overlay p {
+    margin: 0;
+}
+
 
 
 
