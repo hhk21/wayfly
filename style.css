@@ -243,6 +243,9 @@ body{
   color:#111;
   line-height:1.4;
 }
+nav + section {
+    margin-top: 60px;
+}
 
 
 
