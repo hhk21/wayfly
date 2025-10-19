@@ -162,11 +162,6 @@ footer { background-color: #005fa3; color: white; text-align: center; padding: 1
 </head>
 <body>
 
-<header>
-  <h1>Wayfly</h1>
-  <p>Twój indywidualny plan podróży – dopasowany do Ciebie</p>
-</header>
-
 <nav>
   <a href="#oferty">Oferty</a>
   <a href="#faq">FAQ</a>
@@ -251,6 +246,7 @@ document.getElementById("reviewForm").addEventListener("submit", function(e) {
     createdAt: new Date()
   }).then(function() {
     document.getElementById("thankYouMessage").textContent = "Dziękujemy za opinię!";
+
 
 
 
