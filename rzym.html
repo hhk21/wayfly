@@ -15,6 +15,28 @@
             background-position: center;
             border-bottom: 5px solid #0078d7;
         }
+        <body>
+    <!-- Menu -->
+    <nav>
+        <a href="index.html#oferty">Oferty</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="index.html#regulamin">Regulamin</a>
+        <a href="index.html#opinie">Opinie</a>
+    </nav>
+
+    <!-- Baner -->
+    <div class="banner"></div>
+
+    <!-- Szczegóły oferty -->
+    <section class="details">
+        ...
+    </section>
+
+    <!-- Powrót do ofert -->
+    <div class="back-link">
+        <a href="index.html">← Wróć do ofert</a>
+    </div>
+</body>
 
         .details {
             max-width: 800px;
@@ -114,5 +136,31 @@
     </div>
 
 </body>
+    nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #005fa3;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+body {
+    padding-top: 50px; /* wysokość menu, żeby nie zasłaniało treści */
+}
 </html>
 
