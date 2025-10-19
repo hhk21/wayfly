@@ -43,4 +43,41 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
 .modal-close{position:absolute;right:8px;top:8px;background:transparent;border:0;font-size:1.6rem;cursor:pointer}
 @media (max-width:600px){.row{flex-direction:column}}
 
+<style>
+.review-form {
+  max-width: 400px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-form input,
+.review-form textarea {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.review-form button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.review-form button:hover {
+  background-color: #45a049;
+}
+
+#thankYouMessage {
+  max-width: 400px;
+  margin: 20px auto;
+  text-align: center;
+  color: #2E7D32;
+  font-family: sans-serif;
+}
+</style>
+
+
 
