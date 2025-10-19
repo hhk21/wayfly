@@ -45,40 +45,30 @@
         }
 
         /* Siatka ofert */
-        .oferty {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 30px;
-        }
+       .oferta {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
 
-        .oferta {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-            padding: 20px;
-            text-align: center;
-        }
+.oferta img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
 
-        .oferta img {
-            width: 100%;
-            border-radius: 10px;
-            height: 150px;
-            object-fit: cover;
-        }
+.oferta:hover img {
+    transform: scale(1.05);
+}
 
-        .oferta button {
-            margin-top: 10px;
-            padding: 10px 15px;
-            background-color: #0078d7;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
 
-        .oferta button:hover {
-            background-color: #005fa3;
+.oferta {
+    aspect-ratio: 1/1;
         }
 
         section {
@@ -276,6 +266,7 @@
     
 </body>
 </html>
+
 
 
 
