@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pl">
-<head> <link rel="icon" href="wayflyicon.png" type="image/png">
+<head> 
+  <base href="/">
+  <link rel="icon" href="wayflyicon.png" type="image/png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
@@ -248,6 +250,7 @@ document.getElementById("reviewForm").addEventListener("submit", function(e) {
     createdAt: new Date()
   }).then(function() {
     document.getElementById("thankYouMessage").textContent = "Dziękujemy za opinię!";
+
 
 
 
