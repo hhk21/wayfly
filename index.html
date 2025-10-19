@@ -150,21 +150,19 @@
 
     </section>
 
-    <section id="opinie">
-    <h2>Opinie naszych klientów</h2>
-    <form id="reviewForm" class="review-form">
-        <input type="email" id="email" placeholder="Twój email" required />
-        <input type="number" id="rating" min="1" max="5" placeholder="Ocena (1-5)" required />
-        <input type="text" id="tripTo" placeholder="Dokąd leciałeś?" required />
-        <input type="date" id="tripStart" required />
-        <input type="date" id="tripEnd" required />
-        <textarea id="comment" placeholder="Twoja opinia" required></textarea>
-        <button type="submit">Wyślij opinię</button>
-    </form>
-    <div id="thankYouMessage" style="display:none;">
-        <h3>Dziękujemy za opinię! 🎉</h3>
-        <p>Twoja opinia została wysłana pomyślnie.</p>
-    </div>
+   <!-- Sekcja opinii -->
+<section class="review-section" id="opinie">
+  <h2>Dodaj swoją opinię</h2>
+  <form id="reviewForm" class="review-form">
+    <input type="email" id="email" placeholder="Twój email" required>
+    <input type="number" id="rating" min="1" max="5" placeholder="Ocena (1-5)" required>
+    <input type="text" id="tripTo" placeholder="Dokąd leciałeś?" required>
+    <input type="date" id="tripStart" placeholder="Data rozpoczęcia podróży" required>
+    <input type="date" id="tripEnd" placeholder="Data zakończenia podróży" required>
+    <textarea id="comment" placeholder="Twoja opinia" rows="4" required></textarea>
+    <button type="submit">Wyślij opinię</button>
+  </form>
+  <div id="thankYouMessage"></div>
 </section>
 
     <!-- FAQ -->
@@ -229,11 +227,12 @@
     <footer>
         &copy; 2025 Wayfly – indywidualne plany podróży | Wszystkie prawa zastrzeżone
     </footer>
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
-
-const firebaseConfig = {
+<!-- Firebase + obsługa formularza -->
+<script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js"></script>
+<script>
+  // Konfiguracja Firebase
+ const firebaseConfig = {
   apiKey: "AIzaSyAVcX9Kn-YxFUEij_DqPoJoitfSAdVqPBY",
   authDomain: "wayfly-opinie.firebaseapp.com",
   projectId: "wayfly-opinie",
@@ -242,48 +241,35 @@ const firebaseConfig = {
   appId: "1:961643779503:web:41594b733dbe8769f14b5a"
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+  firebase.initializeApp(firebaseConfig);
+  var db = firebase.firestore();
 
-document.getElementById("reviewForm").addEventListener("submit", async (e) => {
+  // Obsługa formularza
+  document.getElementById("reviewForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const email = document.getElementById("email").value;
-    const rating = parseInt(document.getElementById("rating").value);
-    const comment = document.getElementById("comment").value;
-    const tripStart = document.getElementById("tripStart").value;
-    const tripEnd = document.getElementById("tripEnd").value;
-    const tripTo = document.getElementById("tripTo").value;
-    const today = new Date();
-    const endDate = new Date(tripEnd);
-    const weekAfter = new Date(endDate);
-    weekAfter.setDate(weekAfter.getDate() + 7);
+    var email = document.getElementById("email").value;
+    var rating = parseInt(document.getElementById("rating").value);
+    var comment = document.getElementById("comment").value;
+    var tripStart = document.getElementById("tripStart").value;
+    var tripEnd = document.getElementById("tripEnd").value;
+    var tripTo = document.getElementById("tripTo").value;
 
-    if (today > weekAfter) {
-        alert("Minął już tydzień od zakończenia podróży — nie możesz dodać opinii.");
-        return;
-    }
-
-    try {
-        await addDoc(collection(db, "reviews"), {
-            userEmail: email,
-            rating: rating,
-            comment: comment,
-            tripStart: tripStart,
-            tripEnd: tripEnd,
-            tripTo: tripTo,
-            createdAt: new Date()
-        });
-
-        // ukrycie formularza i pokazanie komunikatu
-        document.getElementById("reviewForm").style.display = "none";
-        document.getElementById("thankYouMessage").style.display = "block";
-
-    } catch (error) {
-        console.error("Błąd dodawania opinii:", error);
-        alert("Coś poszło nie tak. Spróbuj ponownie.");
-    }
-});
+    db.collection("reviews").add({
+      userEmail: email,
+      rating: rating,
+      comment: comment,
+      tripStart: tripStart,
+      tripEnd: tripEnd,
+      tripTo: tripTo,
+      createdAt: new Date()
+    }).then(function() {
+      document.getElementById("thankYouMessage").textContent = "Dziękujemy za opinię!";
+      document.getElementById("reviewForm").reset();
+    }).catch(function(error) {
+      alert("Błąd przy wysyłaniu opinii: " + error);
+    });
+  });
 </script>
 
 
@@ -291,6 +277,7 @@ document.getElementById("reviewForm").addEventListener("submit", async (e) => {
     
 </body>
 </html>
+
 
 
 
