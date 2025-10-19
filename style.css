@@ -17,7 +17,7 @@ body {
   background: var(--bg);
   color: #111;
   line-height: 1.4;
-  padding-top: 60px; /* wysokość menu */
+  padding-top: 100px; /* wysokość menu */
 }
 
 /* --- Header / baner --- */
@@ -40,17 +40,19 @@ nav {
   background-color: #005fa3;
   display: flex;
   justify-content: center;
-  padding: 40px 0; /* dwukrotnie grubsze niż standardowe */
+  align-items: center; /* wyrównanie w pionie */
+  padding: 40px 0; /* wysokość menu – zwiększona dwukrotnie */
   z-index: 1000;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  font-size: 1.3em; /* większa czcionka dla linków */
+  font-weight: bold; /* grubsza czcionka */
 }
 
 nav a {
   color: white;
   text-decoration: none;
-  margin: 0 20px;
+  margin: 0 25px; /* odstępy między linkami */
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 1.3em; /* dopasowane do nav */
 }
 
 nav a:hover {
@@ -221,6 +223,7 @@ footer {
   .text-overlay h3 { font-size: 1em; }
   .text-overlay p { font-size: 0.8em; }
 }
+
 
 
 
