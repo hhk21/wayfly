@@ -22,6 +22,7 @@ body {
 }
 
 /* --- Header --- */
+  <header></header>
 header {
   background-image: url('https://i.imgur.com/SPA1CO7.jpeg');
   background-size: cover;
@@ -218,7 +219,7 @@ footer { background-color: #005fa3; color: white; text-align: center; padding: 1
 </section>
 
 <footer>
-  &copy; 2025 Wayfly – indywidualne plany podróży | Wszystkie prawa zastrzeżone
+  2025 Wayfly – indywidualne plany podróży 
 </footer>
 
 <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js"></script>
@@ -246,6 +247,7 @@ document.getElementById("reviewForm").addEventListener("submit", function(e) {
     createdAt: new Date()
   }).then(function() {
     document.getElementById("thankYouMessage").textContent = "Dziękujemy za opinię!";
+
 
 
 
