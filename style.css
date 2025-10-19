@@ -43,39 +43,109 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
 .modal-close{position:absolute;right:8px;top:8px;background:transparent;border:0;font-size:1.6rem;cursor:pointer}
 @media (max-width:600px){.row{flex-direction:column}}
 
+/* Sekcja opinii */
+.reviews-section {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 16px;
+}
+
+.reviews-section h2 {
+    text-align: center;
+    color: var(--accent);
+    margin-bottom: 30px;
+    font-size: 2em;
+    letter-spacing: 0.5px;
+}
+
+.review-card {
+    background: var(--card);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.review-email {
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.review-rating {
+    color: #ffb400; /* złoty kolor gwiazdek */
+    font-weight: bold;
+}
+
+.review-comment {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.review-dates {
+    font-size: 0.85rem;
+    color: #999;
+    text-align: right;
+}
+
+/* Formularz opinii */
 .review-form {
     max-width: 500px;
-    margin: 20px auto;
+    margin: 40px auto;
+    padding: 20px;
+    background: var(--card);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 .review-form input,
 .review-form textarea {
-    padding: 10px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
     font-size: 14px;
 }
 
 .review-form button {
-    padding: 10px;
-    background-color: #0078d7;
+    padding: 12px;
+    background-color: var(--accent);
     color: white;
-    border: none;
-    border-radius: 5px;
+    font-weight: 600;
+    border-radius: 8px;
     cursor: pointer;
+    transition: background 0.2s;
 }
 
 .review-form button:hover {
     background-color: #005fa3;
 }
 
+/* Komunikat po wysłaniu opinii */
 #thankYouMessage {
     max-width: 500px;
     margin: 20px auto;
     text-align: center;
     color: #2E7D32;
     font-family: sans-serif;
+    font-size: 1.1em;
+    font-weight: 600;
 }
 .oferta-link {
     text-decoration: none; 
@@ -161,6 +231,7 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
 .text-overlay p {
     margin: 0;
 }
+
 
 
 
