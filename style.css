@@ -31,34 +31,46 @@ header {
   position: relative;
 }
 
-/* --- Menu / Nav --- */
+/* --- Menu główne --- */
 nav {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #3399ff; /* jaśniejszy błękit */
+  background-color: #4da6ff; /* delikatny błękit */
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 20px 0; /* wysokość menu */
+  padding: 20px 0;
   z-index: 1000;
-  font-size: 1em; /* mniejsza czcionka */
-  font-weight: 300; /* bardzo delikatna */
-  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 0.85em; /* mniejsza czcionka */
+  font-weight: 300; /* delikatna czcionka */
+  letter-spacing: 0.5px; /* lekko przestrzenna */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 nav a {
   color: white;
   text-decoration: none;
-  margin: 0 20px;
-  font-size: 1em;
-  font-weight: 300;
+  margin: 0 15px;
+  font-weight: 300; /* delikatna czcionka */
+  font-size: 0.85em; /* mniejsza czcionka */
 }
 
 nav a:hover {
   text-decoration: underline;
 }
+
+/* --- Menu na telefony --- */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    padding: 15px 0;
+  }
+
+  nav a {
+    margin: 8px 0;
+    font-size: 0.8em; /* jeszcze mniejsza na telefon */
+  }
 /* --- Sekcje pod nav --- */
 section {
   padding: 80px 20px 20px; /* odpowiedni padding pod menu */
@@ -204,23 +216,6 @@ footer {
   text-align: center;
   padding: 15px;
   font-size: 0.9em;
-}
-
-/* --- Menu na telefony --- */
-@media (max-width: 768px) {
-  nav {
-    flex-direction: column; /* ustawienie linków w kolumnie */
-    padding: 10px 0;
-  }
-
-  nav a {
-    margin: 10px 0; /* większe odstępy między linkami, łatwiej kliknąć */
-    font-size: 0.9em; /* mniejsza czcionka na telefon */
-  }
-
-  body {
-    padding-top: 140px; /* dostosowane do wysokości menu w kolumnie */
-  }
 }
 
 
