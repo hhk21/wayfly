@@ -30,6 +30,7 @@ header {
   color: white;
   text-align: center;
   padding: 20px 10px;
+  margin-top: 50px;
 }
 
 header h1 {
@@ -60,6 +61,7 @@ nav a {
 nav a:hover {
   text-decoration: underline;
 }
+
 /* --- Odstęp pod menu --- */
 section {
   padding: 100px 20px 20px; 
@@ -204,6 +206,7 @@ section {
   color: #2E7D32;
   font-weight: bold;
 }
+
 
 
 
