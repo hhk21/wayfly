@@ -78,13 +78,13 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
     font-family: sans-serif;
 }
 .oferta-link {
-    text-decoration: none; /* usuwa podkreślenie linku */
-    color: inherit;        /* dziedziczy kolor tekstu */
-    display: block;        /* pozwala, żeby cały blok był klikany */
+    text-decoration: none; 
+    color: inherit;        
+    display: block;        
 }
 
 .oferta-link .oferta {
-    cursor: pointer;       /* zmienia kursor przy najechaniu */
+    cursor: pointer;       
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -105,6 +105,7 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
     overflow: hidden;
     border-radius: 10px;
     cursor: pointer;
+    height: 300px;
 }
 
 .image-container img {
@@ -153,6 +154,7 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
 .text-overlay p {
     margin: 0;
 }
+
 
 
 
