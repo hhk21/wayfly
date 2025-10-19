@@ -182,7 +182,20 @@ footer.site-footer{padding:18px 0;text-align:center;color:#444;margin-top:24px}
 .text-overlay p {
     margin: 0;
 }
+/*pasek zjezdza*/
+nav {
+    background-color: #005fa3;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    position: sticky; 
+    top: 0;           
+    z-index: 1000;    
+}
 
+section {
+    padding-top: 60px; 
+}
 
 
 
