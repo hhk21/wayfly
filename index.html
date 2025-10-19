@@ -1,134 +1,188 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wayfly – Twój indywidualny plan podróży</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            background-color: #f8f8f8;
-            color: #333;
-        }
-
-        /* Baner */
-        header {
-            background-color: #0078d7;
-            color: white;
-            text-align: center;
-            padding: 20px 10px;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2em;
-        }
-
-       /* Pasek nawigacyjny */ 
-    nav { background-color: #005fa3;
-    display: flex; justify-content: center;
-    padding: 10px 0; } 
-    nav a { color: white;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
-}
-    nav a:hover 
-    { 
-        text-decoration: underline; 
-    }
-
-        /* Siatka ofert */
-     .oferta {
-    position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    background-color: #fff;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-    cursor: pointer;
-    width: 100%;
-    max-width: 300px; 
-    aspect-ratio: 1/1; 
-    margin: 0 auto;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wayfly – Twój indywidualny plan podróży</title>
+<style>
+:root {
+  --accent: #0b74de;
+  --bg: #f7f9fb;
+  --card: #ffffff;
+  --muted: #666;
 }
 
-.oferta img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.3s;
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: #111;
+  line-height: 1.4;
 }
 
-.oferta:hover img {
-    transform: scale(1.05);
+/* --- Header --- */
+header {
+  background-color: var(--accent);
+  color: white;
+  text-align: center;
+  padding: 20px 10px;
 }
+header h1 { margin: 0; font-size: 2em; }
 
+/* --- Nav --- */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #005fa3;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  z-index: 1000;
+}
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+nav a:hover { text-decoration: underline; }
 
+/* --- Sekcje pod nav --- */
+section { padding: 120px 20px 20px; }
+
+/* --- Oferty --- */
+.oferty {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
 .oferta {
-    aspect-ratio: 1/1;
-        }
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: var(--card);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+.oferta img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+  z-index: 1;
+}
+.oferta:hover img { transform: scale(1.05); }
 
-        section {
-            background-color: white;
-            padding: 30px;
-            margin: 20px;
-            border-radius: 10px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-        }
+/* --- Overlay cena --- */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  z-index: 2;
+}
 
-        h2 {
-            color: #0078d7;
-        }
+/* --- Tekst na kafelku --- */
+.text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  z-index: 3;
+}
+.text-overlay h3 { margin: 0 0 8px 0; font-size: 1.2em; }
+.text-overlay p { margin: 0 0 8px 0; font-size: 0.9em; }
+.text-overlay button {
+  background: var(--accent);
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.text-overlay button:hover { background: #005fa3; }
 
-        footer {
-            background-color: #005fa3;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            font-size: 0.9em;
-        }
-    </style>
+/* --- Formularz opinii --- */
+.review-section {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+.review-section h2 { text-align: center; color: var(--accent); margin-bottom: 20px; }
+.review-form { display: flex; flex-direction: column; gap: 15px; }
+.review-form input, .review-form textarea {
+  padding: 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  width: 100%;
+}
+.review-form button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.review-form button:hover { background: #005fa3; }
+#thankYouMessage {
+  text-align: center;
+  margin-top: 15px;
+  color: #2E7D32;
+  font-weight: bold;
+}
+footer { background-color: #005fa3; color: white; text-align: center; padding: 15px; font-size: 0.9em; }
+</style>
 </head>
 <body>
 
-    <!-- Baner -->
-    <header>
-        <h1>Wayfly</h1>
-        <p>Twój indywidualny plan podróży – dopasowany do Ciebie</p>
-    </header>
+<header>
+  <h1>Wayfly</h1>
+  <p>Twój indywidualny plan podróży – dopasowany do Ciebie</p>
+</header>
 
-    <!-- Pasek nawigacyjny -->
-   <nav>
-    <a href="#oferty">Oferty</a>
-    <a href="#faq">FAQ</a>
-    <a href="#regulamin">Regulamin</a>
-    <a href="#opinie">Opinie</a>
+<nav>
+  <a href="#oferty">Oferty</a>
+  <a href="#faq">FAQ</a>
+  <a href="#regulamin">Regulamin</a>
+  <a href="#opinie">Opinie</a>
 </nav>
 
-    <!-- Oferty -->
-  <section id="oferty" class="oferty">
+<section id="oferty" class="oferty">
   <div class="oferta">
-    <div class="image-wrapper">
-      <img src="https://source.unsplash.com/featured/?paris,travel" alt="Paryż">
-    </div>
-    <h3>Romantyczny weekend w Paryżu</h3>
-    <p>Odkryj uroki Paryża z dopasowanym planem podróży.</p>
-    <button>Kup plan podróży</button>
+    <img src="https://source.unsplash.com/featured/?paris,travel" alt="Paryż">
+    <h3 style="padding:10px 0 0 10px;">Romantyczny weekend w Paryżu</h3>
+    <p style="padding:0 0 10px 10px;">Odkryj uroki Paryża z dopasowanym planem podróży.</p>
+    <button style="margin:0 0 10px 10px;">Kup plan podróży</button>
   </div>
 
   <div class="oferta">
-    <div class="image-wrapper">
-      <img src="https://source.unsplash.com/featured/?mountains,travel" alt="Tatry">
-    </div>
-    <h3>Górska przygoda w Tatrach</h3>
-    <p>Plany tras, schronisk i najlepszych widoków.</p>
-    <button>Kup plan podróży</button>
+    <img src="https://source.unsplash.com/featured/?mountains,travel" alt="Tatry">
+    <h3 style="padding:10px 0 0 10px;">Górska przygoda w Tatrach</h3>
+    <p style="padding:0 0 10px 10px;">Plany tras, schronisk i najlepszych widoków.</p>
+    <button style="margin:0 0 10px 10px;">Kup plan podróży</button>
   </div>
-      
-     <div class="oferta">
-  <div class="image-wrapper">
+
+  <div class="oferta">
     <img src="https://i.imgur.com/jkGLiLu.jpeg" alt="Rzym">
     <div class="overlay">Cena wyjazdu: 1000 zł | Cena planu: 30 zł</div>
     <div class="text-overlay">
@@ -137,11 +191,8 @@
       <a href="rzym.html"><button>Zamów gotowy plan</button></a>
     </div>
   </div>
-</div>
+</section>
 
-    </section>
-
-   <!-- Sekcja opinii -->
 <section class="review-section" id="opinie">
   <h2>Dodaj swoją opinię</h2>
   <form id="reviewForm" class="review-form">
@@ -156,74 +207,25 @@
   <div id="thankYouMessage"></div>
 </section>
 
-    <!-- FAQ -->
-    <section id="faq">
-        <h2>FAQ – Najczęściej zadawane pytania</h2>
-        <h3>Jak otrzymać własny plan podróży?</h3>
-        <p>Skontaktuj się z nami, podając miejsce podróży, terminy oraz preferencje – przygotujemy indywidualny plan w formie elektronicznej.</p>
+<section id="faq">
+  <h2>FAQ – Najczęściej zadawane pytania</h2>
+  <h3>Jak otrzymać własny plan podróży?</h3>
+  <p>Skontaktuj się z nami...</p>
+</section>
 
-        <h3>Czy Wayfly dokonuje rezerwacji lotów lub noclegów?</h3>
-        <p>Nie. Wayfly nie jest biurem podróży – tworzymy jedynie plan podróży i przewodnik, bez rezerwacji w imieniu klienta.</p>
+<section id="regulamin">
+  <h2>Regulamin usług Wayfly</h2>
+  <p>Treść regulaminu...</p>
+</section>
 
-        <h3>Jak długo trwa przygotowanie planu?</h3>
-        <p>Średni czas przygotowania planu wynosi od 2 do 5 dni roboczych, w zależności od złożoności trasy i preferencji klienta.</p>
+<footer>
+  &copy; 2025 Wayfly – indywidualne plany podróży | Wszystkie prawa zastrzeżone
+</footer>
 
-        <h3>W jakiej formie otrzymam plan?</h3>
-        <p>Plan podróży przesyłany jest w formie elektronicznej (PDF lub dokument tekstowy) na wskazany adres e-mail.</p>
-    </section>
-
-    <!-- Regulamin -->
-    <section id="regulamin">
-        <h2>Regulamin usług Wayfly</h2>
-        <p><strong>1. Definicje</strong><br>
-        „Wayfly” – marka świadcząca usługi planowania podróży.<br>
-        „Klient” – osoba korzystająca z usług WayFly.<br>
-        „Plan podróży” – dokument zawierający propozycję tras, atrakcji, informacji o noclegach, lotach i wskazówek praktycznych przygotowany przez Wayfly.</p>
-
-        <p><strong>2. Zakres usług</strong><br>
-        Wayfly tworzy indywidualne plany podróży i przewodniki dostosowane do preferencji Klienta.<br>
-        Usługa obejmuje propozycje atrakcji i miejsc do odwiedzenia, sugestie dotyczące noclegów i transportu (bez dokonywania rezerwacji), przybliżone informacje o warunkach pogodowych i lokalnych zwyczajach.<br>
-        Wayfly nie sprzedaje wycieczek ani nie dokonuje rezerwacji w imieniu Klienta.</p>
-
-        <p><strong>3. Warunki korzystania z usługi</strong><br>
-        Klient dostarcza informacje niezbędne do przygotowania planu: terminy, miejsce podróży, preferencje i oczekiwania.<br>
-        Klient jest odpowiedzialny za finalne decyzje dotyczące rezerwacji lotów, noclegów i atrakcji.<br>
-        Plan podróży jest dostarczany w formie elektronicznej (PDF, dokument tekstowy lub inny ustalony format).</p>
-
-        <p><strong>4. Płatności</strong><br>
-        Cena usługi ustalana jest indywidualnie lub według cennika dostępnego na stronie/koncie social media.<br>
-        Płatność musi zostać dokonana przed rozpoczęciem przygotowania planu, chyba że ustalono inaczej.<br>
-        WayFly nie zwraca kosztów za niewykorzystane lub niepodjęte przez Klienta rezerwacje, ponieważ nie dokonuje ich osobiście.</p>
-
-        <p><strong>5. Ograniczenie odpowiedzialności</strong><br>
-        Wayfly nie ponosi odpowiedzialności za zmiany w lotach, noclegach czy atrakcjach, decyzje Klienta dotyczące podróży, rezerwacji czy realizacji planu oraz szkody wynikające z korzystania z planu podróży.<br>
-        Plan podróży ma charakter doradczy i informacyjny.</p>
-
-        <p><strong>6. Prawa autorskie</strong><br>
-        Plany podróży przygotowane przez Wayfly są własnością intelektualną Wayfly. Klient może korzystać z planu wyłącznie do własnych celów podróżniczych.<br>
-        Kopiowanie, rozpowszechnianie lub sprzedaż planu bez zgody Wayfly jest zabronione.</p>
-
-        <p><strong>7. Dane osobowe</strong><br>
-        Wayfly przetwarza dane Klienta zgodnie z obowiązującymi przepisami o ochronie danych osobowych (RODO). Dane klientów są wykorzystywane wyłącznie do realizacji usługi.</p>
-
-        <p><strong>8. Kontakt i reklamacje</strong><br>
-        Wszelkie pytania i reklamacje należy zgłaszać pod adresem e-mail (lub innym kanałem kontaktu).<br>
-        Reklamacje będą rozpatrywane w ciągu 14 dni od zgłoszenia.</p>
-
-        <p><strong>9. Postanowienia końcowe</strong><br>
-        Korzystanie z usług Wayfly oznacza akceptację regulaminu.<br>
-        Wayfly zastrzega sobie prawo do zmiany regulaminu, o czym Klienci będą informowani na stronie lub w mediach społecznościowych.</p>
-    </section>
-
-    <footer>
-        &copy; 2025 Wayfly – indywidualne plany podróży | Wszystkie prawa zastrzeżone
-    </footer>
-<!-- Firebase + obsługa formularza -->
 <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js"></script>
 <script>
-  // Konfiguracja Firebase
- const firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyAVcX9Kn-YxFUEij_DqPoJoitfSAdVqPBY",
   authDomain: "wayfly-opinie.firebaseapp.com",
   projectId: "wayfly-opinie",
@@ -231,43 +233,21 @@
   messagingSenderId: "961643779503",
   appId: "1:961643779503:web:41594b733dbe8769f14b5a"
 };
+firebase.initializeApp(firebaseConfig);
+var db = firebase.firestore();
+document.getElementById("reviewForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  db.collection("reviews").add({
+    userEmail: document.getElementById("email").value,
+    rating: parseInt(document.getElementById("rating").value),
+    comment: document.getElementById("comment").value,
+    tripStart: document.getElementById("tripStart").value,
+    tripEnd: document.getElementById("tripEnd").value,
+    tripTo: document.getElementById("tripTo").value,
+    createdAt: new Date()
+  }).then(function() {
+    document.getElementById("thankYouMessage").textContent = "Dziękujemy za opinię!";
 
-  firebase.initializeApp(firebaseConfig);
-  var db = firebase.firestore();
-
-  // Obsługa formularza
-  document.getElementById("reviewForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    var email = document.getElementById("email").value;
-    var rating = parseInt(document.getElementById("rating").value);
-    var comment = document.getElementById("comment").value;
-    var tripStart = document.getElementById("tripStart").value;
-    var tripEnd = document.getElementById("tripEnd").value;
-    var tripTo = document.getElementById("tripTo").value;
-
-    db.collection("reviews").add({
-      userEmail: email,
-      rating: rating,
-      comment: comment,
-      tripStart: tripStart,
-      tripEnd: tripEnd,
-      tripTo: tripTo,
-      createdAt: new Date()
-    }).then(function() {
-      document.getElementById("thankYouMessage").textContent = "Dziękujemy za opinię!";
-      document.getElementById("reviewForm").reset();
-    }).catch(function(error) {
-      alert("Błąd przy wysyłaniu opinii: " + error);
-    });
-  });
-</script>
-
-
-
-    
-</body>
-</html>
 
 
 
