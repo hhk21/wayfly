@@ -6,8 +6,10 @@
   --maxw: 1000px;
 }
 
-/* --- Reset i body --- */
-* { box-sizing: border-box; }
+/* --- Reset i ogólne --- */
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -15,54 +17,52 @@ body {
   background: var(--bg);
   color: #111;
   line-height: 1.4;
-  padding-top: 70px; /* wysokość menu */
+  padding-top: 60px; /* wysokość menu */
 }
 
-/* --- Nav --- */
+/* --- Header / baner --- */
+header {
+  background-image: url('https://i.imgur.com/9HUEj4b.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+/* --- Menu / Nav --- */
 nav {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  background-color: #005fa3;
   display: flex;
   justify-content: center;
-  gap: 30px;
-  padding: 15px 0;
-  background-color: #005fa3;
+  padding: 40px 0; /* dwukrotnie grubsze niż standardowe */
   z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
+
 nav a {
   color: white;
   text-decoration: none;
+  margin: 0 20px;
   font-weight: bold;
-}
-nav a:hover { text-decoration: underline; }
-
-/* --- Header / baner --- */
-header {
-  height: 400px;
-  background-image: url('https://i.imgur.com/9HUEj4b.jpeg');
-  background-size: cover;
-  background-position: center;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-}
-header h1 {
-  font-size: 2.5em;
-  margin: 0;
+  font-size: 1.1em;
 }
 
-/* --- Main / treść --- */
-main {
-  max-width: var(--maxw);
-  margin: 0 auto;
-  padding: 40px 20px;
+nav a:hover {
+  text-decoration: underline;
 }
 
-/* --- Kafelki ofert --- */
+/* --- Sekcje pod nav --- */
+section {
+  padding: 80px 20px 20px; /* odpowiedni padding pod menu */
+}
+
+/* --- Siatka ofert --- */
 .oferty {
   display: flex;
   flex-wrap: wrap;
@@ -70,6 +70,7 @@ main {
   justify-content: center;
 }
 
+/* --- Kafelki ofert --- */
 .oferta {
   position: relative;
   width: 100%;
@@ -117,8 +118,17 @@ main {
   text-align: center;
   z-index: 3; 
 }
-.text-overlay h3 { margin: 0 0 8px 0; font-size: 1.2em; }
-.text-overlay p { margin: 0 0 8px 0; font-size: 0.9em; }
+
+.text-overlay h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.2em;
+}
+
+.text-overlay p {
+  margin: 0 0 8px 0;
+  font-size: 0.9em;
+}
+
 .text-overlay button {
   background: var(--accent);
   border: none;
@@ -127,10 +137,10 @@ main {
   border-radius: 8px;
   cursor: pointer;
 }
-.text-overlay button:hover { background: #005fa3; }
 
-/* --- Sekcje --- */
-section { padding: 60px 20px; }
+.text-overlay button:hover {
+  background: #005fa3;
+}
 
 /* --- Formularz opinii --- */
 .review-section {
@@ -174,7 +184,9 @@ section { padding: 60px 20px; }
   transition: 0.2s;
 }
 
-.review-form button:hover { background: #005fa3; }
+.review-form button:hover {
+  background: #005fa3;
+}
 
 #thankYouMessage {
   text-align: center;
@@ -183,7 +195,7 @@ section { padding: 60px 20px; }
   font-weight: bold;
 }
 
-/* --- Footer --- */
+/* --- Stopka --- */
 footer {
   background-color: #005fa3;
   color: white;
@@ -192,10 +204,23 @@ footer {
   font-size: 0.9em;
 }
 
-
-
-
-
+/* --- Responsywność --- */
+@media (max-width: 768px) {
+  header {
+    height: 250px;
+  }
+  nav {
+    padding: 25px 0;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .oferta {
+    max-width: 90%;
+    aspect-ratio: auto;
+  }
+  .text-overlay h3 { font-size: 1em; }
+  .text-overlay p { font-size: 0.8em; }
+}
 
 
 
