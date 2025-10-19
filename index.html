@@ -96,7 +96,7 @@ section { padding: 120px 20px 20px; }
 /* --- Tekst na kafelku --- */
 .text-overlay {
   position: absolute;
-  top: 100%;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
@@ -244,6 +244,7 @@ document.getElementById("reviewForm").addEventListener("submit", function(e) {
     createdAt: new Date()
   }).then(function() {
     document.getElementById("thankYouMessage").textContent = "Dziękujemy za opinię!";
+
 
 
 
