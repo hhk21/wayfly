@@ -226,6 +226,23 @@ section {
     padding: 80px 20px 20px; 
 }
 
+/* --- Reset i root --- */
+:root{
+  --accent:#0b74de;
+  --bg:#f7f9fb;
+  --card:#ffffff;
+  --muted:#666;
+  --maxw:1000px;
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:Inter,Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:#111;
+  line-height:1.4;
+}
 
 
 
