@@ -13,6 +13,26 @@
       --bg: #f7f9fb;
       --card: #ffffff;
     }
+     @media (max-width: 768px) {
+      nav {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 20px 0; /* dopasowane menu na telefon */
+        font-size: 0.85em;
+      }
+      body {
+        padding-top: 40px; /* dopasowanie do grubszego menu na telefon */
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        padding: 12px 0;
+      }
+      body {
+        padding-top: 35px;
+      }
+    }
 
     body {
       margin: 0;
