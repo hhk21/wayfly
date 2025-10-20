@@ -71,38 +71,57 @@
   2025 Wayfly – indywidualne plany podróży 
 </footer>
 
-<script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js"></script>
-<script>
-const firebaseConfig = {
-  apiKey: "AIzaSyAVcX9Kn-YxFUEij_DqPoJoitfSAdVqPBY",
-  authDomain: "wayfly-opinie.firebaseapp.com",
-  projectId: "wayfly-opinie",
-  storageBucket: "wayfly-opinie.firebasestorage.app",
-  messagingSenderId: "961643779503",
-  appId: "1:961643779503:web:41594b733dbe8769f14b5a"
-};
-firebase.initializeApp(firebaseConfig);
-var db = firebase.firestore();
-document.getElementById("reviewForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  db.collection("reviews").add({
-    userEmail: document.getElementById("email").value,
-    rating: parseInt(document.getElementById("rating").value),
-    comment: document.getElementById("comment").value,
-    tripStart: document.getElementById("tripStart").value,
-    tripEnd: document.getElementById("tripEnd").value,
-    tripTo: document.getElementById("tripTo").value,
-    createdAt: new Date()
-  }).then(function() {
-    document.getElementById("thankYouMessage").textContent = "Dziękujemy za opinię!";
-    document.getElementById("reviewForm").reset();
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
+
+  // ✅ Poprawiona konfiguracja
+  const firebaseConfig = {
+    apiKey: "AIzaSyAVcX9Kn-YxFUEij_DqPoJoitfSAdVqPBY",
+    authDomain: "wayfly-opinie.firebaseapp.com",
+    projectId: "wayfly-opinie",
+    storageBucket: "wayfly-opinie.appspot.com", // poprawiony adres
+    messagingSenderId: "961643779503",
+    appId: "1:961643779503:web:41594b733dbe8769f14b5a"
+  };
+
+  // ✅ Inicjalizacja Firebase i Firestore
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // ✅ Formularz i komunikat
+  const form = document.getElementById("reviewForm");
+  const message = document.getElementById("thankYouMessage");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    try {
+      await addDoc(collection(db, "reviews"), {
+        userEmail: form.email.value,
+        rating: parseInt(form.rating.value),
+        comment: form.comment.value,
+        tripStart: form.tripStart.value,
+        tripEnd: form.tripEnd.value,
+        tripTo: form.tripTo.value,
+        createdAt: new Date()
+      });
+
+      // ✅ Komunikat po wysłaniu
+      message.textContent = "✅ Dziękujemy za opinię!";
+      message.style.color = "#2E7D32";
+      form.reset();
+    } catch (error) {
+      console.error("Błąd przy wysyłaniu opinii:", error);
+      message.textContent = "❌ Wystąpił problem z wysłaniem opinii.";
+      message.style.color = "red";
+    }
   });
-});
 </script>
 
 </body>
 </html>
+
 
 
 
