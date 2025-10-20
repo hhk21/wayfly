@@ -21,7 +21,7 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.4;
-  padding-top: 70px; /* wysokość menu */
+  padding-top: 70px; /* wysokość menu na komputerze */
 }
 
 /* --- Header / baner --- */
@@ -33,6 +33,10 @@ header {
   color: white;
   text-align: center;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
 }
 
 /* --- Menu główne --- */
@@ -44,7 +48,7 @@ nav {
   background-color: #4da6ff;
   display: flex;
   justify-content: center;
-  padding: 15px 0; /* zmniejszone */
+  padding: 15px 0;
   z-index: 1000;
   font-size: 0.9em;
   font-weight: 300;
@@ -52,11 +56,10 @@ nav {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* --- Linki w menu --- */
 nav a {
   color: white;
   text-decoration: none;
-  margin: 0 15px; /* mniejsze marginesy */
+  margin: 0 15px;
   font-weight: 300;
   font-size: 0.9em;
 }
@@ -68,43 +71,37 @@ nav a:hover {
 /* --- Menu na telefony --- */
 @media (max-width: 768px) {
   nav {
-    flex-direction: row; /* możesz też zostawić kolumnę, jeśli chcesz hamburger */
+    flex-direction: row; /* kolumnę możesz zmienić jeśli chcesz hamburger */
     justify-content: space-around;
     padding: 10px 0;
     font-size: 0.85em;
-    padding-top: 70px;
   }
 
   nav a {
     margin: 0 10px;
   }
+
+  body {
+    padding-top: 50px; /* zmniejszony padding-top na telefon */
+  }
 }
 
-}
-/* --- Baner --- */
-header {
-  background-image: url('https://i.imgur.com/3a2VV2A.jpeg');
-  background-size: cover;
-  background-position: center;
-  height: 250px; /* niższy na telefonach */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  font-size: 1.5em;
-}
-
-/* Dodatkowe media query dla bardzo małych ekranów */
+/* --- Bardzo małe ekrany --- */
 @media (max-width: 480px) {
   header {
     height: 200px;
     font-size: 1.2em;
   }
+
   nav {
     padding: 8px 0;
   }
+
+  body {
+    padding-top: 50px;
+  }
 }
+
 /* --- Sekcje pod nav --- */
 section {
   padding: 80px 20px 20px;
@@ -194,7 +191,7 @@ section {
 .review-section {
   max-width: 600px;
   margin: 40px auto;
-  background: #ffffff;
+  background: var(--card);
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.1);
@@ -266,7 +263,7 @@ footer {
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  width: 260px; /* tak jak kafelki ofert */
+  width: 260px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -291,23 +288,18 @@ footer {
 }
 
 .review-stars {
-  color: #FFD700; /* złote gwiazdki */
+  color: #FFD700;
   font-size: 1em;
   margin: 4px 0;
 }
 
-/* Nagłówki sekcji */
+/* --- Nagłówki sekcji --- */
 section h2 {
   text-align: center;
   color: var(--accent);
   font-size: 2em;
   margin: 40px 0 20px;
 }
-
-
-
-
-
 
 
 
