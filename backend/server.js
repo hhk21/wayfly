@@ -10,8 +10,8 @@ admin.initializeApp({
 });
 
 const db = admin.firestore();
-
 const app = express();
+
 app.use(express.json());
 app.use(cors({ origin: 'https://wayfly.onrender.com' }));
 
@@ -19,6 +19,7 @@ app.use(cors({ origin: 'https://wayfly.onrender.com' }));
 app.post('/api/add-review', async (req, res) => {
   try {
     const { email, rating, tripTo, tripStart, tripEnd, comment } = req.body;
+
     await db.collection('reviews').add({
       userEmail: email,
       rating,
@@ -29,10 +30,11 @@ app.post('/api/add-review', async (req, res) => {
       approved: false,
       createdAt: admin.firestore.FieldValue.serverTimestamp()
     });
-    res.json({ success: true });
+
+    res.json({ success: true, message: 'Opinia dodana!' });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ success: false });
+    res.status(500).json({ success: false, message: err.message });
   }
 });
 
@@ -43,11 +45,12 @@ app.get('/api/reviews', async (req, res) => {
       .where('approved', '==', true)
       .orderBy('createdAt', 'desc')
       .get();
+
     const reviews = snapshot.docs.map(doc => doc.data());
     res.json(reviews);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Błąd serwera' });
+    res.status(500).json({ message: err.message });
   }
 });
 
