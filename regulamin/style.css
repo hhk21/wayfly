@@ -72,6 +72,7 @@ nav a:hover {
     justify-content: space-around;
     padding: 10px 0;
     font-size: 0.85em;
+    padding-top: 70px;
   }
 
   nav a {
