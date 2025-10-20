@@ -211,56 +211,31 @@ footer {
   font-size: 0.9em;
 }
 
-#opinie {
-  max-width: 700px;
-  margin: 80px auto;
-  padding: 20px;
-  background: #ffffff;
-  border-radius: 15px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+.reviews-list {
+  margin-top: 30px;
 }
 
-#opinie h2 {
-  color: #0b74de;
-  text-align: center;
+.single-review {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 15px 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   margin-bottom: 20px;
 }
 
-#opinia-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.single-review h3 {
+  margin: 0 0 8px;
+  color: var(--accent);
 }
 
-#opinia-form input,
-#opinia-form textarea {
-  padding: 10px;
-  font-size: 1em;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+.single-review p {
+  margin: 4px 0;
+  color: #333;
 }
 
-#opinia-form button {
-  background: #0b74de;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.opinia {
-  background: #f7f9fb;
-  border-radius: 10px;
-  padding: 15px;
-  margin-top: 15px;
-}
-
-.opinia .data {
-  font-size: 0.8em;
-  color: #777;
-  text-align: right;
+.review-email {
+  font-size: 0.85em;
+  color: #888;
 }
 
 
