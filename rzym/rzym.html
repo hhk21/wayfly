@@ -5,13 +5,13 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Rzym – Szczegóły oferty | Wayfly</title>
-    <link rel="stylesheet" href="/style.css"/> <!-- Twój główny CSS -->
+    <link rel="stylesheet" href="/style.css"/>
     <style>
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f7f9fb;
-            padding-top: 70px; /* wysokość menu */
+            padding-top: 70px;
         }
 
         nav a {
@@ -60,13 +60,13 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
-            max-width: 800px;
+            gap: 20px;
+            max-width: 1000px;
             margin: 20px auto;
         }
 
         .card {
-            flex: 1 1 200px;
+            flex: 1 1 220px;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
@@ -75,10 +75,13 @@
             font-weight: bold;
             color: #0078d7;
         }
-        .card span {
-            display: block;
-            margin-top: 10px;
-            font-size: 0.95em;
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        .card p {
+            margin: 5px 0;
+            font-weight: normal;
             color: #555;
         }
 
@@ -124,16 +127,28 @@
 <!-- Kafelki info -->
 <section class="info-cards">
     <div class="card">
-        Data wyjazdu
-        <span>12.06.2025</span>
+        <h3>Wyjazd 1</h3>
+        <p>Data: 12.06.2025</p>
+        <p>Trasa: KRK → OSL → KRK</p>
+        <p>Cena: 600 zł/os.</p>
     </div>
     <div class="card">
-        Trasa
-        <span>KRK → OSL → KRK</span>
+        <h3>Wyjazd 2</h3>
+        <p>Data: 15.07.2025</p>
+        <p>Trasa: WAW → ROM → WAW</p>
+        <p>Cena: 750 zł/os.</p>
     </div>
     <div class="card">
-        Cena wyjazdu
-        <span>600 zł/os.</span>
+        <h3>Wyjazd 3</h3>
+        <p>Data: 01.08.2025</p>
+        <p>Trasa: KRK → ROM → KRK</p>
+        <p>Cena: 650 zł/os.</p>
+    </div>
+    <div class="card">
+        <h3>Wyjazd 4</h3>
+        <p>Data: 10.09.2025</p>
+        <p>Trasa: WRO → ROM → WRO</p>
+        <p>Cena: 700 zł/os.</p>
     </div>
 </section>
 
