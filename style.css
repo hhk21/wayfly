@@ -1,6 +1,10 @@
 :root {
-  --accent: #0b74de;
-  --bg: #f7f9fb;
+  --accent: #1E90FF;      
+  --accent-light: #4DA6FF; 
+  --cta: #2ECC71;        
+  --bg: #F7F9FB;         
+  --text: #111111;       
+  --footer: #005FA3;     
   --card: #ffffff;
   --muted: #666;
   --maxw: 1000px;
