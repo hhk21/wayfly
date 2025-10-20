@@ -21,7 +21,7 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.4;
-  padding-top: 70px; /* wysokość menu na komputerze */
+  padding-top: 90px; /* wysokość menu na komputerze */
 }
 
 /* --- Header / baner --- */
@@ -29,7 +29,7 @@ header {
   background-image: url('https://i.imgur.com/9HUEj4b.jpeg');
   background-size: cover;
   background-position: center;
-  height: 400px;
+  height: 400px; /* komputer */
   color: white;
   text-align: center;
   position: relative;
@@ -48,7 +48,7 @@ nav {
   background-color: #4da6ff;
   display: flex;
   justify-content: center;
-  padding: 25px 0; /* grubsze menu na komputerze */
+  padding: 30px 0; /* grube menu na komputerze */
   z-index: 1000;
   font-size: 0.9em;
   font-weight: 300;
@@ -63,6 +63,10 @@ nav a {
   margin: 0 15px;
   font-weight: 300;
   font-size: 0.9em;
+}
+
+nav a:hover {
+  text-decoration: underline;
 }
 
 /* --- Menu na telefony / tablety --- */
@@ -82,13 +86,12 @@ nav a {
 /* Bardzo małe ekrany */
 @media (max-width: 480px) {
   nav {
-    padding: 12px 0; /* minimalne, żeby nie zajmowało połowy ekranu */
+    padding: 12px 0; 
   }
   body {
     padding-top: 50px;
   }
 }
-
 
 /* --- Sekcje pod nav --- */
 section {
@@ -287,4 +290,19 @@ section h2 {
   color: var(--accent);
   font-size: 2em;
   margin: 40px 0 20px;
+}
+
+/* --- Baner na telefonach --- */
+@media (max-width: 768px) {
+  header {
+    height: 250px; /* mniejszy baner */
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    height: 200px;
+    font-size: 1.2em;
+  }
 }
