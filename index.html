@@ -175,7 +175,7 @@ form.addEventListener("submit", async (e) => {
 }
 });
 </script>
-  <!-- Modal Kontakt -->
+<!-- Modal Kontakt -->
 <div id="contactModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
@@ -188,10 +188,41 @@ form.addEventListener("submit", async (e) => {
     </ul>
   </div>
 </div>
-  
+  <script>
+  // Pobranie elementów
+const contactBtn = document.getElementById("contactBtn");
+const modal = document.getElementById("contactModal");
+const closeBtn = modal.querySelector(".close");
+
+// Pokaż modal po kliknięciu
+contactBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  modal.style.display = "flex";
+});
+
+// Zamknij po kliknięciu X
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+// Zamknij po kliknięciu poza modal
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+// Zamknij po wciśnięciu ESC
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    modal.style.display = "none";
+  }
+});
+  </script>
 
 </body>
 </html>
+
 
 
 
