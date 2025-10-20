@@ -59,18 +59,9 @@
   </form>
   <div id="thankYouMessage"></div>
 </section>
-  
-  <!-- Sekcja Wyświetlania Opinii -->
-  <section id="opinie">
-  <h2>Opinie naszych klientów</h2>
 
-  <form id="opinia-form">
-    <input type="text" name="name" placeholder="Twoje imię" required>
-    <textarea name="message" placeholder="Twoja opinia" required></textarea>
-    <button type="submit">Wyślij opinię</button>
-  </form>
-
-  <div id="opinie-lista"></div>
+ <!-- 🔽 Tutaj pojawią się zatwierdzone opinie -->
+  <div id="reviewsList" class="reviews-list"></div>
 </section>
 
 
@@ -86,82 +77,78 @@
 </footer>
 
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, getDocs, query, where, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  // 🔹 Konfiguracja Firebase
-  const firebaseConfig = {
-    apiKey: "AIzaSyAVcX9Kn-YxFUEij_DqPoJoitfSAdVqPBY",
-    authDomain: "wayfly-opinie.firebaseapp.com",
-    projectId: "wayfly-opinie",
-    storageBucket: "wayfly-opinie.firebasestorage.app",
-    messagingSenderId: "961643779503",
-    appId: "1:961643779503:web:41594b733dbe8769f14b5a"
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyAVcX9Kn-YxFUEij_DqPoJoitfSAdVqPBY",
+  authDomain: "wayfly-opinie.firebaseapp.com",
+  projectId: "wayfly-opinie",
+  storageBucket: "wayfly-opinie.firebasestorage.app",
+  messagingSenderId: "961643779503",
+  appId: "1:961643779503:web:41594b733dbe8769f14b5a"
+};
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  const form = document.querySelector("#opinia-form");
-  const opinieLista = document.querySelector("#opinie-lista");
+// 🔹 Wysyłanie opinii
+document.getElementById("reviewForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = document.getElementById("email").value;
+  const rating = document.getElementById("rating").value;
+  const tripTo = document.getElementById("tripTo").value;
+  const comment = document.getElementById("comment").value;
 
-  // 🔹 Wysyłanie opinii
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const name = form.name.value.trim();
-    const message = form.message.value.trim();
-
-    if (!name || !message) {
-      alert("Proszę wypełnić wszystkie pola.");
-      return;
-    }
-
-    try {
-      await addDoc(collection(db, "reviews"), {
-        name,
-        message,
-        date: new Date().toISOString(),
-        approved: false // 👈 wymaga zatwierdzenia przez Ciebie
-      });
-
-      alert("Dziękujemy za opinię! Twoja opinia czeka na zatwierdzenie.");
-      form.reset();
-    } catch (err) {
-      console.error("Błąd przy wysyłaniu opinii:", err);
-      alert("Wystąpił problem z wysłaniem opinii.");
-    }
-  });
-
-  // 🔹 Pobieranie zatwierdzonych opinii
-  async function wczytajOpinie() {
-    const q = query(
-      collection(db, "reviews"),
-      where("approved", "==", true),
-      orderBy("date", "desc")
-    );
-
-    const snapshot = await getDocs(q);
-    opinieLista.innerHTML = "";
-
-    snapshot.forEach((doc) => {
-      const data = doc.data();
-      const el = document.createElement("div");
-      el.classList.add("opinia");
-      el.innerHTML = `
-        <p><strong>${data.name}</strong></p>
-        <p>${data.message}</p>
-        <p class="data">${new Date(data.date).toLocaleDateString("pl-PL")}</p>
-      `;
-      opinieLista.appendChild(el);
+  try {
+    await addDoc(collection(db, "reviews"), {
+      email,
+      rating,
+      tripTo,
+      comment,
+      createdAt: new Date(),
+      approved: false // 🔒 wymaga zatwierdzenia przez Ciebie
     });
+    document.getElementById("thankYouMessage").textContent =
+      "Dziękujemy za opinię! Zostanie opublikowana po zatwierdzeniu.";
+    document.getElementById("reviewForm").reset();
+  } catch (error) {
+    console.error("Błąd przy wysyłaniu opinii:", error);
+    document.getElementById("thankYouMessage").textContent =
+      "Problem z wysłaniem opinii. Spróbuj ponownie.";
   }
+});
 
-  wczytajOpinie();
+// 🔹 Pobieranie zatwierdzonych opinii
+async function loadApprovedReviews() {
+  const q = query(collection(db, "reviews"), where("approved", "==", true));
+  const snapshot = await getDocs(q);
+
+  const reviewsList = document.getElementById("reviewsList");
+  reviewsList.innerHTML = ""; // wyczyść listę
+
+  snapshot.forEach((doc) => {
+    const r = doc.data();
+    const reviewDiv = document.createElement("div");
+    reviewDiv.classList.add("single-review");
+    reviewDiv.innerHTML = `
+      <h3>✈️ ${r.tripTo}</h3>
+      <p><strong>Ocena:</strong> ${r.rating}/5</p>
+      <p>${r.comment}</p>
+      <p class="review-email">🧭 ${r.email}</p>
+      <hr>
+    `;
+    reviewsList.appendChild(reviewDiv);
+  });
+}
+
+loadApprovedReviews();
 </script>
 
 
 </body>
 </html>
+
 
 
 
