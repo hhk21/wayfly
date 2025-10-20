@@ -19,9 +19,9 @@ body {
   margin: 0;
   font-family: Inter, Arial, Helvetica, sans-serif;
   background: var(--bg);
-  color: #111;
+  color: var(--text);
   line-height: 1.4;
-  padding-top: 130px; /* dostosowane do nowej wysokości menu */
+  padding-top: 130px; /* wysokość menu */
 }
 
 /* --- Header / baner --- */
@@ -41,12 +41,12 @@ nav {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #4da6ff; /* delikatny błękit */
+  background-color: #4da6ff;
   display: flex;
   justify-content: center;
-  padding: 30px 0; /* SZERSZE menu (było 20px) */
+  padding: 30px 0;
   z-index: 1000;
-  font-size: 0.9em; /* ta sama czcionka co wcześniej */
+  font-size: 0.9em;
   font-weight: 300;
   letter-spacing: 0.5px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
@@ -98,7 +98,7 @@ section {
 .oferta {
   position: relative;
   width: 100%;
-  max-width: 260px; /* MNIEJSZE kafelki jak wcześniej */
+  max-width: 260px;
   aspect-ratio: 1/1;
   overflow: hidden;
   border-radius: 10px;
@@ -153,7 +153,20 @@ section {
   font-size: 0.85em;
 }
 
-/* --- Formularz opinii (wygląd jak poprzednio) --- */
+.text-overlay button {
+  background: var(--accent);
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.text-overlay button:hover {
+  background: #005fa3;
+}
+
+/* --- Formularz opinii --- */
 .review-section {
   max-width: 600px;
   margin: 40px auto;
@@ -208,48 +221,55 @@ section {
 
 /* --- Stopka --- */
 footer {
-  background-color: #005fa3;
+  background-color: var(--footer);
   color: white;
   text-align: center;
   padding: 15px;
   font-size: 0.9em;
 }
 
+/* --- Wyświetlanie opinii w kafelkach --- */
 .reviews-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
   margin-top: 30px;
 }
 
 .single-review {
-  background: #ffffff;
+  background: var(--card);
   border-radius: 10px;
-  padding: 15px 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  margin-bottom: 20px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  width: 260px; /* tak jak kafelki ofert */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .single-review h3 {
-  margin: 0 0 8px;
+  margin: 0;
   color: var(--accent);
+  font-size: 1em;
 }
 
 .single-review p {
-  margin: 4px 0;
+  margin: 0;
   color: #333;
+  font-size: 0.85em;
+}
+
+.review-stars {
+  color: #FFD700; /* złote gwiazdki */
+  font-size: 1em;
 }
 
 .review-email {
-  font-size: 0.85em;
-  color: #888;
+  font-size: 0.75em;
+  color: var(--muted);
+  text-align: right;
 }
-
-
-
-
-
-
-
-
-
 
 
 
