@@ -122,6 +122,8 @@ async function loadReviews() {
 
 // Wywołanie przy starcie
 loadReviews();
+  console.log("Ładowanie opinii...");
+console.log(document.getElementById("reviewsList"));
 
 // Wysyłanie opinii do Firestore (z domyślnym approved: false)
 document.getElementById("reviewForm").addEventListener("submit", async (e) => {
@@ -148,6 +150,7 @@ document.getElementById("reviewForm").addEventListener("submit", async (e) => {
 
 </body>
 </html>
+
 
 
 
