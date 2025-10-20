@@ -13,7 +13,7 @@ const db = admin.firestore();
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: 'https://wayfly.onrender.com' })); // frontend
+app.use(cors({ origin: 'https://wayfly.onrender.com' }));
 
 // Dodawanie opinii
 app.post('/api/add-review', async (req, res) => {
