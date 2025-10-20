@@ -271,6 +271,12 @@ footer {
   text-align: right;
 }
 
+.review-stars {
+  color: #FFD700; /* złote gwiazdki */
+  font-size: 1em;
+  margin: 4px 0;
+}
+
 
 
 
