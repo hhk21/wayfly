@@ -34,20 +34,24 @@ app.get('/api/reviews', async (req, res) => {
 // --- Endpoint do dodawania opinii ---
 app.post('/api/add-review', async (req, res) => {
   try {
-    const { email, rating, tripTo, tripStart, tripEnd, comment } = req.body;
-    if (!email || !rating || !tripTo || !tripStart || !tripEnd || !comment) {
+    const { name, email, rating, tripTo, tripStart, tripEnd, comment } = req.body;
+
+    if (!name || !email || !rating || !tripTo || !tripStart || !tripEnd || !comment) {
       return res.status(400).json({ success: false, message: 'Niepełne dane' });
     }
+
     await db.collection('reviews').add({
+      name,                 // <-- dodane imię
       userEmail: email,
       rating,
       tripTo,
       tripStart,
       tripEnd,
       comment,
-      approved: false, // opinia wymaga zatwierdzenia
+      approved: false,       // opinia wymaga zatwierdzenia
       createdAt: admin.firestore.FieldValue.serverTimestamp()
     });
+
     res.json({ success: true });
   } catch (err) {
     console.error(err);
