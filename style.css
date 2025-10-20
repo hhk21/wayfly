@@ -21,7 +21,7 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.4;
-  padding-top: 70px; /* wysokość menu na komputerze */
+  padding-top: 90px; /* wysokość menu na komputerze */
 }
 
 /* --- Header / baner --- */
@@ -48,7 +48,7 @@ nav {
   background-color: #4da6ff;
   display: flex;
   justify-content: center;
-  padding: 25px 0; /* grubsze menu na komputerze */
+  padding: 30px 0; /* grubsze menu na komputerze */
   z-index: 1000;
   font-size: 0.9em;
   font-weight: 300;
@@ -287,6 +287,7 @@ section h2 {
   font-size: 2em;
   margin: 40px 0 20px;
 }
+
 
 
 
