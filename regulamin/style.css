@@ -48,7 +48,7 @@ nav {
   background-color: #4da6ff;
   display: flex;
   justify-content: center;
-  padding: 20px 0; /* grubsze menu na komputerze */
+  padding: 25px 0; /* grubsze menu na komputerze */
   z-index: 1000;
   font-size: 0.9em;
   font-weight: 300;
