@@ -59,6 +59,20 @@
   </form>
   <div id="thankYouMessage"></div>
 </section>
+  
+  <!-- Sekcja Wyświetlania Opinii -->
+  <section id="opinie">
+  <h2>Opinie naszych klientów</h2>
+
+  <form id="opinia-form">
+    <input type="text" name="name" placeholder="Twoje imię" required>
+    <textarea name="message" placeholder="Twoja opinia" required></textarea>
+    <button type="submit">Wyślij opinię</button>
+  </form>
+
+  <div id="opinie-lista"></div>
+</section>
+
 
 <!-- Sekcja FAQ -->
 <section id="faq">
@@ -72,55 +86,83 @@
 </footer>
 
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, query, where, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  // ✅ Poprawiona konfiguracja
+  // 🔹 Konfiguracja Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyAVcX9Kn-YxFUEij_DqPoJoitfSAdVqPBY",
     authDomain: "wayfly-opinie.firebaseapp.com",
     projectId: "wayfly-opinie",
-    storageBucket: "wayfly-opinie.appspot.com", // poprawiony adres
+    storageBucket: "wayfly-opinie.firebasestorage.app",
     messagingSenderId: "961643779503",
     appId: "1:961643779503:web:41594b733dbe8769f14b5a"
   };
 
-  // ✅ Inicjalizacja Firebase i Firestore
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // ✅ Formularz i komunikat
-  const form = document.getElementById("reviewForm");
-  const message = document.getElementById("thankYouMessage");
+  const form = document.querySelector("#opinia-form");
+  const opinieLista = document.querySelector("#opinie-lista");
 
+  // 🔹 Wysyłanie opinii
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const name = form.name.value.trim();
+    const message = form.message.value.trim();
+
+    if (!name || !message) {
+      alert("Proszę wypełnić wszystkie pola.");
+      return;
+    }
 
     try {
       await addDoc(collection(db, "reviews"), {
-        userEmail: form.email.value,
-        rating: parseInt(form.rating.value),
-        comment: form.comment.value,
-        tripStart: form.tripStart.value,
-        tripEnd: form.tripEnd.value,
-        tripTo: form.tripTo.value,
-        createdAt: new Date()
+        name,
+        message,
+        date: new Date().toISOString(),
+        approved: false // 👈 wymaga zatwierdzenia przez Ciebie
       });
 
-      // ✅ Komunikat po wysłaniu
-      message.textContent = "✅ Dziękujemy za opinię!";
-      message.style.color = "#2E7D32";
+      alert("Dziękujemy za opinię! Twoja opinia czeka na zatwierdzenie.");
       form.reset();
-    } catch (error) {
-      console.error("Błąd przy wysyłaniu opinii:", error);
-      message.textContent = "❌ Wystąpił problem z wysłaniem opinii.";
-      message.style.color = "red";
+    } catch (err) {
+      console.error("Błąd przy wysyłaniu opinii:", err);
+      alert("Wystąpił problem z wysłaniem opinii.");
     }
   });
+
+  // 🔹 Pobieranie zatwierdzonych opinii
+  async function wczytajOpinie() {
+    const q = query(
+      collection(db, "reviews"),
+      where("approved", "==", true),
+      orderBy("date", "desc")
+    );
+
+    const snapshot = await getDocs(q);
+    opinieLista.innerHTML = "";
+
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      const el = document.createElement("div");
+      el.classList.add("opinia");
+      el.innerHTML = `
+        <p><strong>${data.name}</strong></p>
+        <p>${data.message}</p>
+        <p class="data">${new Date(data.date).toLocaleDateString("pl-PL")}</p>
+      `;
+      opinieLista.appendChild(el);
+    });
+  }
+
+  wczytajOpinie();
 </script>
+
 
 </body>
 </html>
+
 
 
 
