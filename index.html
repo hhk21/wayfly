@@ -1,12 +1,158 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <base href="/">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wayfly – Strona główna</title>
-  <link rel="icon" href="wayflyicon.png" type="image/png">
-  <link rel="stylesheet" href="style.css">
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rzym – Szczegóły oferty | Wayfly</title>
+    <link rel="stylesheet" href="/style.css"> <!-- Twój główny CSS -->
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fb;
+            padding-top: 70px; /* wysokość menu */
+        }
+
+        /* Baner */
+        .banner {
+            width: 100%;
+            height: 400px;
+            background-image: url('https://i.imgur.com/jkGLiLu.jpeg');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 5px solid #0078d7;
+        }
+
+        /* Szczegóły oferty */
+        .details {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center; /* <- wycentrowanie tekstu */
+        }
+        .details h2 {
+            color: #0078d7;
+            margin-bottom: 20px;
+        }
+        .details p {
+            margin-bottom: 10px;
+        }
+
+        .specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .spec {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Powrót do ofert */
+        .back-link {
+            display: block;
+            margin: 30px auto 50px;
+            text-align: center;
+        }
+        .back-link a {
+            text-decoration: none;
+            color: white;
+            background-color: #0078d7;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+        .back-link a:hover {
+            background-color: #005fa3;
+        }
+
+        /* --- Poprawka menu dla regulaminu / ogólnie --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #4da6ff;
+            display: flex;
+            justify-content: center;
+            padding: 30px 0;
+            z-index: 1000;
+            font-size: 0.9em;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: row;
+                justify-content: space-around;
+                padding: 20px 0;
+                font-size: 0.85em;
+            }
+            body {
+                padding-top: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 12px 0;
+            }
+            body {
+                padding-top: 35px;
+            }
+        }
+
+        /* --- Pop-up kontaktu --- */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .modal .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #aaa;
+            font-size: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal .close:hover {
+            color: #000;
+        }
+    </style>
 </head>
 <body>
 
@@ -20,7 +166,7 @@
 </nav>
 
 <!-- Baner -->
-<header></header>
+<header class="banner"></header>
 
 <!-- Sekcja ofert -->
 <h2>Nasze aktualne oferty</h2>
@@ -93,22 +239,20 @@
   </div>
 </div>
 
-<!-- Modal Newsletter -->
+<!-- Newsletter Modal (przykład) -->
 <div id="newsletterModal" class="modal">
   <div class="modal-content">
     <span id="newsletterClose" class="close">&times;</span>
     <h2>Zapisz się do newslettera</h2>
-    <form>
-      <input type="email" placeholder="Twój email" required>
-      <button type="submit">Zapisz się</button>
-    </form>
+    <p>Otrzymuj najnowsze oferty i promocje!</p>
+    <input type="email" placeholder="Twój email">
+    <button>Zapisz się</button>
   </div>
 </div>
 
 <script>
 const BACKEND_URL = 'https://wayfly.onrender.com';
 
-// --- Funkcje opinii ---
 async function loadReviews() {
   const container = document.getElementById('reviewsList');
   container.innerText = 'Ładowanie opinii…';
@@ -152,7 +296,6 @@ function escapeHtml(str) {
 document.addEventListener('DOMContentLoaded', () => {
   loadReviews();
 
-  // Formularz opinii
   const form = document.getElementById('reviewForm');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -190,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Modale
+  // --- Modale ---
   const contactBtn = document.getElementById('contactBtn');
   const contactModal = document.getElementById('contactModal');
   const contactClose = document.getElementById('contactClose');
@@ -198,30 +341,37 @@ document.addEventListener('DOMContentLoaded', () => {
   const newsletterModal = document.getElementById('newsletterModal');
   const newsletterClose = document.getElementById('newsletterClose');
 
-  contactBtn.addEventListener('click', (ev) => {
-    ev.preventDefault();
-    contactModal.style.display = 'flex';
-  });
-  contactClose.addEventListener('click', () => {
-    contactModal.style.display = 'none';
-  });
+  if(contactBtn && contactModal && contactClose){
+    contactBtn.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      contactModal.style.display = 'flex';
+    });
+    contactClose.addEventListener('click', () => {
+      contactModal.style.display = 'none';
+    });
+  }
 
-  window.setTimeout(() => {
-    newsletterModal.style.display = 'flex';
-  }, 2000);
-  newsletterClose.addEventListener('click', () => {
-    newsletterModal.style.display = 'none';
-  });
+  if(newsletterModal && newsletterClose){
+    setTimeout(() => {
+      newsletterModal.style.display = 'flex';
+      newsletterModal.setAttribute('aria-hidden', 'false');
+    }, 2000);
+    newsletterClose.addEventListener('click', () => {
+      newsletterModal.style.display = 'none';
+      newsletterModal.setAttribute('aria-hidden', 'true');
+    });
+  }
 
   // Zamknięcie klikając poza modal lub ESC
   window.addEventListener('click', (e) => {
-    if (e.target === contactModal) contactModal.style.display = 'none';
-    if (e.target === newsletterModal) newsletterModal.style.display = 'none';
+    if(e.target === contactModal) contactModal.style.display = 'none';
+    if(e.target === newsletterModal) newsletterModal.style.display = 'none';
   });
+
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      contactModal.style.display = 'none';
-      newsletterModal.style.display = 'none';
+    if(e.key === 'Escape'){
+      if(contactModal) contactModal.style.display = 'none';
+      if(newsletterModal) newsletterModal.style.display = 'none';
     }
   });
 });
