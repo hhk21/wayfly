@@ -24,21 +24,6 @@ body {
   padding-top: 90px; /* wysokość menu na komputerze */
 }
 
-/* --- Header / baner --- */
-header {
-  background-image: url('https://i.imgur.com/9HUEj4b.jpeg');
-  background-size: cover;
-  background-position: center;
-  height: 400px; /* komputer */
-  color: white;
-  text-align: center;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2em;
-}
-
 /* --- Menu główne --- */
 nav {
   position: fixed;
@@ -48,7 +33,7 @@ nav {
   background-color: #4da6ff;
   display: flex;
   justify-content: center;
-  padding: 30px 0; /* grube menu na komputerze */
+  padding: 30px 0; /* komputer */
   z-index: 1000;
   font-size: 0.9em;
   font-weight: 300;
@@ -56,7 +41,6 @@ nav {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* --- Linki w menu --- */
 nav a {
   color: white;
   text-decoration: none;
@@ -74,28 +58,82 @@ nav a:hover {
   nav {
     flex-direction: row;
     justify-content: space-around;
-    padding: 15px 0; /* mniejsze na telefon */
+    padding: 15px 0; /* mniejsze menu */
     font-size: 0.85em;
   }
-
   body {
-    padding-top: 55px; /* dopasowanie do grubszego menu na telefon */
+    padding-top: 55px; /* dopasowanie do mniejszego menu */
   }
 }
 
 /* Bardzo małe ekrany */
 @media (max-width: 480px) {
   nav {
-    padding: 12px 0; 
+    padding: 12px 0;
   }
   body {
     padding-top: 50px;
   }
 }
 
+/* --- Baner / header --- */
+header {
+  background-image: url('https://i.imgur.com/9HUEj4b.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 400px; /* komputer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  color: white;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  header {
+    height: 250px;
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    height: 200px;
+    font-size: 1.2em;
+  }
+}
+
 /* --- Sekcje pod nav --- */
-section {
+section, main {
   padding: 80px 20px 20px;
+}
+
+/* --- Tekst regulaminu / treści --- */
+main {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+main h1 {
+  font-size: 2em;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+main h2 {
+  font-size: 1.5em;
+  color: var(--accent);
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+main p {
+  font-size: 1em;
+  line-height: 1.6;
+  margin-bottom: 15px;
 }
 
 /* --- Siatka ofert --- */
@@ -284,18 +322,10 @@ footer {
   margin: 4px 0;
 }
 
-/* --- Nagłówki sekcji --- */
-section h2 {
-  text-align: center;
-  color: var(--accent);
-  font-size: 2em;
-  margin: 40px 0 20px;
-}
-
-/* --- Baner na telefonach --- */
+/* --- Baner na telefonach dla spójności --- */
 @media (max-width: 768px) {
   header {
-    height: 250px; /* mniejszy baner */
+    height: 250px;
     font-size: 1.5em;
   }
 }
@@ -304,5 +334,4 @@ section h2 {
   header {
     height: 200px;
     font-size: 1.2em;
-  }
 }
