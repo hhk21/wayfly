@@ -76,80 +76,63 @@
 </footer>
 
 <script type="module">
-// Firebase SDK
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
-import { getFirestore, collection, getDocs, query, orderBy, where, addDoc, Timestamp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
+  // Import Firebase SDK
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+  import { getFirestore, collection, getDocs, query, orderBy, where } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
 
-// Konfiguracja Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyAVcX9Kn-YxFUEij_DqPoJoitfSAdVqPBY",
-  authDomain: "wayfly-opinie.firebaseapp.com",
-  projectId: "wayfly-opinie",
-  storageBucket: "wayfly-opinie.firebasestorage.app",
-  messagingSenderId: "961643779503",
-  appId: "1:961643779503:web:41594b733dbe8769f14b5a"
-};
+  // Konfiguracja Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyAVcX9Kn-YxFUEij_DqPoJoitfSAdVqPBY",
+    authDomain: "wayfly-opinie.firebaseapp.com",
+    projectId: "wayfly-opinie",
+    storageBucket: "wayfly-opinie.firebasestorage.app",
+    messagingSenderId: "961643779503",
+    appId: "1:961643779503:web:41594b733dbe8769f14b5a"
+  };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
-// Funkcja do wyświetlania opinii w stylu kafelkowym
-function displayReview(review) {
-  const container = document.getElementById("reviewsList");
+  // Funkcja do wyświetlania opinii
+  function displayReview(review) {
+    const container = document.getElementById("reviewsList");
 
-  const div = document.createElement("div");
-  div.classList.add("single-review");
+    const div = document.createElement("div");
+    div.classList.add("single-review");
 
-  let stars = "★".repeat(review.rating) + "☆".repeat(5 - review.rating);
+    // Zamiana liczby ratingu na gwiazdki
+    const stars = "★".repeat(review.rating) + "☆".repeat(5 - review.rating);
 
-  div.innerHTML = `
-    <h3>${review.tripTo}</h3>
-    <p class="review-stars">${stars}</p>
-    <p>${review.comment}</p>
-    <p class="review-email">${review.userEmail}</p>
-  `;
+    div.innerHTML = `
+      <h3>${review.tripTo}</h3>
+      <p class="review-stars">${stars}</p>
+      <p>${review.comment}</p>
+      <p class="review-email">${review.userEmail}</p>
+    `;
 
-  container.appendChild(div);
-}
-
-// Pobieranie tylko zatwierdzonych opinii z Firestore
-async function loadReviews() {
-  const reviewsCol = collection(db, "reviews");
-  const q = query(reviewsCol, where("approved", "==", true), orderBy("createdAt", "desc"));
-  const snapshot = await getDocs(q);
-  snapshot.forEach(doc => displayReview(doc.data()));
-}
-
-// Wywołanie przy starcie
-loadReviews();
-  console.log("Ładowanie opinii...");
-console.log(document.getElementById("reviewsList"));
-
-// Wysyłanie opinii do Firestore (z domyślnym approved: false)
-document.getElementById("reviewForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  try {
-    await addDoc(collection(db, "reviews"), {
-      userEmail: document.getElementById("email").value,
-      rating: parseInt(document.getElementById("rating").value),
-      comment: document.getElementById("comment").value,
-      tripTo: document.getElementById("tripTo").value,
-      tripStart: document.getElementById("tripStart").value,
-      tripEnd: document.getElementById("tripEnd").value,
-      approved: false, // początkowo false, zatwierdzasz ręcznie
-      createdAt: Timestamp.fromDate(new Date())
-    });
-    document.getElementById("thankYouMessage").textContent = "Dziękujemy za opinię! Zostanie wyświetlona po zatwierdzeniu.";
-    document.getElementById("reviewForm").reset();
-  } catch (error) {
-    console.error("Błąd przy wysyłaniu opinii:", error);
-    document.getElementById("thankYouMessage").textContent = "Wystąpił problem z wysłaniem opinii.";
+    container.appendChild(div);
   }
-});
-</script>
 
+  // Pobieranie opinii z Firestore
+  async function loadReviews() {
+    const reviewsCol = collection(db, "reviews");
+
+    // Pobieramy tylko zatwierdzone opinie
+    const q = query(reviewsCol, where("approved", "==", true), orderBy("createdAt", "desc"));
+    const snapshot = await getDocs(q);
+
+    snapshot.forEach(doc => {
+      displayReview(doc.data());
+    });
+  }
+
+  // Wywołanie przy starcie strony
+  loadReviews();
+</script>
+  
 </body>
 </html>
+
 
 
 
