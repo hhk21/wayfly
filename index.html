@@ -177,10 +177,24 @@
   </div>
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc, serverTimestamp, query, orderBy, where } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
 
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+  import { getFirestore, collection, getDocs, addDoc, serverTimestamp, query, orderBy, where } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
+
+  async function initFirebase() {
+    // Pobranie konfiguracji z backendu
+    const res = await fetch('https://twoj-backend.onrender.com/api/firebase-config');
+    const firebaseConfig = await res.json();
+
+    const app = initializeApp(firebaseConfig);
+    return getFirestore(app);
+  }
+
+  const db = await initFirebase();
+
+  // reszta Twojego kodu opinii działa normalnie
+</script>
 
 
 // Wyświetlanie opinii
@@ -319,6 +333,7 @@ window.addEventListener("keydown", (e) => {
   
 </body>
 </html>
+
 
 
 
