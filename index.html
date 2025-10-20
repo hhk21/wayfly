@@ -283,9 +283,51 @@ form.addEventListener("submit", async (e) => {
     if (e.key === "Escape") modal.style.display = "none";
   });
 </script>
+<!-- Modal newsletter -->
+<div id="newsletterModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Zapisz się do newslettera</h2>
+    <form id="newsletterForm">
+      <input type="email" id="newsletterEmail" placeholder="Twój email" required>
+      <button type="submit">Zapisz się</button>
+    </form>
+    <div id="newsletterMessage"></div>
+  </div>
+</div>
+  <script>
+  const newsletterModal = document.getElementById("newsletterModal");
+const closeNewsletter = newsletterModal.querySelector(".close");
 
+// Pokaż modal po 2 sekundach od wejścia na stronę
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    newsletterModal.style.display = "flex";
+  }, 2000);
+});
+
+// Zamknij po kliknięciu X
+closeNewsletter.addEventListener("click", () => {
+  newsletterModal.style.display = "none";
+});
+
+// Zamknij po kliknięciu poza modal
+window.addEventListener("click", (e) => {
+  if (e.target === newsletterModal) {
+    newsletterModal.style.display = "none";
+  }
+});
+
+// Zamknij po ESC
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    newsletterModal.style.display = "none";
+  }
+});
+</script>
 </body>
 </html>
+
 
 
 
