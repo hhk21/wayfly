@@ -25,14 +25,14 @@
 <section id="oferty" class="oferty">
   <a href="paryz.html" class="oferta">
     <img src="https://source.unsplash.com/featured/?paris,travel" alt="Paryż">
-    <h3 style="padding:10px 0 0 10px;">Romantyczny weekend w Paryżu</h3>
-    <p style="padding:0 0 10px 10px;">Odkryj uroki Paryża z dopasowanym planem podróży.</p>
+    <h3>Romantyczny weekend w Paryżu</h3>
+    <p>Odkryj uroki Paryża z dopasowanym planem podróży.</p>
   </a>
 
   <a href="tatry.html" class="oferta">
     <img src="https://source.unsplash.com/featured/?mountains,travel" alt="Tatry">
-    <h3 style="padding:10px 0 0 10px;">Górska przygoda w Tatrach</h3>
-    <p style="padding:0 0 10px 10px;">Plany tras, schronisk i najlepszych widoków.</p>
+    <h3>Górska przygoda w Tatrach</h3>
+    <p>Plany tras, schronisk i najlepszych widoków.</p>
   </a>
 
   <a href="rzym/rzym.html" class="oferta">
@@ -45,8 +45,10 @@
   </a>
 </section>
 
-<!-- Wyświetlanie opinii zatwierdzonych -->
-<section class="reviews-list" id="reviewsList">
+<!-- Wyświetlanie opinii -->
+<section id="reviewsSection">
+  <h2 style="text-align:center; color:#0b74de; margin:40px 0 20px;">Opinie naszych klientów</h2>
+  <div class="reviews-list" id="reviewsList"></div>
 </section>
 
 <!-- Sekcja opinii do dodawania -->
@@ -56,8 +58,8 @@
     <input type="email" id="email" placeholder="Twój email" required>
     <input type="number" id="rating" min="1" max="5" placeholder="Ocena (1-5)" required>
     <input type="text" id="tripTo" placeholder="Dokąd leciałeś?" required>
-    <input type="date" id="tripStart" placeholder="Data rozpoczęcia podróży" required>
-    <input type="date" id="tripEnd" placeholder="Data zakończenia podróży" required>
+    <input type="date" id="tripStart" required>
+    <input type="date" id="tripEnd" required>
     <textarea id="comment" placeholder="Twoja opinia" rows="4" required></textarea>
     <button type="submit">Wyślij opinię</button>
   </form>
@@ -76,64 +78,54 @@
 </footer>
 
 <script type="module">
-  // Import Firebase SDK
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
-  import { getFirestore, collection, getDocs, query, orderBy, where } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+import { getFirestore, collection, getDocs, query, orderBy, where } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
 
-  // Konfiguracja Firebase
-  const firebaseConfig = {
-    apiKey: "AIzaSyAVcX9Kn-YxFUEij_DqPoJoitfSAdVqPBY",
-    authDomain: "wayfly-opinie.firebaseapp.com",
-    projectId: "wayfly-opinie",
-    storageBucket: "wayfly-opinie.firebasestorage.app",
-    messagingSenderId: "961643779503",
-    appId: "1:961643779503:web:41594b733dbe8769f14b5a"
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyAVcX9Kn-YxFUEij_DqPoJoitfSAdVqPBY",
+  authDomain: "wayfly-opinie.firebaseapp.com",
+  projectId: "wayfly-opinie",
+  storageBucket: "wayfly-opinie.firebasestorage.app",
+  messagingSenderId: "961643779503",
+  appId: "1:961643779503:web:41594b733dbe8769f14b5a"
+};
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  // Funkcja do wyświetlania opinii
-  function displayReview(review) {
-    const container = document.getElementById("reviewsList");
+function displayReview(review) {
+  const container = document.getElementById("reviewsList");
+  const div = document.createElement("div");
+  div.classList.add("single-review");
 
-    const div = document.createElement("div");
-    div.classList.add("single-review");
+  // Zamiana ratingu na gwiazdki
+  const stars = "★".repeat(review.rating) + "☆".repeat(5 - review.rating);
 
-    // Zamiana liczby ratingu na gwiazdki
-    const stars = "★".repeat(review.rating) + "☆".repeat(5 - review.rating);
+  div.innerHTML = `
+    <h3>${review.tripTo}</h3>
+    <p class="review-stars">${stars}</p>
+    <p>${review.comment}</p>
+    <p class="review-email">${review.userEmail}</p>
+  `;
 
-    div.innerHTML = `
-      <h3>${review.tripTo}</h3>
-      <p class="review-stars">${stars}</p>
-      <p>${review.comment}</p>
-      <p class="review-email">${review.userEmail}</p>
-    `;
+  container.appendChild(div);
+}
 
-    container.appendChild(div);
-  }
+async function loadReviews() {
+  const reviewsCol = collection(db, "reviews");
+  const q = query(reviewsCol, where("approved", "==", true), orderBy("createdAt", "desc"));
+  const snapshot = await getDocs(q);
 
-  // Pobieranie opinii z Firestore
-  async function loadReviews() {
-    const reviewsCol = collection(db, "reviews");
+  snapshot.forEach(doc => {
+    displayReview(doc.data());
+  });
+}
 
-    // Pobieramy tylko zatwierdzone opinie
-    const q = query(reviewsCol, where("approved", "==", true), orderBy("createdAt", "desc"));
-    const snapshot = await getDocs(q);
-
-    snapshot.forEach(doc => {
-      displayReview(doc.data());
-    });
-  }
-
-  // Wywołanie przy starcie strony
-  loadReviews();
+loadReviews();
 </script>
-  
+
 </body>
 </html>
-
-
 
 
 
