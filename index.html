@@ -45,23 +45,10 @@
   </a>
 </section>
 
- <!-- 🔽 Tutaj pojawią się zatwierdzone opinie -->
- <div class="reviews-list">
-    <div class="single-review">
-      <h3>Anna K.</h3>
-      <div class="review-stars">⭐⭐⭐⭐⭐</div>
-      <p>Wspaniała podróż, bardzo dobrze przygotowany plan!</p>
-      <div class="review-email">anna@example.com</div>
-    </div>
+  
+<div class="reviews-list" id="reviewsList">
+</div>
 
-    <div class="single-review">
-      <h3>Marek P.</h3>
-      <div class="review-stars">⭐⭐⭐⭐</div>
-      <p>Plan był świetny, ale przydałyby się dodatkowe informacje o transporcie.</p>
-      <div class="review-email">marek@example.com</div>
-    </div>
-  </div>
-</section>
   
 <!-- Sekcja opinii -->
 <section class="review-section" id="opinie">
@@ -90,9 +77,11 @@
 </footer>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+// Import Firebase SDK w swoim HTML (jeżeli jeszcze nie masz)
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+import { getFirestore, collection, getDocs, query, orderBy, where } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
 
+// Konfiguracja Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAVcX9Kn-YxFUEij_DqPoJoitfSAdVqPBY",
   authDomain: "wayfly-opinie.firebaseapp.com",
@@ -105,62 +94,48 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// 🔹 Wysyłanie opinii
-document.getElementById("reviewForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const email = document.getElementById("email").value;
-  const rating = document.getElementById("rating").value;
-  const tripTo = document.getElementById("tripTo").value;
-  const comment = document.getElementById("comment").value;
+// Funkcja do renderowania opinii
+function displayReview(review) {
+  const container = document.getElementById("reviewsList");
 
-  try {
-    await addDoc(collection(db, "reviews"), {
-      email,
-      rating,
-      tripTo,
-      comment,
-      createdAt: new Date(),
-      approved: false // 🔒 wymaga zatwierdzenia przez Ciebie
-    });
-    document.getElementById("thankYouMessage").textContent =
-      "Dziękujemy za opinię! Zostanie opublikowana po zatwierdzeniu.";
-    document.getElementById("reviewForm").reset();
-  } catch (error) {
-    console.error("Błąd przy wysyłaniu opinii:", error);
-    document.getElementById("thankYouMessage").textContent =
-      "Problem z wysłaniem opinii. Spróbuj ponownie.";
-  }
-});
+  const div = document.createElement("div");
+  div.classList.add("single-review");
 
-// 🔹 Pobieranie zatwierdzonych opinii
-async function loadApprovedReviews() {
-  const q = query(collection(db, "reviews"), where("approved", "==", true));
+  // Generowanie gwiazdek na podstawie ratingu
+  let stars = "★".repeat(review.rating) + "☆".repeat(5 - review.rating);
+
+  div.innerHTML = `
+    <h3>${review.tripTo}</h3>
+    <p class="review-stars">${stars}</p>
+    <p>${review.comment}</p>
+    <p class="review-email">${review.userEmail}</p>
+  `;
+
+  container.appendChild(div);
+}
+
+// Pobieranie opinii z Firestore
+async function loadReviews() {
+  const reviewsCol = collection(db, "reviews");
+
+  // Pobieramy tylko opinie zatwierdzone — jeśli dodasz pole `approved: true`
+  const q = query(reviewsCol, where("approved", "==", true), orderBy("createdAt", "desc"));
+
   const snapshot = await getDocs(q);
-
-  const reviewsList = document.getElementById("reviewsList");
-  reviewsList.innerHTML = ""; // wyczyść listę
-
-  snapshot.forEach((doc) => {
-    const r = doc.data();
-    const reviewDiv = document.createElement("div");
-    reviewDiv.classList.add("single-review");
-    reviewDiv.innerHTML = `
-      <h3>✈️ ${r.tripTo}</h3>
-      <p><strong>Ocena:</strong> ${r.rating}/5</p>
-      <p>${r.comment}</p>
-      <p class="review-email">🧭 ${r.email}</p>
-      <hr>
-    `;
-    reviewsList.appendChild(reviewDiv);
+  snapshot.forEach(doc => {
+    displayReview(doc.data());
   });
 }
 
-loadApprovedReviews();
+// Wywołanie przy starcie strony
+loadReviews();
+
 </script>
 
 
 </body>
 </html>
+
 
 
 
