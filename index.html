@@ -18,7 +18,7 @@
   <a href="#opinie">Opinie</a>
 </nav>
 
-<!-- Baner (bez napisu, dokładnie jak wcześniej) -->
+<!-- Baner -->
 <header></header>
 
 <!-- Sekcja ofert -->
@@ -45,12 +45,11 @@
   </a>
 </section>
 
-  
-<div class="reviews-list" id="reviewsList">
-</div>
+<!-- Wyświetlanie opinii zatwierdzonych -->
+<section class="reviews-list" id="reviewsList">
+</section>
 
-  
-<!-- Sekcja opinii -->
+<!-- Sekcja opinii do dodawania -->
 <section class="review-section" id="opinie">
   <h2>Dodaj swoją opinię</h2>
   <form id="reviewForm" class="review-form">
@@ -77,9 +76,9 @@
 </footer>
 
 <script type="module">
-// Import Firebase SDK w swoim HTML (jeżeli jeszcze nie masz)
+// Firebase SDK
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
-import { getFirestore, collection, getDocs, query, orderBy, where } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
+import { getFirestore, collection, getDocs, query, orderBy, where, addDoc, Timestamp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
 
 // Konfiguracja Firebase
 const firebaseConfig = {
@@ -94,14 +93,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Funkcja do renderowania opinii
+// Funkcja do wyświetlania opinii w stylu kafelkowym
 function displayReview(review) {
   const container = document.getElementById("reviewsList");
 
   const div = document.createElement("div");
   div.classList.add("single-review");
 
-  // Generowanie gwiazdek na podstawie ratingu
   let stars = "★".repeat(review.rating) + "☆".repeat(5 - review.rating);
 
   div.innerHTML = `
@@ -114,27 +112,44 @@ function displayReview(review) {
   container.appendChild(div);
 }
 
-// Pobieranie opinii z Firestore
+// Pobieranie tylko zatwierdzonych opinii z Firestore
 async function loadReviews() {
   const reviewsCol = collection(db, "reviews");
-
-  // Pobieramy tylko opinie zatwierdzone — jeśli dodasz pole `approved: true`
   const q = query(reviewsCol, where("approved", "==", true), orderBy("createdAt", "desc"));
-
   const snapshot = await getDocs(q);
-  snapshot.forEach(doc => {
-    displayReview(doc.data());
-  });
+  snapshot.forEach(doc => displayReview(doc.data()));
 }
 
-// Wywołanie przy starcie strony
+// Wywołanie przy starcie
 loadReviews();
 
+// Wysyłanie opinii do Firestore (z domyślnym approved: false)
+document.getElementById("reviewForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  try {
+    await addDoc(collection(db, "reviews"), {
+      userEmail: document.getElementById("email").value,
+      rating: parseInt(document.getElementById("rating").value),
+      comment: document.getElementById("comment").value,
+      tripTo: document.getElementById("tripTo").value,
+      tripStart: document.getElementById("tripStart").value,
+      tripEnd: document.getElementById("tripEnd").value,
+      approved: false, // początkowo false, zatwierdzasz ręcznie
+      createdAt: Timestamp.fromDate(new Date())
+    });
+    document.getElementById("thankYouMessage").textContent = "Dziękujemy za opinię! Zostanie wyświetlona po zatwierdzeniu.";
+    document.getElementById("reviewForm").reset();
+  } catch (error) {
+    console.error("Błąd przy wysyłaniu opinii:", error);
+    document.getElementById("thankYouMessage").textContent = "Wystąpił problem z wysłaniem opinii.";
+  }
+});
 </script>
-
 
 </body>
 </html>
+
+
 
 
 
