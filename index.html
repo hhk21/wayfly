@@ -209,15 +209,21 @@ function displayReview(review) {
   container.appendChild(div);
 }
 
-async function loadReviews() {
-  const reviewsCol = collection(db, "reviews");
-  const q = query(reviewsCol, where("approved", "==", true), orderBy("createdAt", "desc"));
-  const snapshot = await getDocs(q);
-  snapshot.forEach(doc => displayReview(doc.data()));
-}
-
 async function main() {
-  await initFirebase();
+  // Inicjalizacja Firebase
+  const res = await fetch('https://wayfly.onrender.com/api/firebase-config');
+  const firebaseConfig = await res.json();
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app); // db lokalnie w main
+
+  // Wyświetlanie opinii
+  async function loadReviews() {
+    const reviewsCol = collection(db, "reviews");
+    const q = query(reviewsCol, where("approved", "==", true), orderBy("createdAt", "desc"));
+    const snapshot = await getDocs(q);
+    snapshot.forEach(doc => displayReview(doc.data()));
+  }
+
   loadReviews();
 
   const form = document.getElementById("reviewForm");
@@ -253,8 +259,7 @@ async function main() {
 }
 
 main();
-</script>
-
+  </script>
 
 <script>
   // Pop-up kontaktu
@@ -326,6 +331,7 @@ window.addEventListener("keydown", (e) => {
   
 </body>
 </html>
+
 
 
 
