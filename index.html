@@ -290,45 +290,47 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  loadReviews();
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  document.getElementById('thankYouMessage').innerText = '';
 
-  const form = document.getElementById('reviewForm');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    document.getElementById('thankYouMessage').innerText = '';
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const rating = parseInt(document.getElementById('rating').value);
+  const tripTo = document.getElementById('tripTo').value.trim();
+  const tripStart = document.getElementById('tripStart').value;
+  const tripEnd = document.getElementById('tripEnd').value;
+  const comment = document.getElementById('comment').value.trim();
 
-   const name = document.getElementById('name').value.trim();
-const email = document.getElementById('email').value.trim();
-const rating = parseInt(document.getElementById('rating').value);
-const tripTo = document.getElementById('tripTo').value.trim();
-const tripStart = document.getElementById('tripStart').value;
-const tripEnd = document.getElementById('tripEnd').value;
-const comment = document.getElementById('comment').value.trim();
-
-if (!name || !email || !tripTo || !comment || !rating || rating < 1 || rating > 5) {
-    document.getElementById('thankYouMessage').innerText = 'Uzupełnij poprawnie pola formularza.';
+  // 🩵 Poprawiona walidacja – teraz sprawdza WSZYSTKO, co backend wymaga:
+  if (!name || !email || !tripTo || !tripStart || !tripEnd || !comment || !rating || rating < 1 || rating > 5) {
+    document.getElementById('thankYouMessage').innerText = 'Uzupełnij poprawnie wszystkie pola formularza.';
     return;
-}
+  }
 
-const res = await fetch(`${BACKEND_URL}/api/add-review`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, email, rating, tripTo, tripStart, tripEnd, comment })
-  });
-      const data = await res.json();
-      if (res.ok && data.success) {
-        document.getElementById('thankYouMessage').innerText = 'Dziękujemy za opinię! Po zatwierdzeniu pojawi się na stronie.';
-        form.reset();
-        loadReviews();
-      } else {
-        throw new Error(data.message || 'Błąd serwera');
-      }
-    } catch (err) {
-      console.error(err);
-      document.getElementById('thankYouMessage').innerText = 'Wystąpił błąd. Spróbuj ponownie później.';
+  try {
+    const res = await fetch(`${BACKEND_URL}/api/add-review`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, rating, tripTo, tripStart, tripEnd, comment })
+    });
+
+    const data = await res.json();
+
+    if (res.ok && data.success) {
+      document.getElementById('thankYouMessage').innerText =
+        '✅ Dziękujemy za opinię! Po zatwierdzeniu pojawi się na stronie.';
+      form.reset();
+      loadReviews();
+    } else {
+      throw new Error(data.message || 'Błąd serwera');
     }
-  });
+  } catch (err) {
+    console.error(err);
+    document.getElementById('thankYouMessage').innerText =
+      '❌ Wystąpił błąd. Spróbuj ponownie później.';
+  }
+});
 
   // --- Modale ---
   const contactBtn = document.getElementById('contactBtn');
@@ -375,6 +377,7 @@ const res = await fetch(`${BACKEND_URL}/api/add-review`, {
 </script>
 </body>
 </html>
+
 
 
 
