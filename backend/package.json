@@ -1,6 +1,3 @@
-npm install firebase-admin
-npm install express cors dotenv
-node server.js
 
 {
   "name": "my-backend",
@@ -19,3 +16,6 @@ node server.js
     "node-fetch": "^3.3.2"
   }
 }
+npm install firebase-admin
+npm install express cors dotenv
+node server.js
