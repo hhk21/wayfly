@@ -185,7 +185,7 @@ import { getFirestore, collection, getDocs, addDoc, serverTimestamp, query, orde
 let db;
 
 async function initFirebase() {
-  const res = await fetch('https://twoj-backend.onrender.com/api/firebase-config');
+  const res = await fetch('https://wayfly.onrender.com/api/firebase-config');
   const firebaseConfig = await res.json();
 
   const app = initializeApp(firebaseConfig);
@@ -331,6 +331,7 @@ window.addEventListener("keydown", (e) => {
   
 </body>
 </html>
+
 
 
 
