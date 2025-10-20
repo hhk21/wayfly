@@ -21,7 +21,7 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.4;
-  padding-top: 130px; /* wysokość menu */
+  padding-top: 70px; /* wysokość menu */
 }
 
 /* --- Header / baner --- */
@@ -270,6 +270,7 @@ footer {
   color: var(--muted);
   text-align: right;
 }
+
 
 
 
