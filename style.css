@@ -48,7 +48,7 @@ nav {
   background-color: #4da6ff;
   display: flex;
   justify-content: center;
-  padding: 15px 0;
+  padding: 20px 0; /* grubsze menu na komputerze */
   z-index: 1000;
   font-size: 0.9em;
   font-weight: 300;
@@ -56,6 +56,7 @@ nav {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
+/* --- Linki w menu --- */
 nav a {
   color: white;
   text-decoration: none;
@@ -64,39 +65,25 @@ nav a {
   font-size: 0.9em;
 }
 
-nav a:hover {
-  text-decoration: underline;
-}
-
-/* --- Menu na telefony --- */
+/* --- Menu na telefony / tablety --- */
 @media (max-width: 768px) {
   nav {
-    flex-direction: row; /* kolumnę możesz zmienić jeśli chcesz hamburger */
+    flex-direction: row;
     justify-content: space-around;
-    padding: 10px 0;
+    padding: 15px 0; /* mniejsze na telefon */
     font-size: 0.85em;
   }
 
-  nav a {
-    margin: 0 10px;
-  }
-
   body {
-    padding-top: 50px; /* zmniejszony padding-top na telefon */
+    padding-top: 55px; /* dopasowanie do grubszego menu na telefon */
   }
 }
 
-/* --- Bardzo małe ekrany --- */
+/* Bardzo małe ekrany */
 @media (max-width: 480px) {
-  header {
-    height: 200px;
-    font-size: 1.2em;
-  }
-
   nav {
-    padding: 8px 0;
+    padding: 12px 0; /* minimalne, żeby nie zajmowało połowy ekranu */
   }
-
   body {
     padding-top: 50px;
   }
@@ -300,6 +287,7 @@ section h2 {
   font-size: 2em;
   margin: 40px 0 20px;
 }
+
 
 
 
