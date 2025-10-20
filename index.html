@@ -268,10 +268,10 @@ async function loadReviews() {
       const ratingNumber = Number(review.rating) || 0;
       const stars = '★'.repeat(ratingNumber) + '☆'.repeat(5 - ratingNumber);
       div.innerHTML = `
-    <h3>${escapeHtml(review.tripTo)}</h3>
-    <p><strong>${escapeHtml(review.name)}</strong></p>
-    <p class="review-stars">${stars}</p>
-    <p>${escapeHtml(review.comment)}</p>
+  <h3>${escapeHtml(review.tripTo)}</h3>
+  <p><strong>${escapeHtml(review.name || review.userEmail)}</strong></p>
+  <p class="review-stars">${stars}</p>
+  <p>${escapeHtml(review.comment)}</p>
 `;
       container.appendChild(div);
     });
@@ -375,6 +375,7 @@ const res = await fetch(`${BACKEND_URL}/api/add-review`, {
 </script>
 </body>
 </html>
+
 
 
 
