@@ -44,7 +44,7 @@ nav {
   background-color: #4da6ff;
   display: flex;
   justify-content: center;
-  padding: 30px 0;
+  padding: 15px 0; /* zmniejszone */
   z-index: 1000;
   font-size: 0.9em;
   font-weight: 300;
@@ -52,10 +52,11 @@ nav {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
+/* --- Linki w menu --- */
 nav a {
   color: white;
   text-decoration: none;
-  margin: 0 20px;
+  margin: 0 15px; /* mniejsze marginesy */
   font-weight: 300;
   font-size: 0.9em;
 }
@@ -67,20 +68,45 @@ nav a:hover {
 /* --- Menu na telefony --- */
 @media (max-width: 768px) {
   nav {
-    flex-direction: column;
-    padding: 20px 0;
+    flex-direction: row; /* możesz też zostawić kolumnę, jeśli chcesz hamburger */
+    justify-content: space-around;
+    padding: 10px 0;
+    font-size: 0.85em;
   }
 
   nav a {
-    margin: 10px 0;
-    font-size: 0.85em;
+    margin: 0 10px;
   }
+}
 
   body {
     padding-top: 160px;
   }
 }
+/* --- Baner --- */
+header {
+  background-image: url('https://i.imgur.com/3a2VV2A.jpeg');
+  background-size: cover;
+  background-position: center;
+  height: 250px; /* niższy na telefonach */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  font-size: 1.5em;
+}
 
+/* Dodatkowe media query dla bardzo małych ekranów */
+@media (max-width: 480px) {
+  header {
+    height: 200px;
+    font-size: 1.2em;
+  }
+  nav {
+    padding: 8px 0;
+  }
+}
 /* --- Sekcje pod nav --- */
 section {
   padding: 80px 20px 20px;
@@ -271,6 +297,7 @@ footer {
   font-size: 1em;
   margin: 4px 0;
 }
+
 
 
 
