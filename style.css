@@ -298,6 +298,13 @@ footer {
   margin: 4px 0;
 }
 
+/* Nagłówki sekcji */
+section h2 {
+  text-align: center;
+  color: var(--accent);
+  font-size: 2em;
+  margin: 40px 0 20px;
+}
 
 
 
