@@ -1,0 +1,8 @@
+/* --- Menu na telefony --- */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: row; /* możesz też zostawić kolumnę, jeśli chcesz hamburger */
+    justify-content: space-around;
+    padding: 10px 0;
+    font-size: 0.85em;
+  }
