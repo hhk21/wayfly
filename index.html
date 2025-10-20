@@ -207,6 +207,7 @@
   <h2>Dodaj swoją opinię</h2>
   <form id="reviewForm" class="review-form">
     <input type="text" id="name" placeholder="Twoje imię" required>
+    <input type="email" id="email" placeholder="Twój email" required>
     <input type="text" id="tripTo" placeholder="Dokąd leciałeś?" required>
     <input type="date" id="tripStart" required>
     <input type="date" id="tripEnd" required>
@@ -267,11 +268,11 @@ async function loadReviews() {
       const ratingNumber = Number(review.rating) || 0;
       const stars = '★'.repeat(ratingNumber) + '☆'.repeat(5 - ratingNumber);
       div.innerHTML = `
-        <h3>${escapeHtml(review.tripTo)}</h3>
-        <p class="review-stars">${stars}</p>
-        <p>${escapeHtml(review.comment)}</p>
-        <p class="review-email">${escapeHtml(review.userEmail)}</p>
-      `;
+    <h3>${escapeHtml(review.tripTo)}</h3>
+    <p><strong>${escapeHtml(review.name)}</strong></p>
+    <p class="review-stars">${stars}</p>
+    <p>${escapeHtml(review.comment)}</p>
+`;
       container.appendChild(div);
     });
   } catch (err) {
@@ -374,6 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
 
 
