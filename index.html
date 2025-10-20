@@ -179,25 +179,19 @@
 
 
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
-  import { getFirestore, collection, getDocs, addDoc, serverTimestamp, query, orderBy, where } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+import { getFirestore, collection, getDocs, addDoc, serverTimestamp, query, orderBy, where } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
 
-  async function initFirebase() {
-    // Pobranie konfiguracji z backendu
-    const res = await fetch('https://twoj-backend.onrender.com/api/firebase-config');
-    const firebaseConfig = await res.json();
+let db;
 
-    const app = initializeApp(firebaseConfig);
-    return getFirestore(app);
-  }
+async function initFirebase() {
+  const res = await fetch('https://twoj-backend.onrender.com/api/firebase-config');
+  const firebaseConfig = await res.json();
 
-  const db = await initFirebase();
+  const app = initializeApp(firebaseConfig);
+  db = getFirestore(app);
+}
 
-  // reszta Twojego kodu opinii działa normalnie
-</script>
-
-
-// Wyświetlanie opinii
 function displayReview(review) {
   const container = document.getElementById("reviewsList");
   const div = document.createElement("div");
@@ -212,56 +206,55 @@ function displayReview(review) {
     <p>${review.comment}</p>
     <p class="review-email">${review.userEmail}</p>
   `;
-
   container.appendChild(div);
 }
 
-// Ładowanie zatwierdzonych opinii
 async function loadReviews() {
   const reviewsCol = collection(db, "reviews");
   const q = query(reviewsCol, where("approved", "==", true), orderBy("createdAt", "desc"));
   const snapshot = await getDocs(q);
+  snapshot.forEach(doc => displayReview(doc.data()));
+}
 
-  snapshot.forEach(doc => {
-    displayReview(doc.data());
+async function main() {
+  await initFirebase();
+  loadReviews();
+
+  const form = document.getElementById("reviewForm");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const rating = parseInt(document.getElementById("rating").value);
+    const tripTo = document.getElementById("tripTo").value;
+    const tripStart = document.getElementById("tripStart").value;
+    const tripEnd = document.getElementById("tripEnd").value;
+    const comment = document.getElementById("comment").value;
+
+    try {
+      await addDoc(collection(db, "reviews"), {
+        userEmail: email,
+        rating,
+        tripTo,
+        tripStart,
+        tripEnd,
+        comment,
+        approved: false,
+        createdAt: serverTimestamp()
+      });
+
+      document.getElementById("thankYouMessage").innerText = "Dziękujemy za opinię! Po zatwierdzeniu pojawi się na stronie.";
+      form.reset();
+    } catch (err) {
+      console.error("Błąd przy dodawaniu opinii:", err);
+      document.getElementById("thankYouMessage").innerText = "Wystąpił błąd. Spróbuj ponownie później.";
+    }
   });
 }
 
-// Wywołanie przy starcie
-loadReviews();
-
-// Obsługa formularza
-const form = document.getElementById("reviewForm");
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const email = document.getElementById("email").value;
-  const rating = parseInt(document.getElementById("rating").value);
-  const tripTo = document.getElementById("tripTo").value;
-  const tripStart = document.getElementById("tripStart").value;
-  const tripEnd = document.getElementById("tripEnd").value;
-  const comment = document.getElementById("comment").value;
-
-  try {
-    await addDoc(collection(db, "reviews"), {
-      userEmail: email,
-      rating: rating,
-      tripTo: tripTo,
-      tripStart: tripStart,
-      tripEnd: tripEnd,
-      comment: comment,
-      approved: false,
-      createdAt: serverTimestamp()
-    });
-
-    document.getElementById("thankYouMessage").innerText = "Dziękujemy za opinię! Po zatwierdzeniu pojawi się na stronie.";
-    form.reset();
-  } catch (err) {
-    console.error("Błąd przy dodawaniu opinii:", err);
-    document.getElementById("thankYouMessage").innerText = "Wystąpił błąd. Spróbuj ponownie później.";
-  }
-});
+main();
 </script>
+
 
 <script>
   // Pop-up kontaktu
@@ -333,6 +326,7 @@ window.addEventListener("keydown", (e) => {
   
 </body>
 </html>
+
 
 
 
