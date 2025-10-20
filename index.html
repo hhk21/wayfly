@@ -284,17 +284,19 @@ form.addEventListener("submit", async (e) => {
   });
 </script>
 <!-- Modal newsletter -->
-<div id="newsletterModal" class="modal">
+<div id="contactModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
-    <h2>Zapisz się do newslettera</h2>
-    <form id="newsletterForm">
-      <input type="email" id="newsletterEmail" placeholder="Twój email" required>
-      <button type="submit">Zapisz się</button>
-    </form>
-    <div id="newsletterMessage"></div>
+    <h2>Kontakt z nami</h2>
+    <p>Email: <a href="mailto:wayfly2025@gmail.com">wayfly2025@gmail.com</a></p>
+    <p>Social Media:</p>
+    <ul>
+      <li><a href="https://www.tiktok.com/@wayfly_" target="_blank">TikTok</a></li>
+      <li><a href="https://www.instagram.com/wayfly__/" target="_blank">Instagram</a></li>
+    </ul>
   </div>
 </div>
+
   <script>
   const newsletterModal = document.getElementById("newsletterModal");
 const closeNewsletter = newsletterModal.querySelector(".close");
@@ -325,87 +327,10 @@ window.addEventListener("keydown", (e) => {
   }
 });
 </script>
-    /* --- Modal Kontakt --- */
-.modal {
-  display: none; /* domyślnie ukryty */
-  position: fixed;
-  z-index: 2000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.5); /* półprzezroczyste tło */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-.modal-content {
-  background-color: var(--card);
-  padding: 30px;
-  border-radius: 15px;
-  width: 90%;
-  max-width: 400px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  text-align: center;
-  position: relative;
-  animation: scaleIn 0.3s ease-in-out;
-}
-
-.modal-content h2 {
-  margin-top: 0;
-  color: var(--accent);
-}
-
-.modal-content p, .modal-content a {
-  color: #333;
-  font-size: 1em;
-  margin: 10px 0;
-  text-decoration: none;
-}
-
-.modal-content a:hover {
-  color: var(--accent);
-}
-
-.modal-content ul {
-  list-style: none;
-  padding: 0;
-}
-
-.modal-content li {
-  margin: 8px 0;
-}
-
-.close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #333;
-  cursor: pointer;
-}
-
-.close:hover {
-  color: var(--accent);
-}
-
-/* Animacje */
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-
-@keyframes scaleIn {
-  from {transform: scale(0.8);}
-  to {transform: scale(1);}
-}
-
+  
 </body>
 </html>
+
 
 
 
