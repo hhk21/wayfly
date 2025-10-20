@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <base href="/"/>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Rzym – Szczegóły oferty | Wayfly</title>
+    <link rel="stylesheet" href="/style.css"/> <!-- Twój główny CSS -->
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fb;
+            padding-top: 70px; /* wysokość menu */
+        }
+
+        nav a {
+            text-decoration: none;
+            margin: 0 10px;
+            color: white;
+            font-weight: 500;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #4da6ff;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            z-index: 1000;
+        }
+
+        /* Baner */
+        .banner {
+            width: 100%;
+            height: 400px;
+            background-image: url('https://i.imgur.com/jkGLiLu.jpeg');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 5px solid #0078d7;
+        }
+
+        /* Sekcja opisu */
+        .description {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        .description p {
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        /* Kafelki info */
+        .info-cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .card {
+            flex: 1 1 200px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #0078d7;
+        }
+        .card span {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        /* Powrót do ofert */
+        .back-link {
+            display: block;
+            margin: 30px auto 50px;
+            text-align: center;
+        }
+        .back-link a {
+            text-decoration: none;
+            color: white;
+            background-color: #0078d7;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+        .back-link a:hover {
+            background-color: #005fa3;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Menu -->
+<nav>
+  <a href="index.html">Oferty</a>
+  <a href="faq/faq.html">FAQ</a>
+  <a href="regulamin/regulamin.html">Regulamin</a>
+  <a href="#opinie">Opinie</a>
+  <a href="#" id="contactBtn">Kontakt</a>
+</nav>
+
+<!-- Baner -->
+<div class="banner"></div>
+
+<!-- Krótki opis -->
+<section class="description">
+    <h2>Kulturowa wyprawa do Rzymu</h2>
+    <p>Zwiedzaj stolicę Włoch z przygotowanym przewodnikiem Wayfly. Plan obejmuje najważniejsze atrakcje, trasy spacerowe, rekomendacje restauracji i kawiarni oraz informacje praktyczne.</p>
+</section>
+
+<!-- Kafelki info -->
+<section class="info-cards">
+    <div class="card">
+        Data wyjazdu
+        <span>12.06.2025</span>
+    </div>
+    <div class="card">
+        Trasa
+        <span>KRK → OSL → KRK</span>
+    </div>
+    <div class="card">
+        Cena wyjazdu
+        <span>600 zł/os.</span>
+    </div>
+</section>
+
+<!-- Powrót do ofert -->
+<div class="back-link">
+    <a href="/index.html">← Wróć do ofert</a>
+</div>
+
+</body>
+</html>
