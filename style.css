@@ -21,7 +21,7 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.4;
-  padding-top: 90px; /* wysokość menu na komputerze */
+  padding-top: 90px;
 }
 
 /* --- Menu główne --- */
@@ -33,7 +33,7 @@ nav {
   background-color: #4da6ff;
   display: flex;
   justify-content: center;
-  padding: 30px 0; /* komputer */
+  padding: 30px 0;
   z-index: 1000;
   font-size: 0.9em;
   font-weight: 300;
@@ -58,11 +58,11 @@ nav a:hover {
   nav {
     flex-direction: row;
     justify-content: space-around;
-    padding: 15px 0; /* mniejsze menu */
+    padding: 15px 0;
     font-size: 0.85em;
   }
   body {
-    padding-top: 55px; /* dopasowanie do mniejszego menu */
+    padding-top: 55px;
   }
 }
 
@@ -81,7 +81,7 @@ header {
   background-image: url('https://i.imgur.com/9HUEj4b.jpeg');
   background-size: cover;
   background-position: center;
-  height: 400px; /* komputer */
+  height: 400px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,6 +107,16 @@ header {
 /* --- Sekcje pod nav --- */
 section, main {
   padding: 80px 20px 20px;
+}
+
+/* --- Poprawione nagłówki h2 --- */
+h2 {
+  color: var(--accent);
+  font-size: 1.8em;
+  text-align: center;
+  margin: 40px 0 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 /* --- Tekst regulaminu / treści --- */
@@ -322,43 +332,28 @@ footer {
   margin: 4px 0;
 }
 
-/* --- Baner na telefonach dla spójności --- */
-@media (max-width: 768px) {
-  header {
-    height: 250px;
-    font-size: 1.5em;
-  }
-}
-
-@media (max-width: 480px) {
-  header {
-    height: 200px;
-    font-size: 1.2em;
-}
-/* Podstawowy wygląd modala */
+/* --- Poprawione pop-upy modalne --- */
 .modal {
   display: none;
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.6);
   justify-content: center;
   align-items: center;
-  z-index: 1000;
-  animation: fadeIn 0.3s ease;
+  z-index: 2000;
 }
 
 .modal-content {
   background: linear-gradient(145deg, var(--card), var(--accent-light));
   padding: 30px 25px;
   border-radius: 20px;
-  max-width: 400px;
+  max-width: 450px;
   width: 90%;
   text-align: center;
   position: relative;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  transform: translateY(-20px);
-  animation: slideIn 0.3s forwards;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  transform: translateY(-10px);
 }
 
 .modal .close {
@@ -376,7 +371,6 @@ footer {
   color: var(--accent-light);
 }
 
-/* Formularze w modalach */
 .modal form {
   display: flex;
   flex-direction: column;
@@ -384,7 +378,8 @@ footer {
   margin-top: 15px;
 }
 
-.modal input {
+.modal input,
+.modal textarea {
   padding: 12px;
   border-radius: 10px;
   border: 1px solid #ddd;
@@ -393,7 +388,8 @@ footer {
   transition: border 0.2s, box-shadow 0.2s;
 }
 
-.modal input:focus {
+.modal input:focus,
+.modal textarea:focus {
   border-color: var(--accent);
   box-shadow: 0 0 8px rgba(30,144,255,0.3);
 }
@@ -413,13 +409,3 @@ footer {
   background: var(--accent-light);
 }
 
-/* Animacje pojawiania się */
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-
-@keyframes slideIn {
-  from {transform: translateY(-20px); opacity: 0;}
-  to {transform: translateY(0); opacity: 1;}
-}
