@@ -80,9 +80,6 @@ nav a:hover {
   }
 }
 
-  body {
-    padding-top: 160px;
-  }
 }
 /* --- Baner --- */
 header {
@@ -306,6 +303,7 @@ section h2 {
   font-size: 2em;
   margin: 40px 0 20px;
 }
+
 
 
 
