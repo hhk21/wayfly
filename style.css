@@ -17,7 +17,7 @@ body {
   background: var(--bg);
   color: #111;
   line-height: 1.4;
-  padding-top: 120px; /* wysokość menu */
+  padding-top: 130px; /* dostosowane do nowej wysokości menu */
 }
 
 /* --- Header / baner --- */
@@ -40,20 +40,20 @@ nav {
   background-color: #4da6ff; /* delikatny błękit */
   display: flex;
   justify-content: center;
-  padding: 20px 0;
+  padding: 30px 0; /* SZERSZE menu (było 20px) */
   z-index: 1000;
-  font-size: 0.85em; /* mniejsza czcionka */
-  font-weight: 300; /* delikatna czcionka */
-  letter-spacing: 0.5px; /* lekko przestrzenna */
+  font-size: 0.9em; /* ta sama czcionka co wcześniej */
+  font-weight: 300;
+  letter-spacing: 0.5px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 nav a {
   color: white;
   text-decoration: none;
-  margin: 0 15px;
-  font-weight: 300; /* delikatna czcionka */
-  font-size: 0.85em; /* mniejsza czcionka */
+  margin: 0 20px;
+  font-weight: 300;
+  font-size: 0.9em;
 }
 
 nav a:hover {
@@ -64,16 +64,22 @@ nav a:hover {
 @media (max-width: 768px) {
   nav {
     flex-direction: column;
-    padding: 15px 0;
+    padding: 20px 0;
   }
 
   nav a {
-    margin: 8px 0;
-    font-size: 0.8em; /* jeszcze mniejsza na telefon */
+    margin: 10px 0;
+    font-size: 0.85em;
   }
+
+  body {
+    padding-top: 160px;
+  }
+}
+
 /* --- Sekcje pod nav --- */
 section {
-  padding: 80px 20px 20px; /* odpowiedni padding pod menu */
+  padding: 80px 20px 20px;
 }
 
 /* --- Siatka ofert --- */
@@ -88,13 +94,14 @@ section {
 .oferta {
   position: relative;
   width: 100%;
-  max-width: 300px;
+  max-width: 260px; /* MNIEJSZE kafelki jak wcześniej */
   aspect-ratio: 1/1;
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 0 3px 8px rgba(0,0,0,0.2);
   cursor: pointer;
   background-color: var(--card);
+  transition: transform 0.3s;
 }
 
 .oferta img {
@@ -102,7 +109,6 @@ section {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.3s;
   z-index: 1;
 }
 
@@ -130,33 +136,20 @@ section {
   transform: translate(-50%, -50%);
   color: white;
   text-align: center;
-  z-index: 3; 
+  z-index: 3;
 }
 
 .text-overlay h3 {
   margin: 0 0 8px 0;
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
 .text-overlay p {
   margin: 0 0 8px 0;
-  font-size: 0.9em;
+  font-size: 0.85em;
 }
 
-.text-overlay button {
-  background: var(--accent);
-  border: none;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.text-overlay button:hover {
-  background: #005fa3;
-}
-
-/* --- Formularz opinii --- */
+/* --- Formularz opinii (wygląd jak poprzednio) --- */
 .review-section {
   max-width: 600px;
   margin: 40px auto;
@@ -217,10 +210,6 @@ footer {
   padding: 15px;
   font-size: 0.9em;
 }
-
-
-
-
 
 
 
