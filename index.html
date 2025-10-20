@@ -158,11 +158,27 @@ form.addEventListener("submit", async (e) => {
     console.error("Błąd przy dodawaniu opinii:", err);
     document.getElementById("thankYouMessage").innerText = "Wystąpił błąd. Spróbuj ponownie później.";
   }
+  async function loadReviews() {
+  const reviewsCol = collection(db, "reviews");
+  const q = query(reviewsCol, where("approved", "==", true), orderBy("createdAt", "desc"));
+  const snapshot = await getDocs(q);
+
+  if (snapshot.empty) {
+    console.log("Brak opinii do wyświetlenia");
+  } else {
+    snapshot.forEach(doc => {
+      console.log("Opinie z Firestore:", doc.data());
+      displayReview(doc.data());
+    });
+  }
+}
 });
 </script>
+  
 
 </body>
 </html>
+
 
 
 
