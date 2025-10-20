@@ -268,11 +268,11 @@ async function loadReviews() {
       const ratingNumber = Number(review.rating) || 0;
       const stars = '★'.repeat(ratingNumber) + '☆'.repeat(5 - ratingNumber);
       div.innerHTML = `
-  <h3>${escapeHtml(review.tripTo)}</h3>
-  <p><strong>${escapeHtml(review.name || review.userEmail)}</strong></p>
-  <p class="review-stars">${stars}</p>
-  <p>${escapeHtml(review.comment)}</p>
-`;
+        <h3>${escapeHtml(review.tripTo)}</h3>
+        <p><strong>${escapeHtml(review.name || review.userEmail)}</strong></p>
+        <p class="review-stars">${stars}</p>
+        <p>${escapeHtml(review.comment)}</p>
+      `;
       container.appendChild(div);
     });
   } catch (err) {
@@ -290,47 +290,56 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;');
 }
 
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  document.getElementById('thankYouMessage').innerText = '';
+document.addEventListener('DOMContentLoaded', () => {
+  loadReviews();
 
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const rating = parseInt(document.getElementById('rating').value);
-  const tripTo = document.getElementById('tripTo').value.trim();
-  const tripStart = document.getElementById('tripStart').value;
-  const tripEnd = document.getElementById('tripEnd').value;
-  const comment = document.getElementById('comment').value.trim();
+  const form = document.getElementById('reviewForm');
 
-  // 🩵 Poprawiona walidacja – teraz sprawdza WSZYSTKO, co backend wymaga:
-  if (!name || !email || !tripTo || !tripStart || !tripEnd || !comment || !rating || rating < 1 || rating > 5) {
-    document.getElementById('thankYouMessage').innerText = 'Uzupełnij poprawnie wszystkie pola formularza.';
-    return;
-  }
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      document.getElementById('thankYouMessage').innerText = '';
 
-  try {
-    const res = await fetch(`${BACKEND_URL}/api/add-review`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, rating, tripTo, tripStart, tripEnd, comment })
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const rating = parseInt(document.getElementById('rating').value);
+      const tripTo = document.getElementById('tripTo').value.trim();
+      const tripStart = document.getElementById('tripStart').value;
+      const tripEnd = document.getElementById('tripEnd').value;
+      const comment = document.getElementById('comment').value.trim();
+
+      // Zgodna walidacja z backendem:
+      if (!name || !email || !tripTo || !tripStart || !tripEnd || !comment || !rating || rating < 1 || rating > 5) {
+        document.getElementById('thankYouMessage').innerText = 'Uzupełnij poprawnie wszystkie pola formularza.';
+        return;
+      }
+
+      try {
+        const res = await fetch(`${BACKEND_URL}/api/add-review`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, rating, tripTo, tripStart, tripEnd, comment })
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          document.getElementById('thankYouMessage').innerText =
+            '✅ Dziękujemy za opinię! Po zatwierdzeniu pojawi się na stronie.';
+          form.reset();
+          loadReviews();
+        } else {
+          console.error('Server response error:', data);
+          document.getElementById('thankYouMessage').innerText =
+            '❌ Wystąpił błąd. Spróbuj ponownie później.';
+        }
+      } catch (err) {
+        console.error('Fetch error:', err);
+        document.getElementById('thankYouMessage').innerText =
+          '❌ Wystąpił błąd. Spróbuj ponownie później.';
+      }
     });
-
-    const data = await res.json();
-
-    if (res.ok && data.success) {
-      document.getElementById('thankYouMessage').innerText =
-        '✅ Dziękujemy za opinię! Po zatwierdzeniu pojawi się na stronie.';
-      form.reset();
-      loadReviews();
-    } else {
-      throw new Error(data.message || 'Błąd serwera');
-    }
-  } catch (err) {
-    console.error(err);
-    document.getElementById('thankYouMessage').innerText =
-      '❌ Wystąpił błąd. Spróbuj ponownie później.';
   }
-});
 
   // --- Modale ---
   const contactBtn = document.getElementById('contactBtn');
@@ -340,7 +349,7 @@ form.addEventListener('submit', async (e) => {
   const newsletterModal = document.getElementById('newsletterModal');
   const newsletterClose = document.getElementById('newsletterClose');
 
-  if(contactBtn && contactModal && contactClose){
+  if (contactBtn && contactModal && contactClose) {
     contactBtn.addEventListener('click', (ev) => {
       ev.preventDefault();
       contactModal.style.display = 'flex';
@@ -350,7 +359,7 @@ form.addEventListener('submit', async (e) => {
     });
   }
 
-  if(newsletterModal && newsletterClose){
+  if (newsletterModal && newsletterClose) {
     setTimeout(() => {
       newsletterModal.style.display = 'flex';
       newsletterModal.setAttribute('aria-hidden', 'false');
@@ -363,20 +372,23 @@ form.addEventListener('submit', async (e) => {
 
   // Zamknięcie klikając poza modal lub ESC
   window.addEventListener('click', (e) => {
-    if(e.target === contactModal) contactModal.style.display = 'none';
-    if(e.target === newsletterModal) newsletterModal.style.display = 'none';
+    if (e.target === contactModal) contactModal.style.display = 'none';
+    if (e.target === newsletterModal) newsletterModal.style.display = 'none';
   });
 
   window.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape'){
-      if(contactModal) contactModal.style.display = 'none';
-      if(newsletterModal) newsletterModal.style.display = 'none';
+    if (e.key === 'Escape') {
+      if (contactModal) contactModal.style.display = 'none';
+      if (newsletterModal) newsletterModal.style.display = 'none';
     }
   });
+
 });
 </script>
+
 </body>
 </html>
+
 
 
 
