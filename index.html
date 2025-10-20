@@ -79,8 +79,9 @@
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
-import { getFirestore, collection, getDocs, query, orderBy, where } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
+import { getFirestore, collection, getDocs, addDoc, serverTimestamp, query, orderBy, where } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
 
+// Konfiguracja Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAVcX9Kn-YxFUEij_DqPoJoitfSAdVqPBY",
   authDomain: "wayfly-opinie.firebaseapp.com",
@@ -93,12 +94,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// Wyświetlanie opinii
 function displayReview(review) {
   const container = document.getElementById("reviewsList");
   const div = document.createElement("div");
   div.classList.add("single-review");
 
-  // Zamiana ratingu na gwiazdki
   const stars = "★".repeat(review.rating) + "☆".repeat(5 - review.rating);
 
   div.innerHTML = `
@@ -111,6 +112,7 @@ function displayReview(review) {
   container.appendChild(div);
 }
 
+// Ładowanie zatwierdzonych opinii
 async function loadReviews() {
   const reviewsCol = collection(db, "reviews");
   const q = query(reviewsCol, where("approved", "==", true), orderBy("createdAt", "desc"));
@@ -121,11 +123,45 @@ async function loadReviews() {
   });
 }
 
+// Wywołanie przy starcie
 loadReviews();
+
+// Obsługa formularza
+const form = document.getElementById("reviewForm");
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const email = document.getElementById("email").value;
+  const rating = parseInt(document.getElementById("rating").value);
+  const tripTo = document.getElementById("tripTo").value;
+  const tripStart = document.getElementById("tripStart").value;
+  const tripEnd = document.getElementById("tripEnd").value;
+  const comment = document.getElementById("comment").value;
+
+  try {
+    await addDoc(collection(db, "reviews"), {
+      userEmail: email,
+      rating: rating,
+      tripTo: tripTo,
+      tripStart: tripStart,
+      tripEnd: tripEnd,
+      comment: comment,
+      approved: false, // nowa opinia czeka na zatwierdzenie
+      createdAt: serverTimestamp()
+    });
+
+    document.getElementById("thankYouMessage").innerText = "Dziękujemy za opinię! Po zatwierdzeniu pojawi się na stronie.";
+    form.reset();
+  } catch (err) {
+    console.error("Błąd przy dodawaniu opinii:", err);
+    document.getElementById("thankYouMessage").innerText = "Wystąpił błąd. Spróbuj ponownie później.";
+  }
+});
 </script>
 
 </body>
 </html>
+
 
 
 
