@@ -48,7 +48,7 @@ nav {
   background-color: #4da6ff;
   display: flex;
   justify-content: center;
-  padding: 20px 0; /* grubsze menu na komputerze */
+  padding: 25px 0; /* grubsze menu na komputerze */
   z-index: 1000;
   font-size: 0.9em;
   font-weight: 300;
@@ -287,6 +287,7 @@ section h2 {
   font-size: 2em;
   margin: 40px 0 20px;
 }
+
 
 
 
