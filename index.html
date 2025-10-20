@@ -298,24 +298,24 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     document.getElementById('thankYouMessage').innerText = '';
 
-    const email = document.getElementById('email').value.trim();
-    const rating = parseInt(document.getElementById('rating').value);
-    const tripTo = document.getElementById('tripTo').value.trim();
-    const tripStart = document.getElementById('tripStart').value;
-    const tripEnd = document.getElementById('tripEnd').value;
-    const comment = document.getElementById('comment').value.trim();
+   const name = document.getElementById('name').value.trim();
+const email = document.getElementById('email').value.trim();
+const rating = parseInt(document.getElementById('rating').value);
+const tripTo = document.getElementById('tripTo').value.trim();
+const tripStart = document.getElementById('tripStart').value;
+const tripEnd = document.getElementById('tripEnd').value;
+const comment = document.getElementById('comment').value.trim();
 
-    if (!email || !tripTo || !comment || !rating || rating < 1 || rating > 5) {
-      document.getElementById('thankYouMessage').innerText = 'Uzupełnij poprawnie pola formularza.';
-      return;
-    }
+if (!name || !email || !tripTo || !comment || !rating || rating < 1 || rating > 5) {
+    document.getElementById('thankYouMessage').innerText = 'Uzupełnij poprawnie pola formularza.';
+    return;
+}
 
-    try {
-      const res = await fetch(`${BACKEND_URL}/api/add-review`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, rating, tripTo, tripStart, tripEnd, comment })
-      });
+const res = await fetch(`${BACKEND_URL}/api/add-review`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, email, rating, tripTo, tripStart, tripEnd, comment })
+  });
       const data = await res.json();
       if (res.ok && data.success) {
         document.getElementById('thankYouMessage').innerText = 'Dziękujemy za opinię! Po zatwierdzeniu pojawi się na stronie.';
@@ -375,6 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
 
 
