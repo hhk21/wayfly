@@ -166,7 +166,7 @@
 <!-- Modal Kontakt -->
 <div id="contactModal" class="modal">
   <div class="modal-content">
-    <span class="close">&times;</span>
+    <span id="contactClose" class="close">&times;</span>
     <h2>Kontakt z nami</h2>
     <p>Email: <a href="mailto:wayfly2025@gmail.com">wayfly2025@gmail.com</a></p>
     <p>Social Media:</p>
@@ -176,7 +176,6 @@
     </ul>
   </div>
 </div>
-
 
 <script>
 
@@ -268,19 +267,26 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // contact modal
-  const contactBtn = document.getElementById('contactBtn');
-  const contactModal = document.getElementById('contactModal');
-  const contactClose = document.getElementById('contactClose');
+const contactBtn = document.getElementById('contactBtn');
+const contactModal = document.getElementById('contactModal');
+const contactClose = document.getElementById('contactClose');
 
-  contactBtn.addEventListener('click', (ev) => {
-    ev.preventDefault();
-    contactModal.style.display = 'flex';
-    contactModal.setAttribute('aria-hidden', 'false');
-  });
-  contactClose.addEventListener('click', () => {
-    contactModal.style.display = 'none';
-    contactModal.setAttribute('aria-hidden', 'true');
-  });
+contactBtn.addEventListener('click', (ev) => {
+  ev.preventDefault();
+  contactModal.style.display = 'flex';
+});
+
+contactClose.addEventListener('click', () => {
+  contactModal.style.display = 'none';
+});
+
+// newsletter modal
+const newsletterModal = document.getElementById('newsletterModal');
+const newsletterClose = document.getElementById('newsletterClose');
+
+newsletterClose.addEventListener('click', () => {
+  newsletterModal.style.display = 'none';
+});
 
   // newsletter modal
   const newsletterModal = document.getElementById('newsletterModal');
@@ -294,6 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
   newsletterClose.addEventListener('click', () => {
     newsletterModal.style.display = 'none';
     newsletterModal.setAttribute('aria-hidden', 'true');
+    <span id="newsletterClose" class="close">&times; </span>
   });
 
   // close modals clicking outside / esc
@@ -317,6 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
 
 
 
