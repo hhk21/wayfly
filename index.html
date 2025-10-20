@@ -7,6 +7,90 @@
   <title>Wayfly – Strona główna</title>
   <link rel="icon" href="wayflyicon.png" type="image/png">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* --- Poprawka menu dla regulaminu / ogólnie --- */
+    body {
+      padding-top: 70px; /* wysokość menu na komputerze */
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #4da6ff;
+      display: flex;
+      justify-content: center;
+      padding: 30px 0; /* grube menu na komputerze */
+      z-index: 1000;
+      font-size: 0.9em;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 15px 0; /* dopasowane menu na telefon */
+        font-size: 0.85em;
+      }
+      body {
+        padding-top: 55px; /* dopasowanie do grubszego menu na telefon */
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        padding: 12px 0;
+      }
+      body {
+        padding-top: 50px;
+      }
+    }
+
+    /* --- Pop-up kontaktu --- */
+    .modal {
+      display: none; /* ukryty do czasu kliknięcia */
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5); /* półprzezroczyste tło */
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: auto;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .modal .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      color: #aaa;
+      font-size: 25px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .modal .close:hover {
+      color: #000;
+    }
+  </style>
 </head>
 <body>
 
@@ -23,7 +107,7 @@
 <header></header>
 
 <!-- Sekcja ofert -->
-   <h2>Nasze aktualne oferty</h2>
+<h2>Nasze aktualne oferty</h2>
 <section id="oferty" class="oferty">
   <a href="paryz.html" class="oferta">
     <img src="https://source.unsplash.com/featured/?paris,travel" alt="Paryż">
@@ -79,6 +163,20 @@
   2025 Wayfly – indywidualne plany podróży 
 </footer>
 
+<!-- Modal Kontakt -->
+<div id="contactModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Kontakt z nami</h2>
+    <p>Email: <a href="mailto:wayfly2025@gmail.com">wayfly2025@gmail.com</a></p>
+    <p>Social Media:</p>
+    <ul>
+      <li><a href="https://www.tiktok.com/@wayfly_" target="_blank">TikTok</a></li>
+      <li><a href="https://www.instagram.com/wayfly__/" target="_blank">Instagram</a></li>
+    </ul>
+  </div>
+</div>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
 import { getFirestore, collection, getDocs, addDoc, serverTimestamp, query, orderBy, where } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore.js";
@@ -103,7 +201,7 @@ function displayReview(review) {
   div.classList.add("single-review");
 
   const ratingNumber = Number(review.rating) || 0; 
-const stars = "★".repeat(ratingNumber) + "☆".repeat(5 - ratingNumber);
+  const stars = "★".repeat(ratingNumber) + "☆".repeat(5 - ratingNumber);
 
   div.innerHTML = `
     <h3>${review.tripTo}</h3>
@@ -149,7 +247,7 @@ form.addEventListener("submit", async (e) => {
       tripStart: tripStart,
       tripEnd: tripEnd,
       comment: comment,
-      approved: false, // nowa opinia czeka na zatwierdzenie
+      approved: false,
       createdAt: serverTimestamp()
     });
 
@@ -159,66 +257,32 @@ form.addEventListener("submit", async (e) => {
     console.error("Błąd przy dodawaniu opinii:", err);
     document.getElementById("thankYouMessage").innerText = "Wystąpił błąd. Spróbuj ponownie później.";
   }
-  async function loadReviews() {
-  const reviewsCol = collection(db, "reviews");
-  const q = query(reviewsCol, where("approved", "==", true), orderBy("createdAt", "desc"));
-  const snapshot = await getDocs(q);
-
-  if (snapshot.empty) {
-    console.log("Brak opinii do wyświetlenia");
-  } else {
-    snapshot.forEach(doc => {
-      console.log("Opinie z Firestore:", doc.data());
-      displayReview(doc.data());
-    });
-  }
-}
 });
 </script>
-<!-- Modal Kontakt -->
-<div id="contactModal" class="modal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>Kontakt z nami</h2>
-    <p>Email: <a href="mailto:wayfly2025@gmail.com">wayfly2025@gmail.com</a></p>
-    <p>Social Media:</p>
-    <ul>
-      <li><a href="https://www.tiktok.com/@wayfly_" target="_blank">TikTok</a></li>
-      <li><a href="https://www.instagram.com/wayfly__/" target="_blank">Instagram</a></li>
-    </ul>
-  </div>
-</div>
-  <script>
-  // Pobranie elementów
-const contactBtn = document.getElementById("contactBtn");
-const modal = document.getElementById("contactModal");
-const closeBtn = modal.querySelector(".close");
 
-// Pokaż modal po kliknięciu
-contactBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  modal.style.display = "flex";
-});
+<script>
+  // Pop-up kontaktu
+  const contactBtn = document.getElementById("contactBtn");
+  const modal = document.getElementById("contactModal");
+  const closeBtn = modal.querySelector(".close");
 
-// Zamknij po kliknięciu X
-closeBtn.addEventListener("click", () => {
-  modal.style.display = "none";
-});
+  contactBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    modal.style.display = "flex";
+  });
 
-// Zamknij po kliknięciu poza modal
-window.addEventListener("click", (e) => {
-  if (e.target === modal) {
+  closeBtn.addEventListener("click", () => {
     modal.style.display = "none";
-  }
-});
+  });
 
-// Zamknij po wciśnięciu ESC
-window.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    modal.style.display = "none";
-  }
-});
-  </script>
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) modal.style.display = "none";
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") modal.style.display = "none";
+  });
+</script>
 
 </body>
 </html>
