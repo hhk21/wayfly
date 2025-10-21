@@ -6,13 +6,12 @@
     <title>FAQ | Wayfly</title>
     <link rel="stylesheet" href="/style.css">
     <link rel="icon" href="/wayflyicon.png" type="image/png">
-    <style>
-        body {
-            margin: 0;
-            background-color: #f7f9fb;
-            padding-top: 70px; /* wysokość menu */
-        }
-
+  <style>
+body {
+    margin: 0;
+    background-color: #f7f9fb;
+    padding-top: 70px; /* wysokość menu */
+}
 
 /* MENU identyczne jak w index.html */
 nav {
@@ -36,17 +35,17 @@ nav a {
   margin: 0 15px;
 }
 
-/* BANER identyczny jak w index.html, z responsywnymi obrazami */
+/* BANER jak w FAQ na komputerze, z mobilnymi obrazami z index */
 .banner {
   width: 100%;
-  height: 400px;
+  height: 400px; /* jak w FAQ na desktop */
   background-image: url('https://i.imgur.com/oba0Bk2.jpeg'); /* desktop */
   background-size: cover;
   background-position: center;
   border-bottom: 5px solid #0078d7;
 }
 
-/* Responsywne banery dla tabletów */
+/* RESPONSYWNOŚĆ – menu i banery jak w index */
 @media (max-width: 768px) {
   nav {
     flex-direction: row;
@@ -57,11 +56,10 @@ nav a {
   .banner {
     height: 250px;
     background-position: center top;
-    background-image: url('https://i.imgur.com/YoVbUVC.jpeg'); /* tablet */
+    background-image: url('https://i.imgur.com/qG9ER0m.jpeg'); /* tablet */
   }
 }
 
-/* Responsywne banery dla telefonów */
 @media (max-width: 480px) {
   nav {
     padding: 12px 0;
@@ -69,10 +67,8 @@ nav a {
   .banner {
     height: 180px;
     background-position: center top;
-    background-image: url('https://i.imgur.com/YoVbUVC.jpeg'); /* mobilna wersja */
+    background-image: url('https://i.imgur.com/qG9ER0m.jpeg'); /* mobilna wersja */
   }
-}
-
 
 
         /* Sekcja FAQ */
