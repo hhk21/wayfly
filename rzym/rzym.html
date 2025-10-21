@@ -159,6 +159,173 @@
 <div class="back-link">
     <a href="/index.html">← Wróć do ofert</a>
 </div>
+<!-- Popup i obsługa wyboru wyjazdu -->
+<style>
+  .card {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, border 0.2s;
+    border: 3px solid transparent;
+  }
+  .card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  }
+  .card.selected {
+    border: 3px solid #0078d7;
+    box-shadow: 0 4px 15px rgba(0,120,215,0.3);
+  }
+
+  /* Przycisk */
+  #orderBtn {
+    display: none;
+    margin: 30px auto;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+  }
+  #orderBtn:hover {
+    background-color: #005fa3;
+  }
+
+  /* Popup */
+  .popup {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+  }
+  .popup-content {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    max-width: 350px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    animation: popIn 0.25s ease;
+  }
+  @keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .popup h3 {
+    margin-bottom: 15px;
+    color: #004a99;
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  .option {
+    border: 2px solid #0078d7;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .option:hover, .option.selected {
+    background-color: #0078d7;
+    color: white;
+  }
+  .small-text {
+    font-size: 0.8em;
+    color: #555;
+    margin-bottom: 15px;
+  }
+  .popup button {
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  .popup button:hover {
+    background-color: #005fa3;
+  }
+</style>
+
+<button id="orderBtn">Zamów plan</button>
+
+<div class="popup" id="guestPopup">
+  <div class="popup-content">
+    <h3>Wybierz liczbę gości</h3>
+    <div class="options">
+      <div class="option" data-guests="1-2">1–2 osoby</div>
+      <div class="option" data-guests="3-4">3–4 osoby</div>
+      <div class="option" data-guests="5-6">5–6 osób</div>
+    </div>
+    <p class="small-text">Przy większej liczbie osób prosimy o kontakt lub zakup kilku planów (np. 2×4-osobowy).</p>
+    <button id="confirmBtn">Zamów plan</button>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.card');
+  const orderBtn = document.getElementById('orderBtn');
+  const popup = document.getElementById('guestPopup');
+  const options = document.querySelectorAll('.option');
+  const confirmBtn = document.getElementById('confirmBtn');
+  let selectedTrip = null;
+  let selectedGuests = null;
+
+  // Wybór kafelka
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      cards.forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      selectedTrip = card.querySelector('h3').textContent;
+      orderBtn.style.display = 'block';
+    });
+  });
+
+  // Kliknięcie przycisku "Zamów plan"
+  orderBtn.addEventListener('click', () => {
+    if (selectedTrip) {
+      popup.style.display = 'flex';
+    }
+  });
+
+  // Wybór liczby gości
+  options.forEach(opt => {
+    opt.addEventListener('click', () => {
+      options.forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      selectedGuests = opt.dataset.guests;
+    });
+  });
+
+  // Potwierdzenie zamówienia
+  confirmBtn.addEventListener('click', () => {
+    if (!selectedGuests) {
+      alert('Wybierz liczbę gości!');
+      return;
+    }
+    popup.style.display = 'none';
+    alert(`Zamówienie przyjęte:\n${selectedTrip}\nLiczba gości: ${selectedGuests}\n(W przyszłości tutaj pojawi się płatność 💳)`);
+  });
+
+  // Zamknięcie popupu po kliknięciu w tło
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) popup.style.display = 'none';
+  });
+});
+</script>
 
 </body>
 </html>
