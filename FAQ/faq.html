@@ -3,182 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQ | Wayfly</title>
-    <link rel="stylesheet" href="/style.css">
+    <title>Regulamin – Wayfly</title>
     <link rel="icon" href="/wayflyicon.png" type="image/png">
+    <link rel="stylesheet" href="../style.css">
   <style>
-body {
-    margin: 0;
-    background-color: #f7f9fb;
-    padding-top: 70px; /* wysokość menu */
-}
+    :root {
+      --accent: #0b74de;
+      --bg: #f7f9fb;
+      --card: #ffffff;
+    }
 
-/* MENU identyczne jak w index.html */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #4da6ff;
-  display: flex;
-  justify-content: center;
-  padding: 30px 0;
-  z-index: 1000;
-  font-size: 0.9em;
-  font-weight: 300;
-  letter-spacing: 0.5px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-nav a {
-  text-decoration: none;
-  color: white;
-  margin: 0 15px;
-}
+    /* --- BASE STYLING --- */
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: #111;
+      line-height: 1.4;
+      padding-top: 70px; /* wysokość menu – DESKTOP */
+    }
 
-/* BANER jak w FAQ na komputerze, z mobilnymi obrazami z index */
-.banner {
-  width: 100%;
-  height: 400px; /* jak w FAQ na desktop */
-  background-image: url('https://i.imgur.com/oba0Bk2.jpeg'); /* desktop */
-  background-size: cover;
-  background-position: center;
-  border-bottom: 5px solid #0078d7;
-}
+    /* --- MENU identyczne jak w index.html --- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #4da6ff;
+      display: flex;
+      justify-content: center;
+      padding: 30px 0;
+      z-index: 1000;
+      font-size: 0.9em;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    nav a {
+      text-decoration: none;
+      color: white;
+      margin: 0 15px;
+    }
 
-/* RESPONSYWNOŚĆ – menu i banery jak w index */
-@media (max-width: 768px) {
-  nav {
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 20px 0;
-    font-size: 0.85em;
-  }
-  .banner {
-    height: 250px;
-    background-position: center top;
-    background-image: url('https://i.imgur.com/YoVbUVC.jpeg'); /* tablet */
-  }
-}
+    /* --- BANER DESKTOP --- */
+    header.banner {
+      width: 100%;
+      height: 400px;
+      background-image: url('https://i.imgur.com/3a2VV2A.jpeg');
+      background-size: cover;
+      background-position: center;
+      border-bottom: 5px solid #0078d7; /* kreska pod banerem */
+    }
 
-@media (max-width: 480px) {
-  nav {
-    padding: 12px 0;}
- body {
-    padding-top: 40px;
-  }
-  .banner {
-    height: 180px;
-    background-position: center top;
-    background-image: url('https://i.imgur.com/YoVbUVC.jpeg'); /* mobilna wersja */
-  }
-}
+    /* --- RESPONSYWNOŚĆ – zachowaj mobilne obrazy z index.html --- */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 20px 0;
+        font-size: 0.85em;
+      }
+      header.banner {
+        height: 250px;
+        background-position: center top;
+        background-image: url('https://i.imgur.com/Vnu1l6w.jpeg'); /* tablet/mobilny */
+      }
+    }
 
-        /* Sekcja FAQ */
-        .faq-section {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        .faq-section h2 {
-            color: #0078d7;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .faq-item {
-            margin-bottom: 20px;
-        }
-        .faq-item h3 {
-            margin-bottom: 5px;
-            color: #004a99;
-        }
-        .faq-item p {
-            margin: 0;
-        }
+    @media (max-width: 480px) {
+      nav {
+        padding: 12px 0;
+      }
+      body {
+        padding-top: 40px;
+      }
+      header.banner {
+        height: 180px;
+        background-position: center top;
+        background-image: url('https://i.imgur.com/Vnu1l6w.jpeg'); /* mobilna */
+      }
+    }
 
-        footer {
-            text-align: center;
-            padding: 20px 0;
-            background-color: #4da6ff;
-            color: white;
-            margin-top: 50px;
-        }
+    /* --- TREŚĆ --- */
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: var(--card);
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
 
-        /* Modal (kontakt) */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.5);
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-content {
-            background-color: #fff;
-            margin: auto;
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            position: relative;
-        }
-        .modal .close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            color: #aaa;
-            font-size: 25px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .modal .close:hover { color: #000; }
+    h1, h2 {
+      color: #0078d7;
+    }
 
-    </style>
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      background-color: #4da6ff;
+      color: white;
+      margin-top: 50px;
+    }
+  </style>
 </head>
 <body>
 
-<!-- Menu -->
-<nav>
-  <a href="/index.html">Oferty</a>
-  <a href="/FAQ/faq.html">FAQ</a>
-  <a href="/regulamin/regulamin.html">Regulamin</a>
-  <a href="/index.html#opinie">Opinie</a>
-  <a href="#" id="contactBtn">Kontakt</a>
-</nav>
+  <!-- MENU -->
+  <nav>
+    <a href="/index.html">Oferty</a>
+    <a href="/FAQ/faq.html">FAQ</a>
+    <a href="/regulamin/regulamin.html">Regulamin</a>
+    <a href="/index.html#opinie">Opinie</a>
+    <a href="#" id="contactBtn">Kontakt</a>
+  </nav>
 
-<!-- Baner (tu musi być w body, nie w style) -->
-<header class="banner"></header>
+  <!-- BANER -->
+  <header class="banner"></header>
 
-<!-- Sekcja FAQ -->
-<section class="faq-section">
-    <h2>FAQ – Najczęściej zadawane pytania</h2>
-    <div class="faq-item">
-        <h3>Jak otrzymać własny plan podróży?</h3>
-        <p>Skontaktuj się z nami poprzez formularz kontaktowy lub mailowo, a przygotujemy indywidualny plan dopasowany do Twoich potrzeb.</p>
-    </div>
-    <div class="faq-item">
-        <h3>Jak długo trwa przygotowanie planu?</h3>
-        <p>Standardowy czas przygotowania planu wynosi 24-48 godzin od momentu przesłania wszystkich niezbędnych informacji.</p>
-    </div>
-    <div class="faq-item">
-        <h3>W jakich krajach działamy?</h3>
-        <p>Tworzymy plany podróży dla większości krajów Europy i popularnych destynacji na całym świecie.</p>
-    </div>
-    <!-- Dodaj kolejne FAQ w ten sam sposób -->
-</section>
+  <!-- TREŚĆ GŁÓWNA -->
+  <main>
+    <h1>Regulamin usług Wayfly</h1>
 
-<footer>
-  2025 Wayfly – indywidualne plany podróży
-</footer>
+    <h2>1. Definicje</h2>
+    <p><strong>„Wayfly”</strong> – marka świadcząca usługi planowania podróży.</p>
+    <p><strong>„Klient”</strong> – osoba korzystająca z usług Wayfly.</p>
+    <p><strong>„Plan podróży”</strong> – dokument zawierający propozycję tras, atrakcji, informacji o noclegach, lotach i wskazówek praktycznych przygotowany przez Wayfly.</p>
+    <p><strong>„Plan indywidualny”</strong> – plan podróży przygotowany na podstawie preferencji i informacji przekazanych przez Klienta.</p>
+    <p><strong>„Plan gotowy”</strong> – wcześniej opracowany plan podróży dostępny w ofercie Wayfly, możliwy do zakupu bez personalizacji.</p>
+
+    <h2>2. Zakres usług</h2>
+    <p>Wayfly tworzy i udostępnia indywidualne oraz gotowe plany podróży, zawierające propozycje atrakcji, wskazówki dotyczące transportu, noclegów oraz informacji praktycznych o kierunku podróży. Wayfly nie dokonuje rezerwacji ani sprzedaży wycieczek w imieniu Klienta.</p>
+
+    <h2>3. Warunki korzystania z usługi</h2>
+    <p>Klient przekazuje dane niezbędne do opracowania planu lub kupuje plan gotowy. Klient ponosi odpowiedzialność za realizację podróży i dokonane rezerwacje. Plan dostarczany jest w formie elektronicznej (PDF lub inny format).</p>
+
+    <h2>4. Płatności</h2>
+    <p>Cena planu ustalana jest indywidualnie lub według cennika. Płatność jest wymagana przed rozpoczęciem pracy nad planem lub przed otrzymaniem planu gotowego. Zwroty nie są możliwe po dostarczeniu planu, chyba że plan jest niezgodny z opisem.</p>
+
+    <h2>5. Ograniczenie odpowiedzialności</h2>
+    <p>Wayfly nie odpowiada za zmiany w usługach transportowych, noclegach, atrakcjach ani decyzje Klienta. Plany mają charakter informacyjny i doradczy.</p>
+
+    <h2>6. Prawa autorskie</h2>
+    <p>Plany podróży są własnością Wayfly. Klient może korzystać z nich wyłącznie na własny użytek. Kopiowanie, udostępnianie lub sprzedaż planów bez zgody Wayfly jest zabronione.</p>
+
+    <h2>7. Dane osobowe</h2>
+    <p>Wayfly przetwarza dane osobowe zgodnie z RODO, wyłącznie w celu realizacji usługi. Klient ma prawo wglądu i żądania usunięcia danych.</p>
+
+    <h2>8. Kontakt i reklamacje</h2>
+    <p>Pytania i reklamacje należy kierować na adres: <strong>wayfly2025@gmail.com</strong>. Reklamacje rozpatrywane są w ciągu 14 dni. W uzasadnionych przypadkach Wayfly może zaproponować poprawioną wersję planu lub częściowy zwrot.</p>
+
+    <h2>9. Postanowienia końcowe</h2>
+    <p>Korzystanie z usług Wayfly oznacza akceptację niniejszego regulaminu. Wayfly zastrzega sobie prawo do jego zmiany, o czym informuje na stronie lub w mediach społecznościowych.</p>
+  </main>
+
+  <footer>
+    2025 Wayfly – indywidualne plany podróży
+  </footer>
 
 <!-- Modal Kontakt -->
 <div id="contactModal" class="modal" aria-hidden="true">
