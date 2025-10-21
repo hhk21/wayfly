@@ -285,14 +285,25 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectedGuests = null;
 
   // Wybór kafelka
-  cards.forEach(card => {
-    card.addEventListener('click', () => {
-      cards.forEach(c => c.classList.remove('selected'));
-      card.classList.add('selected');
-      selectedTrip = card.querySelector('h3').textContent;
-      orderBtn.style.display = 'block';
-    });
+ cards.forEach(card => {
+  card.addEventListener('click', () => {
+    // Zaznaczenie wyjazdu
+    cards.forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    selectedTrip = card.querySelector('h3').textContent;
+
+    // Pokazanie przycisku
+    orderBtn.style.display = 'block';
+
+    // Scroll z animacją
+    orderBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // Krótkie wyróżnienie przycisku
+    orderBtn.classList.add('highlight');
+    setTimeout(() => orderBtn.classList.remove('highlight'), 2000);
   });
+});
+
 
   // Kliknięcie przycisku "Zamów plan"
   orderBtn.addEventListener('click', () => {
@@ -325,7 +336,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === popup) popup.style.display = 'none';
   });
 });
+    /* Animacja wyróżnienia przycisku */
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 rgba(0,120,215,0.4); }
+  50% { transform: scale(1.1); box-shadow: 0 0 15px rgba(0,120,215,0.6); }
+  100% { transform: scale(1); box-shadow: 0 0 0 rgba(0,120,215,0.4); }
+}
+#orderBtn.highlight {
+  animation: pulse 1s ease-in-out 2;
+}
+
 </script>
+    
 
 </body>
 </html>
