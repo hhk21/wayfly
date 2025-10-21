@@ -1,122 +1,210 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <base href="/">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Regulamin – Wayfly</title>
-  <link rel="icon" href="/wayflyicon.png" type="image/png">
- <link rel="stylesheet" href="../style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regulamin – Wayfly</title>
+    <link rel="icon" href="/wayflyicon.png" type="image/png">
+    <link rel="stylesheet" href="../style.css">
   <style>
     :root {
       --accent: #0b74de;
       --bg: #f7f9fb;
       --card: #ffffff;
     }
-     @media (max-width: 768px) {
-      nav {
-        flex-direction: row;
-        justify-content: space-around;
-        padding: 20px 0; /* dopasowane menu na telefon */
-        font-size: 0.85em; }
-         .banner {
-    height: 250px; /* zmniejszona wysokość */
-    background-position: center top;
-    background-image: url('https://i.imgur.com/Vnu1l6w.jpeg');
-         }
-      body {
-        padding-top: 40px; /* dopasowanie do grubszego menu na telefon */
-      }
-    }
 
-    @media (max-width: 480px) {
-  nav {
-    padding: 12px 0;}
- body {
-    padding-top: 40px;
-  }
-  .banner {
-    height: 180px;
-    background-position: center top;
-    background-image: url('https://i.imgur.com/Vnu1l6w.jpeg'); /* mobilna wersja */
-  }
-
+    /* --- BASE STYLING --- */
     body {
       margin: 0;
       font-family: Inter, Arial, Helvetica, sans-serif;
       background: var(--bg);
       color: #111;
       line-height: 1.4;
-      padding-top: 70px; /* wysokość menu */
-      }
+      padding-top: 70px; /* wysokość menu – DESKTOP */
     }
 
-    /* Baner */
-    header {
+    /* --- MENU identyczne jak w index.html --- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #4da6ff;
+      display: flex;
+      justify-content: center;
+      padding: 30px 0;
+      z-index: 1000;
+      font-size: 0.9em;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    nav a {
+      text-decoration: none;
+      color: white;
+      margin: 0 15px;
+    }
+
+    /* --- BANER DESKTOP --- */
+    header.banner {
+      width: 100%;
+      height: 400px;
       background-image: url('https://i.imgur.com/3a2VV2A.jpeg');
       background-size: cover;
       background-position: center;
-      height: 400px;
-      border-bottom: 5px solid #0078d7;
-      padding-top: 70px
+      border-bottom: 5px solid #0078d7; /* kreska pod banerem */
     }
 
+    /* --- RESPONSYWNOŚĆ – zachowaj mobilne obrazy z index.html --- */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 20px 0;
+        font-size: 0.85em;
+      }
+      header.banner {
+        height: 250px;
+        background-position: center top;
+        background-image: url('https://i.imgur.com/Vnu1l6w.jpeg'); /* tablet/mobilny */
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        padding: 12px 0;
+      }
+      body {
+        padding-top: 40px;
+      }
+      header.banner {
+        height: 180px;
+        background-position: center top;
+        background-image: url('https://i.imgur.com/Vnu1l6w.jpeg'); /* mobilna */
+      }
+    }
+
+    /* --- TREŚĆ --- */
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: var(--card);
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+      color: #0078d7;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      background-color: #4da6ff;
+      color: white;
+      margin-top: 50px;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Menu -->
-<nav>
-  <a href="/index.html">Oferty</a>
-  <a href="/FAQ/faq.html">FAQ</a>
-  <a href="/regulamin/regulamin.html">Regulamin</a>
-  <a href="/index.html#opinie">Opinie</a>
-  <a href="#" id="contactBtn">Kontakt</a>
-</nav>
+  <!-- MENU -->
+  <nav>
+    <a href="/index.html">Oferty</a>
+    <a href="/FAQ/faq.html">FAQ</a>
+    <a href="/regulamin/regulamin.html">Regulamin</a>
+    <a href="/index.html#opinie">Opinie</a>
+    <a href="#" id="contactBtn">Kontakt</a>
+  </nav>
 
-  <!-- Baner -->
-  <header></header>
+  <!-- BANER -->
+  <header class="banner"></header>
 
-  <!-- Treść główna -->
+  <!-- TREŚĆ GŁÓWNA -->
   <main>
     <h1>Regulamin usług Wayfly</h1>
 
-  <h2>1. Definicje</h2>
-  <p><strong>„Wayfly”</strong> – marka świadcząca usługi planowania podróży.</p>
-  <p><strong>„Klient”</strong> – osoba korzystająca z usług Wayfly.</p>
-  <p><strong>„Plan podróży”</strong> – dokument zawierający propozycję tras, atrakcji, informacji o noclegach, lotach i wskazówek praktycznych przygotowany przez Wayfly.</p>
-  <p><strong>„Plan indywidualny”</strong> – plan podróży przygotowany na podstawie preferencji i informacji przekazanych przez Klienta.</p>
-  <p><strong>„Plan gotowy”</strong> – wcześniej opracowany plan podróży dostępny w ofercie Wayfly, możliwy do zakupu bez personalizacji.</p>
+    <h2>1. Definicje</h2>
+    <p><strong>„Wayfly”</strong> – marka świadcząca usługi planowania podróży.</p>
+    <p><strong>„Klient”</strong> – osoba korzystająca z usług Wayfly.</p>
+    <p><strong>„Plan podróży”</strong> – dokument zawierający propozycję tras, atrakcji, informacji o noclegach, lotach i wskazówek praktycznych przygotowany przez Wayfly.</p>
+    <p><strong>„Plan indywidualny”</strong> – plan podróży przygotowany na podstawie preferencji i informacji przekazanych przez Klienta.</p>
+    <p><strong>„Plan gotowy”</strong> – wcześniej opracowany plan podróży dostępny w ofercie Wayfly, możliwy do zakupu bez personalizacji.</p>
 
-  <h2>2. Zakres usług</h2>
-  <p>Wayfly tworzy i udostępnia indywidualne oraz gotowe plany podróży, zawierające propozycje atrakcji, wskazówki dotyczące transportu, noclegów oraz informacji praktycznych o kierunku podróży. Wayfly nie dokonuje rezerwacji ani sprzedaży wycieczek w imieniu Klienta.</p>
+    <h2>2. Zakres usług</h2>
+    <p>Wayfly tworzy i udostępnia indywidualne oraz gotowe plany podróży, zawierające propozycje atrakcji, wskazówki dotyczące transportu, noclegów oraz informacji praktycznych o kierunku podróży. Wayfly nie dokonuje rezerwacji ani sprzedaży wycieczek w imieniu Klienta.</p>
 
-  <h2>3. Warunki korzystania z usługi</h2>
-  <p>Klient przekazuje dane niezbędne do opracowania planu lub kupuje plan gotowy. Klient ponosi odpowiedzialność za realizację podróży i dokonane rezerwacje. Plan dostarczany jest w formie elektronicznej (PDF lub inny format). </p>
+    <h2>3. Warunki korzystania z usługi</h2>
+    <p>Klient przekazuje dane niezbędne do opracowania planu lub kupuje plan gotowy. Klient ponosi odpowiedzialność za realizację podróży i dokonane rezerwacje. Plan dostarczany jest w formie elektronicznej (PDF lub inny format).</p>
 
-  <h2>4. Płatności</h2>
-  <p>Cena planu ustalana jest indywidualnie lub według cennika. Płatność jest wymagana przed rozpoczęciem pracy nad planem lub przed otrzymaniem planu gotowego. Zwroty nie są możliwe po dostarczeniu planu, chyba że plan jest niezgodny z opisem.</p>
+    <h2>4. Płatności</h2>
+    <p>Cena planu ustalana jest indywidualnie lub według cennika. Płatność jest wymagana przed rozpoczęciem pracy nad planem lub przed otrzymaniem planu gotowego. Zwroty nie są możliwe po dostarczeniu planu, chyba że plan jest niezgodny z opisem.</p>
 
-  <h2>5. Ograniczenie odpowiedzialności</h2>
-  <p>Wayfly nie odpowiada za zmiany w usługach transportowych, noclegach, atrakcjach ani decyzje Klienta. Plany mają charakter informacyjny i doradczy.</p>
+    <h2>5. Ograniczenie odpowiedzialności</h2>
+    <p>Wayfly nie odpowiada za zmiany w usługach transportowych, noclegach, atrakcjach ani decyzje Klienta. Plany mają charakter informacyjny i doradczy.</p>
 
-  <h2>6. Prawa autorskie</h2>
-  <p>Plany podróży są własnością Wayfly. Klient może korzystać z nich wyłącznie na własny użytek. Kopiowanie, udostępnianie lub sprzedaż planów bez zgody Wayfly jest zabronione.</p>
+    <h2>6. Prawa autorskie</h2>
+    <p>Plany podróży są własnością Wayfly. Klient może korzystać z nich wyłącznie na własny użytek. Kopiowanie, udostępnianie lub sprzedaż planów bez zgody Wayfly jest zabronione.</p>
 
-  <h2>7. Dane osobowe</h2>
-  <p>Wayfly przetwarza dane osobowe zgodnie z RODO, wyłącznie w celu realizacji usługi. Klient ma prawo wglądu i żądania usunięcia danych.</p>
+    <h2>7. Dane osobowe</h2>
+    <p>Wayfly przetwarza dane osobowe zgodnie z RODO, wyłącznie w celu realizacji usługi. Klient ma prawo wglądu i żądania usunięcia danych.</p>
 
-  <h2>8. Kontakt i reklamacje</h2>
-  <p>Pytania i reklamacje należy kierować na adres: <strong>wayfly2025@gmail.com</strong>. Reklamacje rozpatrywane są w ciągu 14 dni. W uzasadnionych przypadkach Wayfly może zaproponować poprawioną wersję planu lub częściowy zwrot.</p>
+    <h2>8. Kontakt i reklamacje</h2>
+    <p>Pytania i reklamacje należy kierować na adres: <strong>wayfly2025@gmail.com</strong>. Reklamacje rozpatrywane są w ciągu 14 dni. W uzasadnionych przypadkach Wayfly może zaproponować poprawioną wersję planu lub częściowy zwrot.</p>
 
-  <h2>9. Postanowienia końcowe</h2>
-  <p>Korzystanie z usług Wayfly oznacza akceptację niniejszego regulaminu. Wayfly zastrzega sobie prawo do jego zmiany, o czym informuje na stronie lub w mediach społecznościowych.</p>
-
+    <h2>9. Postanowienia końcowe</h2>
+    <p>Korzystanie z usług Wayfly oznacza akceptację niniejszego regulaminu. Wayfly zastrzega sobie prawo do jego zmiany, o czym informuje na stronie lub w mediach społecznościowych.</p>
   </main>
-    
-<footer>
-  2025 Wayfly – indywidualne plany podróży 
-</footer>
 
-</body>
-</html>
+  <footer>
+    2025 Wayfly – indywidualne plany podróży
+  </footer>
+
+<!-- Modal Kontakt -->
+<div id="contactModal" class="modal" aria-hidden="true">
+  <div class="modal-content">
+    <span id="contactClose" class="close">&times;</span>
+    <h2>Kontakt z nami</h2>
+    <p>Email: <a href="mailto:wayfly2025@gmail.com">wayfly2025@gmail.com</a></p>
+    <p>Social Media:</p>
+    <ul>
+      <li><a href="https://www.tiktok.com/@wayfly_" target="_blank">TikTok</a></li>
+      <li><a href="https://www.instagram.com/wayfly__/" target="_blank">Instagram</a></li>
+    </ul>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const contactBtn = document.getElementById('contactBtn');
+    const contactModal = document.getElementById('contactModal');
+    const contactClose = document.getElementById('contactClose');
+
+    if(contactBtn && contactModal && contactClose){
+        contactBtn.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            contactModal.style.display = 'flex';
+            contactModal.setAttribute('aria-hidden', 'false');
+        });
+        contactClose.addEventListener('click', () => {
+            contactModal.style.display = 'none';
+            contactModal.setAttribute('aria-hidden', 'true');
+        });
+    }
+
+    window.addEventListener('click', (e) => {
+        if(e.target === contactModal) {
+            contactModal.style.display = 'none';
+            contactModal.setAttribute('aria-hidden', 'true');
+        }
+    });
+
+    window.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape' && contactModal) {
+            contactModal.style.display = 'none';
+            contactModal.setAttribute('aria-hidden', 'true');
+        }
+    });
+});
+</script>
