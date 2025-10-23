@@ -374,7 +374,7 @@ confirmBtn.addEventListener('click', () => {
   popup.style.display = 'none';
 
   // Zapis do bazy i wysłanie powiadomienia email
-  fetch('https://twoj-backend.onrender.com/api/order', {
+ fetch('https://wayfly.onrender.com/api/order', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
