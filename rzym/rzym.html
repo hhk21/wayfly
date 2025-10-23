@@ -303,6 +303,10 @@
       <div class="option" data-guests="3-4">3–4 osoby</div>
       <div class="option" data-guests="5-6">5–6 osób</div>
     </div>
+    <label for="email" class="remarks-label">Twój email:</label>
+    <input type="email" id="email" placeholder="Podaj email" required>
+    <p class="small-text">Email musi być taki sam, jak przy płatności PayPal.</p>
+
 
     <label for="remarks" class="remarks-label">Uwagi do zamówienia:</label>
     <textarea id="remarks" placeholder="Np. preferencje dotyczące jedzenia, godzin lotu itp."></textarea>
@@ -353,21 +357,46 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Potwierdzenie zamówienia — tu podmieniono zachowanie płatności
-  confirmBtn.addEventListener('click', () => {
-    if (!selectedGuests) {
-      alert('Wybierz liczbę gości!');
-      return;
-    }
-    const remarksText = remarks.value.trim() || "Brak uwag";
-    popup.style.display = 'none';
+  const emailInput = document.getElementById('email');
 
-    // URL do PayPal.me — otwieramy w nowej karcie
-    const paypalUrl = 'https://paypal.me/hhk211/30';
-    const newWin = window.open(paypalUrl, '_blank', 'noopener,noreferrer');
-    if (newWin) newWin.opener = null; // dodatkowe zabezpieczenie
+confirmBtn.addEventListener('click', () => {
+  if (!selectedGuests) {
+    alert('Wybierz liczbę gości!');
+    return;
+  }
+  const email = emailInput.value.trim();
+  if (!email) {
+    alert('Podaj email!');
+    return;
+  }
 
-    alert(`Zamówienie przyjęte:\n${selectedTrip}\nLiczba gości: ${selectedGuests}\nUwagi: ${remarksText}\nPrzekierowano do płatności PayPal.`);
-  });
+  const remarksText = remarks.value.trim() || "Brak uwag";
+  popup.style.display = 'none';
+
+  // Zapis do bazy i wysłanie powiadomienia email
+  fetch('https://twoj-backend.onrender.com/api/order', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      trip: selectedTrip,
+      guests: selectedGuests,
+      remarks: remarksText,
+      email: email,
+      date: new Date().toISOString()
+    })
+  })
+  .then(res => res.json())
+  .then(data => console.log('Zamówienie zapisane:', data))
+  .catch(err => console.error('Błąd przy zapisie zamówienia:', err));
+
+  // Otwórz PayPal
+  const paypalUrl = 'https://paypal.me/hhk211/30';
+  const newWin = window.open(paypalUrl, '_blank', 'noopener,noreferrer');
+  if (newWin) newWin.opener = null;
+
+  alert(`Zamówienie przyjęte:\n${selectedTrip}\nLiczba gości: ${selectedGuests}\nUwagi: ${remarksText}\nSprawdź email do płatności.`);
+});
+
 
   // Zamknięcie popupu po kliknięciu w tło
   popup.addEventListener('click', (e) => {
