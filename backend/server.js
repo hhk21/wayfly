@@ -51,6 +51,7 @@ app.post('/api/add-review', async (req, res) => {
       approved: false,       // opinia wymaga zatwierdzenia
       createdAt: admin.firestore.FieldValue.serverTimestamp()
     });
+    });
     // --- Endpoint do przyjmowania zamówień ---
 app.post('/api/order', async (req, res) => {
   try {
