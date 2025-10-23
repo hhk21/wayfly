@@ -51,6 +51,34 @@ app.post('/api/add-review', async (req, res) => {
       approved: false,       // opinia wymaga zatwierdzenia
       createdAt: admin.firestore.FieldValue.serverTimestamp()
     });
+    // --- Endpoint do przyjmowania zamówień ---
+app.post('/api/order', async (req, res) => {
+  try {
+    const { trip, guests, remarks, email, date } = req.body;
+
+    if (!trip || !guests || !email) {
+      return res.status(400).json({ success: false, message: 'Niepełne dane zamówienia' });
+    }
+
+    // Zapis do Firestore
+    await db.collection('orders').add({
+      trip,
+      guests,
+      remarks,
+      email,
+      date: date || new Date().toISOString(),
+    });
+
+    // Wysyłka email powiadomienia (opcjonalnie - np. przez nodemailer)
+    // ...
+    
+    res.json({ success: true, message: 'Zamówienie zapisane' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Błąd zapisu zamówienia' });
+  }
+});
+
 
     res.json({ success: true });
   } catch (err) {
