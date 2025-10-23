@@ -352,7 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Potwierdzenie zamówienia
+  // Potwierdzenie zamówienia — tu podmieniono zachowanie płatności
   confirmBtn.addEventListener('click', () => {
     if (!selectedGuests) {
       alert('Wybierz liczbę gości!');
@@ -360,7 +360,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const remarksText = remarks.value.trim() || "Brak uwag";
     popup.style.display = 'none';
-    alert(`Zamówienie przyjęte:\n${selectedTrip}\nLiczba gości: ${selectedGuests}\nUwagi: ${remarksText}\n(W przyszłości tutaj pojawi się płatność 💳)`);
+
+    // URL do PayPal.me — otwieramy w nowej karcie
+    const paypalUrl = 'https://paypal.me/hhk211/30';
+    const newWin = window.open(paypalUrl, '_blank', 'noopener,noreferrer');
+    if (newWin) newWin.opener = null; // dodatkowe zabezpieczenie
+
+    alert(`Zamówienie przyjęte:\n${selectedTrip}\nLiczba gości: ${selectedGuests}\nUwagi: ${remarksText}\nPrzekierowano do płatności PayPal.`);
   });
 
   // Zamknięcie popupu po kliknięciu w tło
@@ -369,7 +375,3 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
-
-</body>
-</html>
-
